@@ -69,13 +69,18 @@ jobs:
       - name: Install remaining dependencies (allow failure)
         run: |
           pip install -r backend/requirements.txt || echo "Some optional deps failed (continuing)"
-      - name: Debug - test imports
-        run: |
-          python -c "import sys; print(sys.version, sys.executable)"
-          python -c "import numpy; print('numpy', numpy.__version__)"
-          python -c "import torch; print('torch', torch.__version__)"
-          python -c "import pandas; print('pandas', pandas.__version__)"
-          python -c "from src.config import config; print('config OK')"
+      - name: Debug - Python version
+        run: python -c "import sys; print(sys.version, sys.executable)"
+      - name: Debug - import numpy
+        run: python -c "import numpy; print('numpy', numpy.__version__)"
+      - name: Debug - import torch
+        run: python -c "import torch; print('torch', torch.__version__)"
+      - name: Debug - import pandas
+        run: python -c "import pandas; print('pandas', pandas.__version__)"
+      - name: Debug - import scikit-learn
+        run: python -c "import sklearn; print('sklearn', sklearn.__version__)"
+      - name: Debug - import src.config
+        run: python -c "from src.config import config; print('config OK')"
       - name: Debug - test collection
         run: python -m pytest tests/ --collect-only -q || true
       - name: Run tests
