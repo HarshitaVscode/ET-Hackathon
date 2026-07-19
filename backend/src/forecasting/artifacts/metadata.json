@@ -1,0 +1,89 @@
+{
+  "best_model": "Naive",
+  "trained_models": [
+    "Naive"
+  ],
+  "feature_columns": [
+    "AQI_lag_1",
+    "AQI_lag_2",
+    "AQI_lag_3",
+    "AQI_lag_6",
+    "AQI_lag_12",
+    "AQI_lag_24",
+    "AQI_lag_48",
+    "AQI_lag_72",
+    "AQI_rolling_mean_6",
+    "AQI_rolling_mean_24",
+    "AQI_rolling_mean_72",
+    "AQI_rolling_max_24",
+    "AQI_rolling_min_24",
+    "AQI_hourly_diff",
+    "AQI_daily_diff",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos",
+    "month_sin",
+    "month_cos",
+    "dayofweek_sin",
+    "dayofweek_cos",
+    "is_weekend",
+    "is_rush_hour",
+    "season_winter",
+    "season_spring",
+    "season_summer",
+    "season_autumn"
+  ],
+  "target_column": "AQI",
+  "forecast_horizon": 72,
+  "n_locations": 5,
+  "location_metadata": {
+    "0": {
+      "ward": "Dwarka",
+      "zone": "South West"
+    },
+    "1": {
+      "ward": "Rohini",
+      "zone": "North West"
+    },
+    "2": {
+      "ward": "Saket",
+      "zone": "South"
+    },
+    "3": {
+      "ward": "Karol Bagh",
+      "zone": "Central"
+    },
+    "4": {
+      "ward": "Lajpat Nagar",
+      "zone": "South East"
+    }
+  },
+  "model_performance": [
+    {
+      "Location": 0,
+      "RMSE": 12.172,
+      "R2": 0.5741
+    },
+    {
+      "Location": 1,
+      "RMSE": 12.881,
+      "R2": 0.6101
+    },
+    {
+      "Location": 2,
+      "RMSE": 10.523,
+      "R2": 0.349
+    },
+    {
+      "Location": 3,
+      "RMSE": 8.821,
+      "R2": 0.5501
+    },
+    {
+      "Location": 4,
+      "RMSE": 9.448,
+      "R2": 0.5688
+    }
+  ]
+}

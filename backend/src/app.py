@@ -12,6 +12,7 @@ from src.config import config
 from src.api.rest import router as rest_router
 from src.api.graphql_schema import graphql_router
 from src.api.websocket import websocket_router
+from src.api.hyperlocal import router as hyperlocal_router
 
 from src.infrastructure.event_bus import get_event_bus, get_pubsub
 from src.infrastructure.database import TimeseriesDB
@@ -164,6 +165,7 @@ app.add_middleware(
 
 app.include_router(graphql_router, prefix="/graphql")
 app.include_router(rest_router, prefix="/api/v1")
+app.include_router(hyperlocal_router, prefix="/api/v1")
 app.include_router(websocket_router, prefix="/ws")
 
 
