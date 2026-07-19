@@ -74,6 +74,32 @@ jobs:
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
       - name: Debug - import src.config
         run: python -c "from src.config import config; print('config OK')"
+      - name: Debug - test collection
+        run: |
+          python -m pytest tests/ --collect-only -q 2>&1 || true
+        continue-on-error: true
+      - name: Debug - run test_ingestion only
+        run: |
+          python -m pytest tests/test_ingestion.py -v --tb=long 2>&1 || true
+        continue-on-error: true
+      - name: Debug - run test_agents first test
+        run: |
+          python -m pytest "tests/test_agents.py::TestGraphCastAdapter::test_model_initialization" -v --tb=long -s 2>&1 || true
+        continue-on-error: true
+      - name: Run some tests to GitHub Summary
+        run: |
+          {
+            echo "### Test Collection"
+            echo '```'
+            python -m pytest tests/ --collect-only -q 2>&1
+            echo '```'
+            echo ""
+            echo "### test_ingestion"
+            echo '```'
+            python -m pytest tests/test_ingestion.py -v --tb=long 2>&1
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+        continue-on-error: true
       - name: Run tests
         run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
