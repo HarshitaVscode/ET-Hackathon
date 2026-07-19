@@ -69,8 +69,17 @@ jobs:
       - name: Install remaining dependencies (allow failure)
         run: |
           pip install -r backend/requirements.txt || echo "Some optional deps failed (continuing)"
+      - name: Debug - test imports
+        run: |
+          python -c "import sys; print(sys.version, sys.executable)"
+          python -c "import numpy; print('numpy', numpy.__version__)"
+          python -c "import torch; print('torch', torch.__version__)"
+          python -c "import pandas; print('pandas', pandas.__version__)"
+          python -c "from src.config import config; print('config OK')"
+      - name: Debug - test collection
+        run: python -m pytest tests/ --collect-only -q || true
       - name: Run tests
-        run: python -m pytest tests/ -v --tb=short -x --timeout=120
+        run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
   build-frontend:
     name: Build Frontend
