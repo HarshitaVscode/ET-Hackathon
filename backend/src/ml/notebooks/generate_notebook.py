@@ -1178,97 +1178,133 @@ print("Top Contributing Features:")
 for feat, imp in sample_exp["feature_contributions"].items():
     print(f"  {feat}: {imp}")""")
 
-    md("## 22. AQI Prediction Calculator\n\n### 22.1 Calculator Setup\n\nThe interactive calculator automatically detects all features used by the trained model and allows manual input for each.")
+    md("## 22. AQI Prediction Calculator\n\n### 22.1 Widget-Based Interactive Calculator\n\nThe interactive calculator uses **ipywidgets** to create a graphical form. Adjust sliders for each feature, then click **Predict AQI** to see the result.\n\n| Feature Type | Examples | Widget |\n|---|---|---|\n| **Pollutants** | PM2.5, PM10, CO, NO2, SO2, O3, NH3, Benzene, Toluene, Xylene | FloatSlider (0–500 µg/m³) |\n| **Meteorological** | Temperature, Humidity, Wind Speed, Pressure | FloatSlider |\n| **Temporal** | Hour, Day, Month, DayOfWeek, Season | IntSlider / Dropdown |")
 
-    cd("""print("=== AQI Prediction Calculator ===")
-print(f"Model: {best_model_name}")
-print(f"Number of features: {len(available_cols)}")
-print("\\nFeatures required for prediction:")
-for feat in available_cols:
-    unit = ""
-    if any(p in feat for p in ["PM2_5", "PM10", "NO", "NO2", "SO2", "CO", "O3", "NH3", "Benzene", "Toluene", "Xylene"]):
-        unit = "µg/m³"
-    elif feat == "Temperature":
-        unit = "°C"
-    elif feat == "Humidity":
-        unit = "%"
-    elif feat == "Wind_Speed":
-        unit = "m/s"
-    elif feat == "Pressure":
-        unit = "hPa"
-    elif feat == "Rainfall":
-        unit = "mm"
-    elif feat == "Visibility":
-        unit = "km"
-    print(f"  - {feat} ({unit})" if unit else f"  - {feat}")""")
+    cd("""from ipywidgets import (
+    VBox, HBox, FloatSlider, IntSlider, Dropdown, Button,
+    Output, Label, HTML, Tab, Layout, GridBox,
+)
+import IPython.display as disp
 
-    md("### 22.2 Interactive Calculator")
+predictor = ModelPredictor(config)
+predictor._model = best_model
+predictor._feature_names = available_cols
+predictor._preprocessor = scaler
+predictor._explainer = AQIExplainer(best_model, available_cols)
+calculator = AQICalculator(predictor)
+schema = calculator.get_input_schema()
 
-    cd("""def interactive_aqi_calculator(input_dict=None):
+POLLUTANT_MAX = {"PM2_5": 500, "PM10": 600, "CO": 50, "NO": 200, "NO2": 400,
+                 "SO2": 200, "O3": 300, "NH3": 500, "Benzene": 50, "Toluene": 100, "Xylene": 50}
+POLLUTANT_STEP = {"PM2_5": 0.1, "PM10": 0.1, "CO": 0.01, "NO": 0.1, "NO2": 0.1,
+                  "SO2": 0.1, "O3": 0.1, "NH3": 0.1, "Benzene": 0.01, "Toluene": 0.01, "Xylene": 0.01}
 
-    print("\\n" + "=" * 60)
-    print("AQI PREDICTION CALCULATOR")
-    print("=" * 60)
+def _make_widget(field):
+    name = field["name"]
+    fmin = field.get("min", 0)
+    fmax = field.get("max", 500)
+    fdefault = field.get("default", 0)
+    pname = POLLUTANT_MAX.get(name)
+    step = POLLUTANT_STEP.get(name, 1.0)
+    if step >= 1:
+        step = 1
+    if name in ["Season"]:
+        return Dropdown(options=[(v, k) for k, v in enumerate(["Winter","Spring","Summer","Autumn"])],
+                        value=int(fdefault), description=name, layout=Layout(width="300px"))
+    if name in ["Hour"]:
+        return IntSlider(value=int(fdefault), min=0, max=23, step=1, description=name,
+                         layout=Layout(width="300px"))
+    if name in ["Day"]:
+        return IntSlider(value=int(fdefault), min=1, max=31, step=1, description=name,
+                         layout=Layout(width="300px"))
+    if name in ["Month"]:
+        return IntSlider(value=int(fdefault), min=1, max=12, step=1, description=name,
+                         layout=Layout(width="300px"))
+    if name in ["DayOfWeek"]:
+        return Dropdown(options=[(v, k) for k, v in enumerate(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])],
+                        value=int(fdefault), description=name, layout=Layout(width="300px"))
+    max_val = pname if pname else (fmax if isinstance(fmax, (int, float)) else 500)
+    return FloatSlider(value=float(fdefault), min=float(fmin) if isinstance(fmin, (int, float)) else 0,
+                       max=float(max_val), step=float(step), description=name,
+                       layout=Layout(width="300px"), readout_format=".1f")
 
-    predictor = ModelPredictor(config)
-    predictor._model = best_model
-    predictor._feature_names = available_cols
-    predictor._preprocessor = scaler
-    predictor._explainer = AQIExplainer(best_model, available_cols)
-    calculator = AQICalculator(predictor)
+def create_aqi_widget():
+    widgets = {f["name"]: _make_widget(f) for f in schema}
+    pollutant_names = [f["name"] for f in schema if f.get("type") == "pollutant"]
+    met_names = [f["name"] for f in schema if f.get("type") == "meteorological"]
+    temporal_names = [f["name"] for f in schema if f.get("type") == "temporal"]
+    other_names = [f["name"] for f in schema if f not in pollutant_names + met_names + temporal_names and f["name"] not in [x["name"] for x in schema if x.get("type") in ("pollutant","meteorological","temporal")]]
+    temporal_names = [f["name"] for f in schema if f.get("type") == "temporal"]
 
-    if input_dict is None:
-        schema = calculator.get_input_schema()
-        input_dict = {}
-        print("\\nEnter values for each feature (press Enter for defaults):")
-        for field in schema:
-            prompt = f"  {field['name']} ({field.get('unit', '')}, default={field['default']}): "
-            try:
-                val = input(prompt)
-                input_dict[field['name']] = float(val) if val.strip() else field['default']
-            except (ValueError, EOFError):
-                input_dict[field['name']] = field['default']
+    sections = []
+    if pollutant_names:
+        rows = [HBox([widgets[n] for n in pollutant_names[i:i+2]]) for i in range(0, len(pollutant_names), 2)]
+        sections.append(VBox([HTML("<b style='font-size:14px;color:#1a5276;'>Pollutants (µg/m³)</b>")] + rows,
+                             layout=Layout(border="1px solid #d5dbdb", padding="10px", margin="5px 0")))
+    if met_names:
+        rows = [HBox([widgets[n] for n in met_names[i:i+2]]) for i in range(0, len(met_names), 2)]
+        sections.append(VBox([HTML("<b style='font-size:14px;color:#1a5276;'>Meteorological</b>")] + rows,
+                             layout=Layout(border="1px solid #d5dbdb", padding="10px", margin="5px 0")))
+    if temporal_names:
+        rows = [HBox([widgets[n] for n in temporal_names[i:i+2]]) for i in range(0, len(temporal_names), 2)]
+        sections.append(VBox([HTML("<b style='font-size:14px;color:#1a5276;'>Temporal</b>")] + rows,
+                             layout=Layout(border="1px solid #d5dbdb", padding="10px", margin="5px 0")))
 
-    result = calculator.predict_from_dict(input_dict)
+    predict_btn = Button(description="Predict AQI", button_style="danger",
+                         layout=Layout(width="200px", height="40px", margin="10px 0"))
+    out = Output()
 
-    print("\\n" + "=" * 60)
-    print("PREDICTION RESULTS")
-    print("=" * 60)
-    print(f"Predicted AQI:      {result['predicted_aqi']}")
-    print(f"AQI Category:       {result['aqi_category']}")
-    print(f"Health Advisory:    {result.get('health_advisory', 'N/A')}")
+    def on_predict(b):
+        with out:
+            out.clear_output()
+            input_dict = {name: w.value for name, w in widgets.items()}
+            result = calculator.predict_from_dict(input_dict)
+            cat = result["aqi_category"]
+            cat_colors = {"Good": "green", "Satisfactory": "lightgreen", "Moderate": "gold",
+                          "Poor": "orange", "Very Poor": "red", "Severe": "darkred"}
+            color = cat_colors.get(cat, "black")
+            pred = result["predicted_aqi"]
+            health = result.get("health_advisory", "")
+            top = result.get("top_contributors", [])
 
-    top_contrib = result.get("top_contributors", [])
-    if top_contrib:
-        print(f"\\nTop Influencing Features:")
-        print(f"{'Feature':<20} {'Importance':<12}")
-        print("-" * 35)
-        for c in top_contrib[:5]:
-            print(f"{c['feature']:<20} {c['importance']:<12.4f}")
+            disp.display(HTML(f"<hr>"
+                f"<div style='padding:15px;border-radius:8px;background:#f8f9fa;'>"
+                f"<h2 style='color:{color};margin:0 0 5px 0;'>Predicted AQI: <b>{pred}</b></h2>"
+                f"<h3 style='color:{color};margin:0 0 10px 0;'>Category: {cat}</h3>"
+                f"<p style='font-size:14px;'><b>Health Advisory:</b> {health}</p>"
+                f"<h4 style='margin:10px 0 5px 0;'>Top Influencing Features</h4>"
+                f"<table style='width:100%;border-collapse:collapse;'>"
+                f"<tr style='background:#e9ecef;'><th style='padding:5px;text-align:left;'>Feature</th><th style='padding:5px;text-align:left;'>Importance</th></tr>"))
 
-    print(f"\\nModel Explanation:")
-    cat = result['aqi_category']
-    if cat == "Good":
-        print("  Air quality is satisfactory and poses little or no health risk.")
-    elif cat == "Satisfactory":
-        print("  Air quality is acceptable; minor discomfort for sensitive individuals.")
-    elif cat == "Moderate":
-        print("  May cause breathing discomfort for sensitive groups (children, elderly, asthmatics).")
-    elif cat == "Poor":
-        print("  May cause breathing discomfort on prolonged exposure. Reduce outdoor activity.")
-    elif cat == "Very Poor":
-        print("  May cause respiratory illness on prolonged exposure. Avoid outdoor activity.")
-    elif cat == "Severe":
-        print("  May cause respiratory effects even on brief exposure. Stay indoors.")
-    print(f"  Confidence Score: {result.get('confidence', 'N/A')}")
-    print(f"  Top features driving this prediction: {result.get('top_features', [])}")
+            for c in top[:5]:
+                imp_color = "green" if c["importance"] > 0 else "red"
+                disp.display(HTML(
+                    f"<tr><td style='padding:3px;'>{c['feature']}</td>"
+                    f"<td style='padding:3px;color:{imp_color};'>{c['importance']:.4f}</td></tr>"))
 
-    return result
+            advisory_detail = {
+                "Good": "Air quality is satisfactory and poses little or no health risk.",
+                "Satisfactory": "Air quality is acceptable; minor discomfort for sensitive individuals.",
+                "Moderate": "May cause breathing discomfort for sensitive groups (children, elderly, asthmatics).",
+                "Poor": "May cause breathing discomfort on prolonged exposure. Reduce outdoor activity.",
+                "Very Poor": "May cause respiratory illness on prolonged exposure. Avoid outdoor activity.",
+                "Severe": "May cause respiratory effects even on brief exposure. Stay indoors.",
+            }
+            explanation = advisory_detail.get(cat, "")
+            disp.display(HTML(
+                f"</table>"
+                f"<p style='margin:10px 0 0 0;font-size:13px;'><b>Model Explanation:</b> {explanation}</p>"
+                f"</div><hr>"))
 
-print("\\nFunction defined. Use interactive_aqi_calculator() to run interactively")
-print("or pass a dictionary: interactive_aqi_calculator({'PM2_5': 80, 'PM10': 150, ...})")""")
+    predict_btn.on_click(on_predict)
+    return VBox(sections + [HBox([predict_btn]), out])
 
-    md("### 22.3 Calculator Example\n\nDemonstrate the calculator with sample values representing moderate pollution conditions.")
+print("Creating AQI Calculator Widget...")
+aqi_widget = create_aqi_widget()
+disp.display(aqi_widget)
+print("\\nAdjust the sliders above and click 'Predict AQI' to calculate.")""")
+
+    md("### 22.2 Calculator Example (Programmatic)\n\nUse a predefined set of values to demonstrate the calculator without manual input.")
 
     cd("""example_input = {
     "PM2_5": 85.0, "PM10": 165.0, "NO": 28.0, "NO2": 52.0,
@@ -1279,7 +1315,14 @@ print("or pass a dictionary: interactive_aqi_calculator({'PM2_5': 80, 'PM10': 15
     "Visibility": 6.0, "Hour": 14, "Day": 15, "Month": 11,
     "DayOfWeek": 3, "Season": 3,
 }
-result = interactive_aqi_calculator(example_input)""")
+print("\\nRunning example prediction...")
+result = calculator.predict_from_dict(example_input)
+print(f"Predicted AQI: {result['predicted_aqi']}")
+print(f"Category: {result['aqi_category']}")
+print(f"Health Advisory: {result.get('health_advisory', 'N/A')}")
+print("\\nTop Contributors:")
+for c in result.get("top_contributors", [])[:5]:
+    print(f"  {c['feature']}: {c['importance']:.4f}")""")
 
     md("## 23. Save Model & Artifacts\n\nSave the trained model, preprocessor, feature list, and metadata to the artifacts directory for later use by the main application.")
 
