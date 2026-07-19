@@ -72,11 +72,7 @@ jobs:
       - name: Install optional deps (allow failure)
         run: |
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
-      - name: Run both test files together
-        run: python -m pytest tests/test_ingestion.py tests/test_agents.py -v --tb=long -x --timeout=120 || true
-      - name: Run agents tests only
-        run: python -m pytest tests/test_agents.py -v --tb=long -x --timeout=120 || true
-      - name: Run from tests/ directory
+      - name: Run tests
         run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
   build-frontend:
