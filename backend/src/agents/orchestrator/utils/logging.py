@@ -3,15 +3,19 @@ from __future__ import annotations
 import logging
 import sys
 
+import structlog
+
 
 def get_logger(name: str | None = None) -> logging.Logger:
-    logger = logging.getLogger(name or __name__)
-    if not logger.handlers:
-        handler = logging.StreamHandler(sys.stdout)
-        handler.setFormatter(logging.Formatter(
-            "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S",
-        ))
-        logger.addHandler(handler)
-        logger.setLevel(logging.INFO)
-    return logger
+    structlog.configure(
+        processors=[
+            structlog.stdlib.add_log_level,
+            structlog.stdlib.PositionalArgumentsFormatter(),
+            structlog.processors.TimeStamper(fmt="%Y-%m-%d %H:%M:%S"),
+            structlog.stdlib.ProcessorFormatter.wrap_for_formatter,
+        ],
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        cache_logger_on_first_use=True,
+    )
+    logger = structlog.get_logger(name or __name__)
+    return logger  # type: ignore[return-value]
