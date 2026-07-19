@@ -1,0 +1,77 @@
+{
+  "model_name": "StackingEnsemble",
+  "base_models": [
+    "XGBoost",
+    "RandomForest",
+    "LSTM"
+  ],
+  "feature_names": [
+    "PM2_5",
+    "PM10",
+    "NO",
+    "NO2",
+    "SO2",
+    "CO",
+    "O3",
+    "NH3",
+    "Benzene",
+    "Toluene",
+    "Xylene",
+    "Temperature",
+    "Humidity",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Pressure",
+    "Rainfall",
+    "Visibility",
+    "Hour",
+    "Day",
+    "Month",
+    "DayOfWeek",
+    "Season"
+  ],
+  "target": "AQI",
+  "train_samples": 7000,
+  "test_samples": 1500,
+  "metrics": {
+    "MAE": 0.996,
+    "MSE": 2.814,
+    "RMSE": 1.677,
+    "R2": 0.9986,
+    "Adjusted_R2": 0.9986,
+    "MAPE": 0.92
+  },
+  "category_accuracy": 98.6,
+  "aqi_breakpoints": [
+    [
+      0,
+      50,
+      "Good"
+    ],
+    [
+      51,
+      100,
+      "Satisfactory"
+    ],
+    [
+      101,
+      200,
+      "Moderate"
+    ],
+    [
+      201,
+      300,
+      "Poor"
+    ],
+    [
+      301,
+      400,
+      "Very Poor"
+    ],
+    [
+      401,
+      500,
+      "Severe"
+    ]
+  ]
+}

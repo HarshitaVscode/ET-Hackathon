@@ -148,3 +148,8 @@ stream-processing/target/
 # Logs
 logs/
 *.log
+
+# ML model artifacts (tracked)
+!backend/src/ml/artifacts/*.pkl
+!backend/src/ml/artifacts/*.json
+!backend/src/ml/data/*.csv
