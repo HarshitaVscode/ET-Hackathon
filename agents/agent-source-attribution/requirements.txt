@@ -1,0 +1,11 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.7.0
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+python-dotenv>=1.0.0
+structlog>=24.2.0
+causalnex>=0.12.0
+pgmpy>=0.1.25
+shap>=0.46.0

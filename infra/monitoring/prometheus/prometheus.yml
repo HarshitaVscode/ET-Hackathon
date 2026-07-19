@@ -1,0 +1,52 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - "rules/*.yml"
+
+scrape_configs:
+  - job_name: 'vayu-ingestion'
+    static_configs:
+      - targets: ['ingestion:8100']
+
+  - job_name: 'vayu-knowledge-graph'
+    static_configs:
+      - targets: ['knowledge-graph:8100']
+
+  - job_name: 'vayu-orchestrator'
+    static_configs:
+      - targets: ['agent-orchestrator:8300']
+
+  - job_name: 'vayu-forecast-agent'
+    static_configs:
+      - targets: ['agent-aqi-forecast:8301']
+
+  - job_name: 'vayu-attribution-agent'
+    static_configs:
+      - targets: ['agent-source-attribution:8302']
+
+  - job_name: 'vayu-burn-agent'
+    static_configs:
+      - targets: ['agent-burn-detection:8303']
+
+  - job_name: 'vayu-decision-engine'
+    static_configs:
+      - targets: ['decision-engine:8400']
+
+  - job_name: 'vayu-api-gateway'
+    static_configs:
+      - targets: ['api-gateway:8000']
+
+  - job_name: 'vayu-llm-service'
+    static_configs:
+      - targets: ['llm-service:8500']
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:9100']

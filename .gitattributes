@@ -1,0 +1,64 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Python source
+*.py text diff=python
+*.pyw text
+
+# JavaScript/TypeScript
+*.js text
+*.jsx text
+*.ts text diff=typescript
+*.tsx text
+
+# Web
+*.html text diff=html
+*.css text
+*.scss text
+*.json text
+*.xml text
+*.yml text
+*.yaml text
+*.svg text
+*.md text diff=markdown
+
+# Shell scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.sh text eol=lf
+
+# Config
+*.cfg text
+*.conf text
+*.ini text
+*.toml text
+
+# Makefile
+Makefile text
+makefile text
+
+# Docker
+Dockerfile text
+*.dockerfile text
+
+# Binary files - keep as-is
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+*.gz binary
+*.zip binary
+*.tar binary
+*.rar binary
+*.pdf binary
+*.pb binary
+
+# Lock files
+package-lock.json -diff
