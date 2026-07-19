@@ -149,7 +149,9 @@ stream-processing/target/
 logs/
 *.log
 
-# ML model artifacts (tracked)
+# ML model artifacts (tracked, overriding data/ and *.pkl rules)
+!backend/src/ml/artifacts/
 !backend/src/ml/artifacts/*.pkl
 !backend/src/ml/artifacts/*.json
+!backend/src/ml/data/
 !backend/src/ml/data/*.csv
