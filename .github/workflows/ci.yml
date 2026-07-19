@@ -62,27 +62,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip wheel setuptools
           pip install -e backend/
+      - name: Install required runtime deps
+        run: |
+          pip install pydantic pydantic-settings fastapi uvicorn httpx python-dotenv structlog tenacity orjson networkx
       - name: Install test dependencies
         run: |
           pip install pytest pytest-asyncio pytest-timeout
           pip install numpy pandas scikit-learn torch --extra-index-url https://download.pytorch.org/whl/cpu
-      - name: Install remaining dependencies (allow failure)
+      - name: Install optional deps (allow failure)
         run: |
-          pip install -r backend/requirements.txt || echo "Some optional deps failed (continuing)"
-      - name: Debug - Python version
-        run: python -c "import sys; print(sys.version, sys.executable)"
-      - name: Debug - import numpy
-        run: python -c "import numpy; print('numpy', numpy.__version__)"
-      - name: Debug - import torch
-        run: python -c "import torch; print('torch', torch.__version__)"
-      - name: Debug - import pandas
-        run: python -c "import pandas; print('pandas', pandas.__version__)"
-      - name: Debug - import scikit-learn
-        run: python -c "import sklearn; print('sklearn', sklearn.__version__)"
+          pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
       - name: Debug - import src.config
         run: python -c "from src.config import config; print('config OK')"
-      - name: Debug - test collection
-        run: python -m pytest tests/ --collect-only -q || true
       - name: Run tests
         run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
