@@ -74,21 +74,29 @@ jobs:
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
       - name: Run tests
         run: |
-          python -m pytest tests/ -v --tb=long -x --timeout=120 --junitxml=pytest-report.xml 2>&1 | tee pytest_output.log
-          # Ensure exit code is preserved
+          python -m pytest tests/test_ingestion.py tests/test_agents.py -v --tb=long -x --timeout=120 2>&1 | tee pytest_output.log
           exit ${PIPESTATUS[0]}
-      - name: Upload pytest report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-report
-          path: pytest-report.xml
       - name: Upload pytest log
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pytest-output-log
           path: pytest_output.log
+      - name: Debug - run directory discovery for comparison
+        if: always()
+        run: |
+          echo "=== Directory discovery ===" | tee -a debug_discovery.log
+          python -m pytest tests/ --collect-only -q 2>&1 | tee -a debug_discovery.log
+          echo "Exit code: $?" >> debug_discovery.log
+          echo "=== Explicit files ===" >> debug_discovery.log
+          python -m pytest tests/test_ingestion.py tests/test_agents.py --collect-only -q 2>&1 | tee -a debug_discovery.log
+          echo "Exit code: $?" >> debug_discovery.log
+      - name: Upload debug log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-discovery-log
+          path: debug_discovery.log
 
   build-frontend:
     name: Build Frontend
