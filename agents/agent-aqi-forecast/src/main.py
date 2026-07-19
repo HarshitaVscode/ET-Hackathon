@@ -10,7 +10,6 @@ and returns gridded forecasts with uncertainty quantification.
 
 from __future__ import annotations
 
-import io
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from typing import Any

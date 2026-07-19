@@ -19,7 +19,9 @@ import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Callable
+from typing import Any
+
+from uuid import uuid4
 
 from agents.orchestrator.src.communication_bus import (
     AgentMessage,
@@ -245,6 +247,3 @@ def build_emergency_workflow(bus: CommunicationBus) -> WorkflowDAG:
     ))
 
     return dag
-
-
-from uuid import uuid4

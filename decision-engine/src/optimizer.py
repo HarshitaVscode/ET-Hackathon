@@ -154,11 +154,8 @@ class SquadRouter:
         # Simple greedy assignment to squads
         squads: list[list[dict[str, Any]]] = [[] for _ in range(num_squads)]
         squad_times: list[float] = [0.0] * num_squads
-        squad_positions: list[tuple[float, float]] = [(28.61, 77.23)] * num_squads  # Starting at center
 
         for violation in scored:
-            v_lat = float(violation.get("latitude", 28.61))
-            v_lon = float(violation.get("longitude", 77.23))
             travel = float(violation.get("estimated_travel_minutes", 30))
             duration = float(violation.get("inspection_duration_minutes", 20))
 

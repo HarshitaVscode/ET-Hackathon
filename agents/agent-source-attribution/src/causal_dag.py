@@ -26,7 +26,6 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-from src.config import attribution_config
 
 
 class CausalDAGLearner:
@@ -64,7 +63,7 @@ class CausalDAGLearner:
         )
 
         try:
-            from causalnex.structure import StructureModel
+            from causalnex.structure import StructureModel  # noqa: F401
             from causalnex.structure.notears import from_pandas
 
             # Use NOTEARS for structure learning (continuous optimization)

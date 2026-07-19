@@ -8,7 +8,6 @@ counterfactual "what if" simulations for policy planning.
 
 from __future__ import annotations
 
-import io
 from contextlib import asynccontextmanager
 from typing import Any
 

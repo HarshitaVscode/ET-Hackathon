@@ -171,16 +171,16 @@ class CommunicationBus:
 
         result: dict[str, Any] = {}
         numeric_fields = [k for k in predictions[0] if isinstance(predictions[0][k], (int, float))]
-        for field in numeric_fields:
+        for key in numeric_fields:
             weighted_sum = sum(
-                p.get(field, 0) * w for p, w in zip(predictions, weights)
+                p.get(key, 0) * w for p, w in zip(predictions, weights)
             )
-            result[field] = weighted_sum / total_weight
+            result[key] = weighted_sum / total_weight
 
         categorical_fields = [k for k in predictions[0] if isinstance(predictions[0][k], str)]
-        for field in categorical_fields:
-            values = [p.get(field, "") for p in predictions]
-            result[field] = Counter(values).most_common(1)[0][0]
+        for key in categorical_fields:
+            values = [p.get(key, "") for p in predictions]
+            result[key] = Counter(values).most_common(1)[0][0]
 
         result["confidence"] = max(w / total_weight for w in weights) if weights else 0.5
         result["consensus_method"] = "confidence_weighted_vote"

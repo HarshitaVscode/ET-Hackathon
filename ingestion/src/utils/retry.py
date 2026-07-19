@@ -9,6 +9,7 @@ survives transient failures of upstream data sources.
 from __future__ import annotations
 
 import asyncio
+import logging
 from collections.abc import Awaitable, Callable, TypeVar
 from functools import wraps
 from typing import Any
@@ -83,7 +84,7 @@ class CircuitBreaker:
             result = await func(*args, **kwargs)
             self._on_success()
             return result
-        except Exception as exc:
+        except Exception:
             self._on_failure()
             raise
 

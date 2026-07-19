@@ -22,7 +22,6 @@ from src.infrastructure.cache import LocalCache
 from src.knowledge_graph.graph_store import GraphStore
 from src.knowledge_graph.graph_builder import GraphBuilder
 from src.agents.orchestrator.communication_bus import CommunicationBus
-from src.agents.orchestrator.state_machine import WorkflowDAG
 
 from src.agents.orchestrator.utils.logging import get_logger
 
@@ -49,7 +48,7 @@ def _register_agents():
     from src.agents.aqi_forecast.handler import initialize as init_aqi, process_request as aqi_handler
     from src.agents.source_attribution.handler import initialize as init_attr, process_request as attr_handler
     from src.agents.burn_detection.handler import initialize as init_burn, process_request as burn_handler
-    from src.decision_engine.handler import initialize as init_decision, optimize_traffic, optimize_enforcement_route, assess_emergency
+    from src.decision_engine.handler import initialize as init_decision, optimize_traffic, assess_emergency
 
     global _traffic_opt, _squad_router, _emergency_opt, _llm_handler
 

@@ -58,8 +58,11 @@ class PlumeTracker:
         v_wind = wind_speed_ms * np.cos(wind_rad)  # Northward
 
         # Dispersion coefficients (Pasquill-Gifford, neutral conditions)
-        sigma_y = lambda x: 0.08 * x / np.sqrt(1 + 0.0001 * x)
-        sigma_z = lambda x: 0.06 * x / np.sqrt(1 + 0.0015 * x)
+        def sigma_y(x):
+            return 0.08 * x / np.sqrt(1 + 0.0001 * x)
+
+        def sigma_z(x):
+            return 0.06 * x / np.sqrt(1 + 0.0015 * x)
 
         # Effective stack height (plume rise from fire buoyancy)
         buoyancy_flux = fire_intensity * 1000 / 1.2  # W/kg

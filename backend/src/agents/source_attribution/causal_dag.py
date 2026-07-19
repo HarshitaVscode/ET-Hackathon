@@ -27,7 +27,7 @@ class CausalDAGLearner:
         )
 
         try:
-            from causalnex.structure import StructureModel
+            from causalnex.structure import StructureModel  # noqa: F401
             from causalnex.structure.notears import from_pandas
 
             sm = from_pandas(scaled_data)

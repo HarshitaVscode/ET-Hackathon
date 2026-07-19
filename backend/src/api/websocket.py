@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import asyncio
 import json
-from typing import Any
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from src.infrastructure.event_bus import get_pubsub
 
 websocket_router = APIRouter()
 

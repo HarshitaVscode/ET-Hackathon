@@ -10,13 +10,11 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 
 from agents.orchestrator.src.communication_bus import (
     AgentMessage,
     CommunicationBus,
-    MessagePriority,
-    MessageType,
 )
 from agents.orchestrator.src.config import orchestrator_config
 from agents.orchestrator.src.state_machine import (

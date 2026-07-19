@@ -10,7 +10,6 @@ Implements circuit breaker and exponential backoff for resilience.
 
 from __future__ import annotations
 
-import json
 from datetime import datetime, timezone
 from typing import Any
 

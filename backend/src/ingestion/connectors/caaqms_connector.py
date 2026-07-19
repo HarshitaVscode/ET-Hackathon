@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-import json
 from datetime import datetime, timezone
 from typing import Any
 
 import httpx
 
 from src.config import config
-from src.ingestion.connectors.base import BaseConnector, ConnectorStatus
+from src.ingestion.connectors.base import BaseConnector
 from src.ingestion.schemas.models import PollutantType, SensorQuality, SensorReading
 from src.infrastructure.retry import CircuitBreaker, with_retry
 from src.agents.orchestrator.utils.logging import get_logger

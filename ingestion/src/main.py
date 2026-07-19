@@ -7,8 +7,6 @@ and exposes a health check endpoint for Kubernetes probes.
 
 from __future__ import annotations
 
-import asyncio
-import signal
 from contextlib import asynccontextmanager
 from typing import Any
 

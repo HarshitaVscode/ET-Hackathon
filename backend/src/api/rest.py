@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 
 from src.ingestion.connectors.citizen_connector import CitizenConnector
 from src.ingestion.schemas.models import CitizenReport

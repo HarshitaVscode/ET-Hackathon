@@ -5,3 +5,11 @@ from src.schemas.models import (
     TrafficSnapshot,
     WeatherObservation,
 )
+
+__all__ = [
+    "CitizenReport",
+    "SatelliteScene",
+    "SensorReading",
+    "TrafficSnapshot",
+    "WeatherObservation",
+]

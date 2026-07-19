@@ -13,7 +13,6 @@ to the cloud-optimized GeoTIFF assets.
 
 from __future__ import annotations
 
-import asyncio
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -23,7 +22,7 @@ from src.config import config
 from src.connectors.base import BaseConnector
 from src.schemas.models import SatellitePlatform, SatelliteScene
 from src.utils.logging import get_logger
-from src.utils.retry import CircuitBreaker, with_retry
+from src.utils.retry import CircuitBreaker
 
 logger = get_logger(__name__)
 
@@ -49,7 +48,6 @@ class SatelliteConnector(BaseConnector):
 
     def _build_source_configs(self) -> list[dict[str, Any]]:
         """Build list of satellite sources to poll."""
-        now = datetime.now(timezone.utc)
         return [
             {
                 "name": "sentinel2",
@@ -144,11 +142,12 @@ class SatelliteConnector(BaseConnector):
 
     async def _fetch_source_scenes(self, source: dict[str, Any]) -> list[SatelliteScene]:
         """Query STAC API for new scenes from a specific source."""
+        now = datetime.now(timezone.utc)
         client = self._stac_clients.get(source["name"])
         if not client:
             return []
 
-        start_date = self._last_acquisition.get(source["name"], datetime.now(timezone.utc) - timedelta(days=5))
+        start_date = self._last_acquisition.get(source["name"], now - timedelta(days=5))
         response = await client.get(
             "/search",
             params={

@@ -1,4 +1,4 @@
-\"\"\"agent-health-risk stub — ready for implementation.\"\"\"
+"""agent-health-risk stub ï¿½ ready for implementation."""
 from __future__ import annotations
 from fastapi import FastAPI
 app = FastAPI(title="Vayu-Drishti agent-health-risk", version="0.1.0")
@@ -9,7 +9,7 @@ async def health() -> dict[str, str]:
 
 @app.post("/api/v1/process")
 async def process() -> dict[str, str]:
-    return {"status": "stub", "agent": "agent-health-risk", "message": "Agent stub — override with implementation"}
+    return {"status": "stub", "agent": "agent-health-risk", "message": "Agent stub ï¿½ override with implementation"}
 
 def main() -> None:
     import uvicorn

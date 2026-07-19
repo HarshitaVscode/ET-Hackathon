@@ -5,7 +5,6 @@ from typing import Any
 
 import numpy as np
 
-from src.config import config
 from src.agents.burn_detection.detectors.viirs_detector import VIIRSFireDetector
 from src.agents.burn_detection.plume_tracker import PlumeTracker
 from src.agents.orchestrator.utils.logging import get_logger

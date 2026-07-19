@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import networkx as nx
 
 from src.knowledge_graph.node_types import GraphEdge, GraphNode
-from src.infrastructure.event_bus import get_event_bus
 from src.agents.orchestrator.utils.logging import get_logger
 
 logger = get_logger(__name__)

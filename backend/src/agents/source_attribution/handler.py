@@ -5,7 +5,6 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from src.config import config
 from src.agents.source_attribution.causal_dag import CausalDAGLearner
 from src.agents.source_attribution.counterfactual import CounterfactualEngine
 from src.agents.orchestrator.utils.logging import get_logger

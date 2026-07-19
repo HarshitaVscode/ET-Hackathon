@@ -83,8 +83,6 @@ class SquadRouter:
         squads: list[list[dict[str, Any]]] = [[] for _ in range(num_squads)]
         squad_times: list[float] = [0.0] * num_squads
         for violation in scored:
-            v_lat = float(violation.get("latitude", 28.61))
-            v_lon = float(violation.get("longitude", 77.23))
             travel = float(violation.get("estimated_travel_minutes", 30))
             duration = float(violation.get("inspection_duration_minutes", 20))
             best_squad = int(np.argmin(squad_times))

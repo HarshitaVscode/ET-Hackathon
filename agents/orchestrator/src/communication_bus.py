@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
@@ -218,15 +217,15 @@ class CommunicationBus:
         # Weighted average for numeric fields
         result: dict[str, Any] = {}
         numeric_fields = [k for k in predictions[0] if isinstance(predictions[0][k], (int, float))]
-        for field in numeric_fields:
+        for key in numeric_fields:
             weighted_sum = sum(
-                p.get(field, 0) * w for p, w in zip(predictions, weights)
+                p.get(key, 0) * w for p, w in zip(predictions, weights)
             )
-            result[field] = weighted_sum / total_weight
+            result[key] = weighted_sum / total_weight
 
         # Majority vote for categorical fields
         categorical_fields = [k for k in predictions[0] if isinstance(predictions[0][k], str)]
-        for field in categorical_fields:
+        for key in categorical_fields:
             from collections import Counter
             values = [p.get(field, "") for p in predictions]
             result[field] = Counter(values).most_common(1)[0][0]

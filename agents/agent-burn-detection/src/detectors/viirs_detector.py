@@ -10,7 +10,6 @@ and characterization algorithm", 2014.
 
 from __future__ import annotations
 
-import math
 from datetime import datetime, timezone
 from typing import Any
 
@@ -56,7 +55,7 @@ class VIIRSFireDetector:
         fire_mask = brightness_temperatures > 330.0
 
         # Cluster adjacent fire pixels
-        from scipy.ndimage import label, labeled_comprehension
+        from scipy.ndimage import label
 
         labeled_array, num_features = label(fire_mask)
 

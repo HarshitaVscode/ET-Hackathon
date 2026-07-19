@@ -8,7 +8,6 @@ data from all microservices behind a single GraphQL endpoint.
 
 from __future__ import annotations
 
-from typing import Any
 
 import strawberry
 from strawberry.fastapi import GraphQLRouter
