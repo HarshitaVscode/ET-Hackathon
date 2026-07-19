@@ -72,14 +72,11 @@ jobs:
       - name: Install optional deps (allow failure)
         run: |
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
-      - name: Run all tests (capture output to artifact)
-        run: python -m pytest tests/ -v --tb=long --timeout=120 2>&1 | tee /tmp/pytest_output.txt; exit 0
-      - name: Upload test output as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-output
-          path: /tmp/pytest_output.txt
-      - name: Run tests (fail job)
+      - name: Run both test files together
+        run: python -m pytest tests/test_ingestion.py tests/test_agents.py -v --tb=long -x --timeout=120 || true
+      - name: Run agents tests only
+        run: python -m pytest tests/test_agents.py -v --tb=long -x --timeout=120 || true
+      - name: Run from tests/ directory
         run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
   build-frontend:
