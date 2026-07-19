@@ -73,7 +73,22 @@ jobs:
         run: |
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
       - name: Run tests
-        run: python -m pytest tests/ -v --tb=long -x --timeout=120
+        run: |
+          python -m pytest tests/ -v --tb=long -x --timeout=120 --junitxml=pytest-report.xml 2>&1 | tee pytest_output.log
+          # Ensure exit code is preserved
+          exit ${PIPESTATUS[0]}
+      - name: Upload pytest report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report
+          path: pytest-report.xml
+      - name: Upload pytest log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-output-log
+          path: pytest_output.log
 
   build-frontend:
     name: Build Frontend
