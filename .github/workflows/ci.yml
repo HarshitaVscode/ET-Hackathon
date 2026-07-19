@@ -72,26 +72,15 @@ jobs:
       - name: Install optional deps (allow failure)
         run: |
           pip install causalnex rasterio strawberry-graphql || echo "Some optional deps failed (continuing)"
-      - name: Debug - import src.config
-        run: python -c "from src.config import config; print('config OK')"
-      - name: Debug - test collection
-        run: |
-          python -m pytest tests/ --collect-only -q 2>&1 || true
-        continue-on-error: true
-      - name: Debug - run test_ingestion only
-        run: |
-          python -m pytest tests/test_ingestion.py -v --tb=long 2>&1 || true
-        continue-on-error: true
-      - name: Debug - run test_agents first test
-        run: |
-          python -m pytest "tests/test_agents.py::TestGraphCastAdapter::test_model_initialization" -v --tb=long -s 2>&1 || true
-        continue-on-error: true
-      - name: Run all tests (capture output)
+      - name: Run all tests (capture output to artifact)
         run: python -m pytest tests/ -v --tb=long --timeout=120 2>&1 | tee /tmp/pytest_output.txt; exit 0
-      - name: Show output and fail
-        run: |
-          cat /tmp/pytest_output.txt >> "$GITHUB_STEP_SUMMARY"
-          python -m pytest tests/ -v --tb=long -x --timeout=120
+      - name: Upload test output as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-output
+          path: /tmp/pytest_output.txt
+      - name: Run tests (fail job)
+        run: python -m pytest tests/ -v --tb=long -x --timeout=120
 
   build-frontend:
     name: Build Frontend
