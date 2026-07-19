@@ -86,17 +86,12 @@ jobs:
         run: |
           python -m pytest "tests/test_agents.py::TestGraphCastAdapter::test_model_initialization" -v --tb=long -s 2>&1 || true
         continue-on-error: true
-      - name: Full test run to GitHub Summary
+      - name: Run all tests (capture output)
+        run: python -m pytest tests/ -v --tb=long --timeout=120 2>&1 | tee /tmp/pytest_output.txt; exit 0
+      - name: Show output and fail
         run: |
-          {
-            echo "## All Tests"
-            echo '```'
-            python -m pytest tests/ -v --tb=long --timeout=120 2>&1
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-        continue-on-error: true
-      - name: Run tests (fail job on failure)
-        run: python -m pytest tests/ -v --tb=long -x --timeout=120
+          cat /tmp/pytest_output.txt >> "$GITHUB_STEP_SUMMARY"
+          python -m pytest tests/ -v --tb=long -x --timeout=120
 
   build-frontend:
     name: Build Frontend
