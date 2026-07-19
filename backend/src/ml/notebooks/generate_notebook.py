@@ -1180,17 +1180,42 @@ for feat, imp in sample_exp["feature_contributions"].items():
 
     md("## 22. AQI Prediction Calculator\n\n### 22.1 Widget-Based Interactive Calculator\n\nThe interactive calculator uses **ipywidgets** to create a graphical form. Adjust sliders for each feature, then click **Predict AQI** to see the result.\n\n| Feature Type | Examples | Widget |\n|---|---|---|\n| **Pollutants** | PM2.5, PM10, CO, NO2, SO2, O3, NH3, Benzene, Toluene, Xylene | FloatSlider (0–500 µg/m³) |\n| **Meteorological** | Temperature, Humidity, Wind Speed, Pressure | FloatSlider |\n| **Temporal** | Hour, Day, Month, DayOfWeek, Season | IntSlider / Dropdown |")
 
-    cd("""from ipywidgets import (
+    cd("""import sys
+from pathlib import Path
+import numpy as np
+import pandas as pd
+from ipywidgets import (
     VBox, HBox, FloatSlider, IntSlider, Dropdown, Button,
     Output, Label, HTML, Tab, Layout, GridBox,
 )
 import IPython.display as disp
+from backend.src.ml.config import MLConfig
+from backend.src.ml.inference.predictor import ModelPredictor
+from backend.src.ml.inference.calculator import AQICalculator
+from backend.src.ml.explainability.explainer import AQIExplainer
 
-predictor = ModelPredictor(config)
-predictor._model = best_model
-predictor._feature_names = available_cols
-predictor._preprocessor = scaler
-predictor._explainer = AQIExplainer(best_model, available_cols)
+try:
+    _cfg = config
+    _bm = best_model
+    _cols = available_cols
+    _sc = scaler
+except NameError:
+    from backend.src.ml.models.base import BaseAQIModel
+    import pickle, json
+    _cfg = MLConfig()
+    _bm = ModelPredictor(_cfg)
+    _bm.load()
+    if not _bm.is_loaded:
+        raise RuntimeError("No trained model found. Run training cells first (sections 17-19).")
+    _cols = _bm.feature_names
+    _sc = pickle.load(open(Path(_cfg.artifacts_dir) / "preprocessor.pkl", "rb"))
+    print("Loaded model from artifacts directory.")
+
+predictor = ModelPredictor(_cfg)
+predictor._model = _bm if not isinstance(_bm, ModelPredictor) else _bm._model
+predictor._feature_names = _cols
+predictor._preprocessor = _sc
+predictor._explainer = AQIExplainer(predictor._model, _cols)
 calculator = AQICalculator(predictor)
 schema = calculator.get_input_schema()
 
