@@ -1138,8 +1138,39 @@ try:
         '<div style="font-size:10px;color:#666">Click markers for details</div></div>')
     india_map.get_root().html.add_child(folium.Element(legend_html))
 
-    display(HTML(india_map._repr_html_()))
+    # Save as HTML file + embed via iframe (bypasses notebook trust requirement)
+    _map_path = cfg.viz_dir / "india_interactive_map.html"
+    _map_path.parent.mkdir(parents=True, exist_ok=True)
+    india_map.save(str(_map_path))
+    _rel_src = str(_map_path)
+    try:
+        _rel_src = os.path.relpath(_map_path, Path.cwd()).replace("\\\\", "/")
+    except Exception:
+        pass
+    display(HTML(
+        f'<iframe src="{_rel_src}" width="100%" height="650px" '
+        f'style="border:none;border-radius:8px;background:#0a0a1a"></iframe>'
+    ))
     print("\\n✓ Interactive India map loaded — zoom, pan, click hotspots, toggle layers")
+
+    # Static version with proper India boundaries (always visible, no JS needed)
+    fig, ax = plt.subplots(figsize=(16, 12))
+    _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
+    for _, row in df_hotspots.iterrows():
+        c = SEV_COLORS.get(row["severity_label"], "#666")
+        s = max(40, row["severity_score"] * 300)
+        ax.scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.7, edgecolors="white", linewidth=0.5, zorder=11)
+        ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=8, alpha=0.9, zorder=12,
+                     textcoords="offset points", xytext=(5, 5))
+    ax.set_xlim(68, 98); ax.set_ylim(6, 37)
+    ax.set_title("Pollution Hotspot Map — India (Static View)", fontsize=14, fontweight="bold", pad=15)
+    ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
+    ax.set_facecolor("#0a0a1a"); ax.grid(True, alpha=0.1, color="white")
+    for sp in ax.spines.values(): sp.set_visible(False)
+    legend_elements = [mpatches.Patch(color=c, label=s) for s, c in SEV_COLORS.items()]
+    ax.legend(handles=legend_elements, title="Severity", loc="lower left", fontsize=9)
+    plt.tight_layout()
+    plt.show()
 
 except Exception as e:
     print(f"Map rendering note: {e}")
