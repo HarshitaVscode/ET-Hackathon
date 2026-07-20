@@ -1011,7 +1011,7 @@ try:
         location=[22.5, 80.0], zoom_start=5,
         tiles="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
         attr="CartoDB Dark", control_scale=True,
-        prefer_canvas=True,
+        prefer_canvas=True, width=950, height=600,
     )
 
     # Layer 1: India international boundary (always visible)
@@ -1138,7 +1138,7 @@ try:
         '<div style="font-size:10px;color:#666">Click markers for details</div></div>')
     india_map.get_root().html.add_child(folium.Element(legend_html))
 
-    display(india_map)
+    display(HTML(india_map._repr_html_()))
     print("\\n✓ Interactive India map loaded — zoom, pan, click hotspots, toggle layers")
 
 except Exception as e:
