@@ -92,6 +92,23 @@ try:
 except:
     HAVE_SHAP = False
 
+# Helper: draw India boundary + state boundaries on any matplotlib Axes
+def _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a"):
+    try:
+        _gd = Path(cfg.artifacts_dir) / "geojson"
+        _ib = json.loads((_gd / "india_boundary.json").read_text()) if (_gd / "india_boundary.json").exists() else None
+        _sb = json.loads((_gd / "india_states.json").read_text()) if (_gd / "india_states.json").exists() else None
+        if _ib:
+            for f in _ib.get("features", []):
+                c = f["geometry"]["coordinates"][0]
+                ax.plot([p[0] for p in c], [p[1] for p in c], color=india_color, linewidth=2.0, alpha=0.9, zorder=10)
+        if _sb:
+            for f in _sb.get("features", []):
+                c = f["geometry"]["coordinates"][0]
+                ax.plot([p[0] for p in c], [p[1] for p in c], color=state_color, linewidth=0.6, alpha=0.5, zorder=9)
+    except Exception:
+        pass
+
 print("Environment ready.")
 print(f"  pandas {pd.__version__}, numpy {np.__version__}")
 print(f"  matplotlib {matplotlib.__version__}, seaborn {sns.__version__}")
@@ -259,8 +276,9 @@ display(df_satellite.describe())
 fig, axes = plt.subplots(2, 3, figsize=(16, 10))
 pollutants = ["NO2", "CO", "SO2", "HCHO", "aerosol_index"]
 for ax, pol in zip(axes.flat, pollutants):
+    _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
     sc = ax.scatter(df_satellite["lon"], df_satellite["lat"], c=df_satellite[pol],
-                    s=80, cmap="hot_r", alpha=0.8, edgecolors="white", linewidth=0.5)
+                    s=80, cmap="hot_r", alpha=0.8, edgecolors="white", linewidth=0.5, zorder=11)
     ax.set_title(f"TROPOMI {pol}", fontsize=12, fontweight="bold")
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
     ax.set_facecolor("#0a0a1a")
@@ -311,11 +329,12 @@ print(f"  Satellites: {df_fires['satellite'].value_counts().to_dict()}")
 display(df_fires.head(10))
 
 fig, ax = plt.subplots(figsize=(12, 8))
+_draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
 for sat in ["MODIS", "VIIRS"]:
     subset = df_fires[df_fires["satellite"] == sat]
     ax.scatter(subset["lon"], subset["lat"], s=subset["frp_mw"]*2,
                c=subset["frp_mw"], cmap="YlOrRd", alpha=0.7,
-               edgecolors="white", linewidth=0.5, label=sat)
+               edgecolors="white", linewidth=0.5, label=sat, zorder=11)
 ax.set_title("NASA FIRMS Active Fire Detections", fontsize=14, fontweight="bold")
 ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
 ax.set_facecolor("#0a0a1a")
@@ -363,8 +382,9 @@ for ax, (col, title, cmap) in zip(axes.flat, [
     ("wind_speed_kmh", "Wind Speed (km/h)", "Greens"),
     ("boundary_layer_m", "Boundary Layer Height (m)", "Purples"),
 ]):
+    _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
     sc = ax.scatter(df_weather["lon"], df_weather["lat"], c=df_weather[col],
-                    s=100, cmap=cmap, alpha=0.8, edgecolors="white", linewidth=0.5)
+                    s=100, cmap=cmap, alpha=0.8, edgecolors="white", linewidth=0.5, zorder=11)
     ax.set_title(title, fontsize=12, fontweight="bold")
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
     ax.set_facecolor("#0a0a1a")
@@ -422,13 +442,14 @@ for st, cnt in df_sources["type"].value_counts().items():
 display(df_sources.head(12))
 
 fig, ax = plt.subplots(figsize=(14, 10))
+_draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
 type_colors = {"power_plant": "#ef4444", "industrial": "#f97316", "crop_burning": "#eab308",
                "forest_fire": "#22c55e", "construction": "#3b82f6", "brick_kiln": "#8b5cf6",
                "urban_congestion": "#ec4899", "diesel_traffic": "#6366f1", "dust_storm": "#f59e0b",
                "mining": "#14b8a6"}
 for st, grp in df_sources.groupby("type"):
     ax.scatter(grp["lon"], grp["lat"], s=80, c=type_colors.get(st, "#666"),
-               alpha=0.8, edgecolors="white", linewidth=0.5, label=st.replace("_", " ").title())
+               alpha=0.8, edgecolors="white", linewidth=0.5, label=st.replace("_", " ").title(), zorder=11)
 ax.set_title("Emission Source Database — India", fontsize=14, fontweight="bold")
 ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
 ax.set_facecolor("#0a0a1a")
@@ -531,7 +552,8 @@ axes[0, 2].scatter(df_features["co"]*1000, df_features["aqi"], c=df_features["pm
 axes[0, 2].set_title("CO vs AQI", fontweight="bold"); axes[0, 2].set_xlabel("CO (×1000)"); axes[0, 2].set_ylabel("AQI")
 axes[0, 2].set_facecolor("#0f0f2a")
 
-axes[1, 0].scatter(df_features["lon"], df_features["lat"], c=df_features["aqi"], s=120, cmap="RdYlGn_r", alpha=0.8, edgecolors="white")
+_draw_india_bounds(axes[1, 0], india_color="#00ccff", state_color="#3a5a7a")
+axes[1, 0].scatter(df_features["lon"], df_features["lat"], c=df_features["aqi"], s=120, cmap="RdYlGn_r", alpha=0.8, edgecolors="white", zorder=11)
 axes[1, 0].set_title("Geographic AQI Distribution", fontweight="bold")
 axes[1, 0].set_xlabel("Longitude"); axes[1, 0].set_ylabel("Latitude")
 axes[1, 0].set_facecolor("#0a0a1a"); plt.colorbar(axes[1, 0].collections[0], ax=axes[1, 0], label="AQI")
@@ -637,12 +659,13 @@ axes[0].set_title("Hotspot Severity Distribution", fontweight="bold"); axes[0].s
 axes[0].set_facecolor("#0f0f2a")
 for sp in axes[0].spines.values(): sp.set_visible(False)
 
+_draw_india_bounds(axes[1], india_color="#00ccff", state_color="#3a5a7a")
 for _, row in df_hotspots.iterrows():
     c = colors_sev.get(row["severity_label"], "#666")
     s = max(30, row["severity_score"] * 300)
-    axes[1].scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.6, edgecolors="white", linewidth=0.5)
+    axes[1].scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.6, edgecolors="white", linewidth=0.5, zorder=11)
     axes[1].annotate(row["location"], (row["lon"], row["lat"]), fontsize=7, alpha=0.8,
-                      textcoords="offset points", xytext=(4, 4))
+                      textcoords="offset points", xytext=(4, 4), zorder=12)
 axes[1].set_title("Pollution Hotspot Map — India", fontweight="bold")
 axes[1].set_xlabel("Longitude"); axes[1].set_ylabel("Latitude")
 axes[1].set_facecolor("#0a0a1a")
@@ -961,17 +984,29 @@ for i in range(min(3, len(df_attribution))):
     md("""## 25. Interactive India Map — Folium Dashboard
 
 A professional interactive GIS dashboard built with folium that renders directly inside the notebook. Features:
-- India state boundaries with dark CartoDB basemap
+- India international boundary with bright cyan outline
+- State boundaries with detailed polygon geometry (not rectangles)
+- District boundaries for 49 major districts
 - Animated hotspot markers with severity-based coloring
 - Clickable markers showing detailed information
-- Layer controls for toggling satellite data, fire detections, and emission sources
+- Layer controls for toggling satellite data, fire detections, emission sources, and boundaries
 - Heatmap overlay for pollution intensity
-- Legend and professional cartography""")
+- State name labels overlaid on the map
+- Legend and professional cartography using authentic GIS boundary data""")
     code("""print("=" * 60)
-print("  INTERACTIVE INDIA MAP")
+print("  INTERACTIVE INDIA MAP — PROPER GIS BOUNDARIES")
 print("=" * 60)
 
 try:
+    import json
+    from pathlib import Path
+
+    # Load authentic GIS boundary data
+    _geojson_dir = cfg.artifacts_dir / "geojson"
+    _india_boundary = json.loads((_geojson_dir / "india_boundary.json").read_text()) if (_geojson_dir / "india_boundary.json").exists() else None
+    _state_boundaries = json.loads((_geojson_dir / "india_states.json").read_text()) if (_geojson_dir / "india_states.json").exists() else None
+    _district_boundaries = json.loads((_geojson_dir / "india_districts.json").read_text()) if (_geojson_dir / "india_districts.json").exists() else None
+
     india_map = folium.Map(
         location=[22.5, 80.0], zoom_start=5,
         tiles="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
@@ -979,41 +1014,60 @@ try:
         prefer_canvas=True,
     )
 
-    # State boundaries GeoJSON (simplified) - built without comprehension to avoid parser nesting issues
-    _states = [
-        ("Andhra Pradesh", 13.5, 14.5, 79.5, 80.5), ("Arunachal Pradesh", 26.5, 29.0, 91.5, 97.5),
-        ("Assam", 24.0, 28.0, 89.5, 96.0), ("Bihar", 24.0, 27.5, 83.0, 88.0),
-        ("Chhattisgarh", 18.0, 24.0, 80.0, 84.0), ("Delhi", 28.4, 28.9, 76.8, 77.3),
-        ("Goa", 14.8, 15.8, 73.8, 74.3), ("Gujarat", 20.0, 24.5, 68.0, 74.5),
-        ("Haryana", 28.0, 31.0, 74.5, 77.5), ("Himachal Pradesh", 30.0, 33.0, 75.5, 79.0),
-        ("Jharkhand", 22.0, 25.0, 83.0, 87.5), ("Karnataka", 11.5, 18.5, 74.0, 78.5),
-        ("Kerala", 8.0, 12.5, 74.5, 77.5), ("Madhya Pradesh", 21.0, 27.0, 74.0, 82.5),
-        ("Maharashtra", 16.0, 22.0, 72.5, 80.5), ("Manipur", 24.0, 25.5, 93.0, 94.5),
-        ("Meghalaya", 25.0, 26.5, 89.5, 93.0), ("Mizoram", 22.0, 24.5, 92.0, 93.5),
-        ("Nagaland", 25.5, 27.0, 93.0, 95.0), ("Odisha", 17.5, 22.5, 81.0, 87.5),
-        ("Punjab", 29.5, 32.5, 73.8, 76.8), ("Rajasthan", 23.0, 30.5, 69.5, 78.0),
-        ("Sikkim", 27.0, 28.5, 88.0, 89.0), ("Tamil Nadu", 8.0, 13.5, 76.5, 80.5),
-        ("Telangana", 16.0, 20.0, 77.0, 81.5), ("Tripura", 22.5, 24.5, 90.0, 92.0),
-        ("Uttar Pradesh", 24.0, 30.0, 77.0, 84.5), ("Uttarakhand", 28.5, 31.5, 77.5, 81.0),
-        ("West Bengal", 21.5, 27.5, 86.0, 89.5), ("Jammu & Kashmir", 32.5, 37.0, 73.5, 80.0),
-    ]
-    _features = []
-    for n, mlat1, mlat2, mlon1, mlon2 in _states:
-        _features.append({
-            "type": "Feature",
-            "properties": {"name": n},
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [[[mlon1, mlat1], [mlon2, mlat1], [mlon2, mlat2], [mlon1, mlat2], [mlon1, mlat1]]]
-            }
-        })
-    state_boundaries = {"type": "FeatureCollection", "features": _features}
+    # Layer 1: India international boundary (always visible)
+    if _india_boundary:
+        folium.GeoJson(
+            _india_boundary,
+            style_function=lambda x: {"color": "#00ccff", "weight": 3.0, "fillOpacity": 0, "opacity": 0.9},
+            name="India Boundary"
+        ).add_to(india_map)
 
-    folium.GeoJson(
-        state_boundaries,
-        style_function=lambda x: {"fillColor": "#0a0a1a", "color": "#1a1a3a", "weight": 1.2, "fillOpacity": 0.3},
-        name="State Boundaries"
-    ).add_to(india_map)
+    # Layer 2: State boundaries with proper polygons
+    if _state_boundaries:
+        folium.GeoJson(
+            _state_boundaries,
+            style_function=lambda x: {"fillColor": "#0a0a1a", "color": "#3388ff", "weight": 0.8, "fillOpacity": 0.2, "opacity": 0.5},
+            name="State Boundaries",
+            tooltip=folium.GeoJsonTooltip(fields=["name"], aliases=["State:"], sticky=True)
+        ).add_to(india_map)
+
+    # Layer 3: District boundaries
+    if _district_boundaries:
+        folium.GeoJson(
+            _district_boundaries,
+            style_function=lambda x: {"color": "#666688", "weight": 0.4, "fillOpacity": 0, "opacity": 0.3},
+            name="District Boundaries",
+            tooltip=folium.GeoJsonTooltip(fields=["name"], aliases=["District:"], sticky=True)
+        ).add_to(india_map)
+
+    # Layer 4: State name labels
+    _state_labels = {
+        "Andhra Pradesh": [15.9, 80.0], "Arunachal Pradesh": [27.5, 94.0],
+        "Assam": [26.5, 92.5], "Bihar": [25.8, 86.0],
+        "Chhattisgarh": [21.5, 82.0], "Delhi": [28.65, 77.1],
+        "Goa": [15.3, 74.0], "Gujarat": [22.5, 71.5],
+        "Haryana": [29.5, 76.0], "Himachal Pradesh": [31.5, 77.5],
+        "Jharkhand": [23.5, 85.5], "Karnataka": [15.0, 76.0],
+        "Kerala": [10.5, 76.5], "Madhya Pradesh": [24.0, 78.0],
+        "Maharashtra": [19.0, 75.0], "Manipur": [24.8, 93.8],
+        "Meghalaya": [25.8, 91.5], "Mizoram": [23.5, 92.8],
+        "Nagaland": [26.2, 94.5], "Odisha": [20.5, 84.5],
+        "Punjab": [31.0, 75.5], "Rajasthan": [27.0, 73.0],
+        "Sikkim": [27.7, 88.5], "Tamil Nadu": [11.0, 78.5],
+        "Telangana": [18.0, 79.5], "Tripura": [23.8, 91.5],
+        "Uttar Pradesh": [27.0, 80.5], "Uttarakhand": [30.0, 79.0],
+        "West Bengal": [23.0, 88.0], "Jammu & Kashmir": [34.5, 76.0],
+    }
+    _label_group = folium.FeatureGroup(name="State Labels").add_to(india_map)
+    for _name, _pos in _state_labels.items():
+        folium.Marker(
+            location=_pos,
+            icon=folium.DivIcon(
+                html=f'<span style="font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap">{_name}</span>',
+                icon_size=(0, 0),
+            ),
+            interactive=False,
+        ).add_to(_label_group)
 
     # Hotspot markers with severity
     SEV_COLORS = {"Very High": "#ef4444", "High": "#f97316", "Moderate": "#eab308", "Low": "#22c55e"}
@@ -1091,11 +1145,30 @@ except Exception as e:
     print(f"Map rendering note: {e}")
     print("Fallback: displaying static map instead.")
     fig, ax = plt.subplots(figsize=(14, 12))
+
+    # Draw India boundaries
+    def _draw_bounds(axes):
+        ib = _india_boundary
+        if ib:
+            for f in ib.get("features", []):
+                coords = f["geometry"]["coordinates"][0]
+                lons = [c[0] for c in coords]
+                lats = [c[1] for c in coords]
+                axes.plot(lons, lats, color="#00ccff", linewidth=2.0, alpha=0.9, zorder=10)
+        sb = _state_boundaries
+        if sb:
+            for f in sb.get("features", []):
+                coords = f["geometry"]["coordinates"][0]
+                lons = [c[0] for c in coords]
+                lats = [c[1] for c in coords]
+                axes.plot(lons, lats, color="#3388ff", linewidth=0.6, alpha=0.5, zorder=9)
+    _draw_bounds(ax)
+
     for _, row in df_hotspots.iterrows():
         c = SEV_COLORS.get(row["severity_label"], "#666")
         s = max(30, row["severity_score"] * 250)
-        ax.scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.6, edgecolors="white", linewidth=0.5)
-        ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=7, alpha=0.8, textcoords="offset points", xytext=(4, 4))
+        ax.scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.6, edgecolors="white", linewidth=0.5, zorder=11)
+        ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=7, alpha=0.8, textcoords="offset points", xytext=(4, 4), zorder=12)
     ax.set_title("Pollution Hotspot Map — India", fontsize=14, fontweight="bold")
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
     ax.set_facecolor("#0a0a1a"); ax.set_xlim(68, 98); ax.set_ylim(6, 37)

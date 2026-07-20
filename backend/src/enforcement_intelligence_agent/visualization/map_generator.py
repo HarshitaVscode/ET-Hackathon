@@ -6,7 +6,7 @@ from ..config import EnforcementConfig
 from ..detection.hotspot import HotspotResult
 from ..attribution.source_matcher import AttributionResult
 from ..enforcement.recommender import EnforcementRecommendation
-from ..data.geo_utils import GeoUtils
+from ..boundaries import get_india_boundary, get_state_boundaries, get_district_boundaries
 
 cfg = EnforcementConfig()
 
@@ -32,8 +32,12 @@ class IndiaMapGenerator:
         recommendations: List[EnforcementRecommendation],
         save_path: Optional[Path] = None,
     ) -> str:
-        geojson = GeoUtils.generate_india_geojson()
-        geojson_str = json.dumps(geojson)
+        state_geojson = get_state_boundaries()
+        india_geojson = get_india_boundary()
+        district_geojson = get_district_boundaries()
+        geojson_str = json.dumps(state_geojson)
+        india_str = json.dumps(india_geojson)
+        district_str = json.dumps(district_geojson)
 
         hotspot_markers = []
         for i, hs in enumerate(hotspots):
@@ -150,6 +154,9 @@ class IndiaMapGenerator:
   .severity-badge.h {{ background: rgba(249,115,22,0.2); color: #f97316; border: 1px solid rgba(249,115,22,0.3); }}
   .severity-badge.m {{ background: rgba(234,179,8,0.2); color: #eab308; border: 1px solid rgba(234,179,8,0.3); }}
   .severity-badge.l {{ background: rgba(34,197,94,0.2); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }}
+  .state-label {{ background: rgba(10,10,26,0.8) !important; border: 1px solid #3388ff !important; color: #ccc !important; font-size: 10px !important; padding: 2px 6px !important; border-radius: 3px !important; }}
+  .district-label {{ background: transparent !important; border: none !important; color: #666688 !important; font-size: 8px !important; }}
+  .state-name-label {{ background: none !important; border: none !important; }}
 </style>
 </head>
 <body>
@@ -193,7 +200,9 @@ class IndiaMapGenerator:
 </div>
 <script>
 const hotspots = {markers_json};
-const geojsonData = {geojson_str};
+const stateData = {geojson_str};
+const indiaData = {india_str};
+const districtData = {district_str};
 
 const map = L.map('map', {{
     center: [22.5, 80.0],
@@ -206,14 +215,73 @@ L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}
     maxZoom: 19,
 }}).addTo(map);
 
-L.geoJSON(geojsonData, {{
+// India international boundary — always visible
+const indiaBoundaryLayer = L.geoJSON(indiaData, {{
     style: {{
-        color: '#1a1a3a',
-        weight: 1.2,
-        fillColor: '#0a0a1a',
-        fillOpacity: 0.3,
+        color: '#00ccff',
+        weight: 3.0,
+        fillColor: 'transparent',
+        fillOpacity: 0,
+        opacity: 0.9,
     }},
 }}).addTo(map);
+
+// State boundaries
+const stateLayer = L.geoJSON(stateData, {{
+    style: {{
+        color: '#3388ff',
+        weight: 0.8,
+        fillColor: '#0a0a1a',
+        fillOpacity: 0.2,
+        opacity: 0.5,
+    }},
+    onEachFeature: function(feature, layer) {{
+        layer.bindTooltip(feature.properties.name, {{sticky: true, className: 'state-label'}});
+    }},
+}}).addTo(map);
+
+// District boundaries
+const districtLayer = L.geoJSON(districtData, {{
+    style: {{
+        color: '#666688',
+        weight: 0.4,
+        fillColor: 'transparent',
+        fillOpacity: 0,
+        opacity: 0.3,
+    }},
+    onEachFeature: function(feature, layer) {{
+        layer.bindTooltip(feature.properties.name, {{sticky: true, className: 'district-label'}});
+    }},
+}}).addTo(map);
+
+// State label overlays
+const stateLabels = {{
+    "Andhra Pradesh": [15.9, 80.0], "Arunachal Pradesh": [27.5, 94.0],
+    "Assam": [26.5, 92.5], "Bihar": [25.8, 86.0],
+    "Chhattisgarh": [21.5, 82.0], "Delhi": [28.65, 77.1],
+    "Goa": [15.3, 74.0], "Gujarat": [22.5, 71.5],
+    "Haryana": [29.5, 76.0], "Himachal Pradesh": [31.5, 77.5],
+    "Jharkhand": [23.5, 85.5], "Karnataka": [15.0, 76.0],
+    "Kerala": [10.5, 76.5], "Madhya Pradesh": [24.0, 78.0],
+    "Maharashtra": [19.0, 75.0], "Manipur": [24.8, 93.8],
+    "Meghalaya": [25.8, 91.5], "Mizoram": [23.5, 92.8],
+    "Nagaland": [26.2, 94.5], "Odisha": [20.5, 84.5],
+    "Punjab": [31.0, 75.5], "Rajasthan": [27.0, 73.0],
+    "Sikkim": [27.7, 88.5], "Tamil Nadu": [11.0, 78.5],
+    "Telangana": [18.0, 79.5], "Tripura": [23.8, 91.5],
+    "Uttar Pradesh": [27.0, 80.5], "Uttarakhand": [30.0, 79.0],
+    "West Bengal": [23.0, 88.0], "Jammu & Kashmir": [34.5, 76.0],
+}}
+Object.entries(stateLabels).forEach(([name, pos]) => {{
+    L.marker(pos, {{
+        icon: L.divIcon({{
+            className: 'state-name-label',
+            html: '<span style="font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap">' + name + '</span>',
+            iconSize: [0, 0],
+        }}),
+        interactive: false,
+    }}).addTo(map);
+}});
 
 function severityColor(sev) {{
     return {{'Very High': '#ef4444', 'High': '#f97316', 'Moderate': '#eab308', 'Low': '#22c55e'}}[sev] || '#6366f1';

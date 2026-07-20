@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
@@ -10,6 +8,7 @@ from ..config import EnforcementConfig
 from ..detection.hotspot import HotspotResult
 from ..attribution.source_matcher import AttributionResult
 from ..enforcement.recommender import EnforcementRecommendation
+from ..boundaries import get_india_boundary, get_state_boundaries
 
 cfg = EnforcementConfig()
 
@@ -21,6 +20,22 @@ COLORS = {
     "Low": "#22c55e",
 }
 SEVERITY_ORDER = ["Very High", "High", "Moderate", "Low"]
+
+
+def _draw_india_boundaries(ax, india_color="#00ccff", state_color="#3a5a7a"):
+    boundary = get_india_boundary()
+    for feat in boundary.get("features", []):
+        coords = feat["geometry"]["coordinates"][0]
+        lons = [c[0] for c in coords]
+        lats = [c[1] for c in coords]
+        ax.plot(lons, lats, color=india_color, linewidth=2.0, alpha=0.9, zorder=10)
+
+    states = get_state_boundaries()
+    for feat in states.get("features", []):
+        coords = feat["geometry"]["coordinates"][0]
+        lons = [c[0] for c in coords]
+        lats = [c[1] for c in coords]
+        ax.plot(lons, lats, color=state_color, linewidth=0.6, alpha=0.5, zorder=9)
 
 
 class EnforcementPlots:
@@ -114,14 +129,15 @@ class EnforcementPlots:
     def plot_hotspot_map(hotspots: List[HotspotResult],
                           save_path: Optional[Path] = None) -> plt.Figure:
         fig, ax = plt.subplots(figsize=(14, 12))
+        _draw_india_boundaries(ax, india_color="#00ccff", state_color="#335566")
         for h in hotspots:
             color = COLORS.get(h.severity_label, "#6366f1")
             size = max(20, h.severity_score * 200)
             ax.scatter(h.lon, h.lat, c=color, s=size, alpha=0.7, edgecolors="white",
-                        linewidth=0.5, zorder=5)
+                        linewidth=0.5, zorder=11)
             ax.annotate(h.location_name, (h.lon, h.lat),
                         textcoords="offset points", xytext=(5, 5),
-                        fontsize=7, color="white", alpha=0.8)
+                        fontsize=7, color="white", alpha=0.8, zorder=12)
         ax.set_xlim(cfg.india_bounds["min_lon"], cfg.india_bounds["max_lon"])
         ax.set_ylim(cfg.india_bounds["min_lat"], cfg.india_bounds["max_lat"])
         ax.set_title("India Pollution Hotspot Map", fontsize=14, fontweight="bold", pad=15)
