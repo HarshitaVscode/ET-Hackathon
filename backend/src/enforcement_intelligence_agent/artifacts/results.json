@@ -1,0 +1,4892 @@
+{
+  "timestamp": "2026-07-20T17:36:33.248953",
+  "total_hotspots": 28,
+  "hotspots": [
+    {
+      "id": "HS-28_61-77_23",
+      "lat": 28.61,
+      "lon": 77.23,
+      "location_name": "Delhi",
+      "state": "Delhi",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0005,
+        "CO": 0.0392,
+        "SO2": 0.0011,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.0908,
+        "PM25": 228.959
+      },
+      "satellite_observations": {
+        "NO2": 0.0005,
+        "CO": 0.0392,
+        "SO2": 0.0011,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.0908
+      },
+      "meteorological_conditions": {
+        "temperature_c": 31.1,
+        "humidity_pct": 51.9,
+        "wind_speed_kmh": 22.7,
+        "wind_direction_deg": 120.0,
+        "pressure_hpa": 994.5,
+        "precipitation_mm": 0.8,
+        "visibility_km": 11.0,
+        "boundary_layer_height_m": 536.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 384,
+        "pm25": 228.95896665088233,
+        "pollutants": {
+          "PM25": 228.95896665088233,
+          "PM10": 549.8824324694745,
+          "NO2": 114.59755154344953,
+          "O3": 57.55635294684459,
+          "CO": 3.716119611540207,
+          "SO2": 72.10095533443311
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.626966"
+    },
+    {
+      "id": "HS-19_08-72_88",
+      "lat": 19.08,
+      "lon": 72.88,
+      "location_name": "Mumbai",
+      "state": "Maharashtra",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0001,
+        "CO": 0.0768,
+        "SO2": 0.0005,
+        "HCHO": 0.0005,
+        "aerosol_index": 0.8751,
+        "PM25": 223.6235
+      },
+      "satellite_observations": {
+        "NO2": 0.0001,
+        "CO": 0.0768,
+        "SO2": 0.0005,
+        "HCHO": 0.0005,
+        "aerosol_index": 0.8751
+      },
+      "meteorological_conditions": {
+        "temperature_c": 29.2,
+        "humidity_pct": 81.5,
+        "wind_speed_kmh": 24.0,
+        "wind_direction_deg": 50.0,
+        "pressure_hpa": 992.0,
+        "precipitation_mm": 0.0,
+        "visibility_km": 4.0,
+        "boundary_layer_height_m": 685.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 380,
+        "pm25": 223.62347477321578,
+        "pollutants": {
+          "PM25": 223.62347477321578,
+          "PM10": 522.7852559869798,
+          "NO2": 118.5103034016052,
+          "O3": 33.54149707594527,
+          "CO": 2.8427081810248964,
+          "SO2": 42.455334895963006
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.628966"
+    },
+    {
+      "id": "HS-12_97-77_59",
+      "lat": 12.97,
+      "lon": 77.59,
+      "location_name": "Bengaluru",
+      "state": "Karnataka",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0006,
+        "CO": 0.0418,
+        "SO2": 0.0006,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.9117,
+        "PM25": 100.9882
+      },
+      "satellite_observations": {
+        "NO2": 0.0006,
+        "CO": 0.0418,
+        "SO2": 0.0006,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.9117
+      },
+      "meteorological_conditions": {
+        "temperature_c": 19.1,
+        "humidity_pct": 65.0,
+        "wind_speed_kmh": 17.8,
+        "wind_direction_deg": 267.0,
+        "pressure_hpa": 994.0,
+        "precipitation_mm": 0.8,
+        "visibility_km": 1.2,
+        "boundary_layer_height_m": 1105.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 237,
+        "pm25": 100.98824610541477,
+        "pollutants": {
+          "PM25": 100.98824610541477,
+          "PM10": 220.18038350673442,
+          "NO2": 46.49273277643009,
+          "O3": 88.71087880150546,
+          "CO": 3.6516215130488967,
+          "SO2": 75.13575730064969
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.636574"
+    },
+    {
+      "id": "HS-17_39-78_49",
+      "lat": 17.39,
+      "lon": 78.49,
+      "location_name": "Hyderabad",
+      "state": "Telangana",
+      "district": "",
+      "dominant_pollutant": "SO2",
+      "severity_score": 0.99,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.0715,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 1.5651,
+        "PM25": 52.1459
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.0715,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 1.5651
+      },
+      "meteorological_conditions": {
+        "temperature_c": 17.7,
+        "humidity_pct": 92.7,
+        "wind_speed_kmh": 8.4,
+        "wind_direction_deg": 37.0,
+        "pressure_hpa": 1016.6,
+        "precipitation_mm": 0.2,
+        "visibility_km": 11.3,
+        "boundary_layer_height_m": 1274.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 87,
+        "pm25": 52.145936998141224,
+        "pollutants": {
+          "PM25": 52.145936998141224,
+          "PM10": 115.85806846445948,
+          "NO2": 104.59010507526651,
+          "O3": 81.54632020411871,
+          "CO": 2.1959250069380865,
+          "SO2": 74.69568790471006
+        },
+        "category": "Satisfactory"
+      },
+      "timestamp": "2026-07-20T17:36:31.648842"
+    },
+    {
+      "id": "HS-23_02-72_57",
+      "lat": 23.02,
+      "lon": 72.57,
+      "location_name": "Ahmedabad",
+      "state": "Gujarat",
+      "district": "",
+      "dominant_pollutant": "SO2",
+      "severity_score": 0.81,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.0321,
+        "SO2": 0.0009,
+        "HCHO": 0.0004,
+        "aerosol_index": 1.676,
+        "PM25": 49.1321
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.0321,
+        "SO2": 0.0009,
+        "HCHO": 0.0004,
+        "aerosol_index": 1.676
+      },
+      "meteorological_conditions": {
+        "temperature_c": 19.6,
+        "humidity_pct": 46.9,
+        "wind_speed_kmh": 7.5,
+        "wind_direction_deg": 329.0,
+        "pressure_hpa": 1014.4,
+        "precipitation_mm": 0.0,
+        "visibility_km": 7.3,
+        "boundary_layer_height_m": 1341.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 82,
+        "pm25": 49.1320863605134,
+        "pollutants": {
+          "PM25": 49.1320863605134,
+          "PM10": 82.82610284040376,
+          "NO2": 61.308671587041076,
+          "O3": 31.822365275420943,
+          "CO": 1.9424484960049313,
+          "SO2": 16.284270983196883
+        },
+        "category": "Satisfactory"
+      },
+      "timestamp": "2026-07-20T17:36:31.654508"
+    },
+    {
+      "id": "HS-13_08-80_27",
+      "lat": 13.08,
+      "lon": 80.27,
+      "location_name": "Chennai",
+      "state": "Tamil Nadu",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0007,
+        "CO": 0.1197,
+        "SO2": 0.0009,
+        "HCHO": 0.0002,
+        "aerosol_index": 1.4347,
+        "PM25": 102.1003
+      },
+      "satellite_observations": {
+        "NO2": 0.0007,
+        "CO": 0.1197,
+        "SO2": 0.0009,
+        "HCHO": 0.0002,
+        "aerosol_index": 1.4347
+      },
+      "meteorological_conditions": {
+        "temperature_c": 26.8,
+        "humidity_pct": 44.8,
+        "wind_speed_kmh": 31.4,
+        "wind_direction_deg": 106.0,
+        "pressure_hpa": 1004.3,
+        "precipitation_mm": 0.5,
+        "visibility_km": 7.9,
+        "boundary_layer_height_m": 1473.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 241,
+        "pm25": 102.10026899249446,
+        "pollutants": {
+          "PM25": 102.10026899249446,
+          "PM10": 241.03253984618635,
+          "NO2": 69.27522894744976,
+          "O3": 55.055824779293275,
+          "CO": 2.872187227060875,
+          "SO2": 56.20141748392659
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.657600"
+    },
+    {
+      "id": "HS-22_57-88_36",
+      "lat": 22.57,
+      "lon": 88.36,
+      "location_name": "Kolkata",
+      "state": "West Bengal",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0008,
+        "CO": 0.0164,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 2.0551,
+        "PM25": 226.2129
+      },
+      "satellite_observations": {
+        "NO2": 0.0008,
+        "CO": 0.0164,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 2.0551
+      },
+      "meteorological_conditions": {
+        "temperature_c": 23.3,
+        "humidity_pct": 85.2,
+        "wind_speed_kmh": 12.4,
+        "wind_direction_deg": 64.0,
+        "pressure_hpa": 1010.1,
+        "precipitation_mm": 0.3,
+        "visibility_km": 6.9,
+        "boundary_layer_height_m": 464.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 382,
+        "pm25": 226.21285710573284,
+        "pollutants": {
+          "PM25": 226.21285710573284,
+          "PM10": 349.4418428971676,
+          "NO2": 54.12475799941455,
+          "O3": 83.49897750577934,
+          "CO": 0.5822560590114845,
+          "SO2": 62.79272985188806
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.661608"
+    },
+    {
+      "id": "HS-18_52-73_86",
+      "lat": 18.52,
+      "lon": 73.86,
+      "location_name": "Pune",
+      "state": "Maharashtra",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0005,
+        "CO": 0.055,
+        "SO2": 0.0007,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.3641,
+        "PM25": 104.6868
+      },
+      "satellite_observations": {
+        "NO2": 0.0005,
+        "CO": 0.055,
+        "SO2": 0.0007,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.3641
+      },
+      "meteorological_conditions": {
+        "temperature_c": 19.7,
+        "humidity_pct": 37.5,
+        "wind_speed_kmh": 6.0,
+        "wind_direction_deg": 154.0,
+        "pressure_hpa": 1016.0,
+        "precipitation_mm": 0.6,
+        "visibility_km": 2.3,
+        "boundary_layer_height_m": 631.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 249,
+        "pm25": 104.68683752813425,
+        "pollutants": {
+          "PM25": 104.68683752813425,
+          "PM10": 244.13151690290158,
+          "NO2": 92.85949609294589,
+          "O3": 44.6974198311036,
+          "CO": 1.3344806422184707,
+          "SO2": 36.70861894136762
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.663610"
+    },
+    {
+      "id": "HS-26_91-75_79",
+      "lat": 26.91,
+      "lon": 75.79,
+      "location_name": "Jaipur",
+      "state": "Rajasthan",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0004,
+        "CO": 0.1027,
+        "SO2": 0.0013,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.0794,
+        "PM25": 229.7115
+      },
+      "satellite_observations": {
+        "NO2": 0.0004,
+        "CO": 0.1027,
+        "SO2": 0.0013,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.0794
+      },
+      "meteorological_conditions": {
+        "temperature_c": 30.0,
+        "humidity_pct": 37.9,
+        "wind_speed_kmh": 14.2,
+        "wind_direction_deg": 122.0,
+        "pressure_hpa": 997.4,
+        "precipitation_mm": 0.3,
+        "visibility_km": 8.8,
+        "boundary_layer_height_m": 596.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 385,
+        "pm25": 229.71146025309196,
+        "pollutants": {
+          "PM25": 229.71146025309196,
+          "PM10": 359.1373459335632,
+          "NO2": 86.987252959553,
+          "O3": 72.40461601248555,
+          "CO": 3.4028948125506995,
+          "SO2": 66.42391617449388
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.665629"
+    },
+    {
+      "id": "HS-26_85-80_95",
+      "lat": 26.85,
+      "lon": 80.95,
+      "location_name": "Lucknow",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0002,
+        "CO": 0.1188,
+        "SO2": 0.0012,
+        "HCHO": 0.0004,
+        "aerosol_index": 2.6755,
+        "PM25": 216.7244
+      },
+      "satellite_observations": {
+        "NO2": 0.0002,
+        "CO": 0.1188,
+        "SO2": 0.0012,
+        "HCHO": 0.0004,
+        "aerosol_index": 2.6755
+      },
+      "meteorological_conditions": {
+        "temperature_c": 36.2,
+        "humidity_pct": 62.3,
+        "wind_speed_kmh": 19.1,
+        "wind_direction_deg": 281.0,
+        "pressure_hpa": 992.0,
+        "precipitation_mm": 2.1,
+        "visibility_km": 2.3,
+        "boundary_layer_height_m": 1021.0
+      },
+      "fire_observations": [
+        {
+          "lat": 27.0,
+          "lon": 81.0,
+          "frp": 28.4,
+          "confidence": 55,
+          "acq_date": "2026-07-17",
+          "satellite": "VIIRS",
+          "is_active": true
+        }
+      ],
+      "aqi_data": {
+        "aqi": 375,
+        "pm25": 216.72438666453453,
+        "pollutants": {
+          "PM25": 216.72438666453453,
+          "PM10": 406.918068700333,
+          "NO2": 61.98877173912319,
+          "O3": 55.00777745143078,
+          "CO": 0.9609415826341621,
+          "SO2": 78.26618850439746
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.667621"
+    },
+    {
+      "id": "HS-26_45-80_33",
+      "lat": 26.45,
+      "lon": 80.33,
+      "location_name": "Kanpur",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "dominant_pollutant": "SO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0002,
+        "CO": 0.0826,
+        "SO2": 0.0013,
+        "HCHO": 0.0005,
+        "aerosol_index": 2.2127,
+        "PM25": 151.2001
+      },
+      "satellite_observations": {
+        "NO2": 0.0002,
+        "CO": 0.0826,
+        "SO2": 0.0013,
+        "HCHO": 0.0005,
+        "aerosol_index": 2.2127
+      },
+      "meteorological_conditions": {
+        "temperature_c": 35.6,
+        "humidity_pct": 52.8,
+        "wind_speed_kmh": 11.6,
+        "wind_direction_deg": 199.0,
+        "pressure_hpa": 996.9,
+        "precipitation_mm": 0.2,
+        "visibility_km": 12.0,
+        "boundary_layer_height_m": 842.0
+      },
+      "fire_observations": [
+        {
+          "lat": 26.5,
+          "lon": 80.0,
+          "frp": 35.6,
+          "confidence": 60,
+          "acq_date": "2026-07-18",
+          "satellite": "MODIS",
+          "is_active": true
+        }
+      ],
+      "aqi_data": {
+        "aqi": 325,
+        "pm25": 151.20008181217514,
+        "pollutants": {
+          "PM25": 151.20008181217514,
+          "PM10": 323.9477383393482,
+          "NO2": 51.162177333637416,
+          "O3": 26.292395758807274,
+          "CO": 0.5286998816510817,
+          "SO2": 67.56225729623802
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.668621"
+    },
+    {
+      "id": "HS-21_15-79_09",
+      "lat": 21.15,
+      "lon": 79.09,
+      "location_name": "Nagpur",
+      "state": "Maharashtra",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.0679,
+        "SO2": 0.0009,
+        "HCHO": 0.0003,
+        "aerosol_index": 1.6356,
+        "PM25": 219.7595
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.0679,
+        "SO2": 0.0009,
+        "HCHO": 0.0003,
+        "aerosol_index": 1.6356
+      },
+      "meteorological_conditions": {
+        "temperature_c": 25.1,
+        "humidity_pct": 42.1,
+        "wind_speed_kmh": 10.6,
+        "wind_direction_deg": 296.0,
+        "pressure_hpa": 1014.2,
+        "precipitation_mm": 1.0,
+        "visibility_km": 14.1,
+        "boundary_layer_height_m": 451.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 377,
+        "pm25": 219.75953334379577,
+        "pollutants": {
+          "PM25": 219.75953334379577,
+          "PM10": 401.4368322044022,
+          "NO2": 81.61735624189782,
+          "O3": 53.51249848810301,
+          "CO": 2.258670445496075,
+          "SO2": 74.97026879946239
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.670624"
+    },
+    {
+      "id": "HS-22_72-75_86",
+      "lat": 22.72,
+      "lon": 75.86,
+      "location_name": "Indore",
+      "state": "Madhya Pradesh",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0004,
+        "CO": 0.0457,
+        "SO2": 0.0008,
+        "HCHO": 0.0002,
+        "aerosol_index": 0.9483,
+        "PM25": 197.831
+      },
+      "satellite_observations": {
+        "NO2": 0.0004,
+        "CO": 0.0457,
+        "SO2": 0.0008,
+        "HCHO": 0.0002,
+        "aerosol_index": 0.9483
+      },
+      "meteorological_conditions": {
+        "temperature_c": 21.8,
+        "humidity_pct": 42.9,
+        "wind_speed_kmh": 36.0,
+        "wind_direction_deg": 215.0,
+        "pressure_hpa": 1002.8,
+        "precipitation_mm": 0.1,
+        "visibility_km": 5.7,
+        "boundary_layer_height_m": 283.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 360,
+        "pm25": 197.83095336290188,
+        "pollutants": {
+          "PM25": 197.83095336290188,
+          "PM10": 439.8278756727048,
+          "NO2": 94.42905957240079,
+          "O3": 39.399265626679906,
+          "CO": 0.7000963243839826,
+          "SO2": 47.67521177820749
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.672607"
+    },
+    {
+      "id": "HS-23_26-77_41",
+      "lat": 23.26,
+      "lon": 77.41,
+      "location_name": "Bhopal",
+      "state": "Madhya Pradesh",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0005,
+        "CO": 0.088,
+        "SO2": 0.0012,
+        "HCHO": 0.0004,
+        "aerosol_index": 1.1539,
+        "PM25": 156.19
+      },
+      "satellite_observations": {
+        "NO2": 0.0005,
+        "CO": 0.088,
+        "SO2": 0.0012,
+        "HCHO": 0.0004,
+        "aerosol_index": 1.1539
+      },
+      "meteorological_conditions": {
+        "temperature_c": 23.7,
+        "humidity_pct": 76.1,
+        "wind_speed_kmh": 38.6,
+        "wind_direction_deg": 128.0,
+        "pressure_hpa": 1015.4,
+        "precipitation_mm": 0.8,
+        "visibility_km": 4.0,
+        "boundary_layer_height_m": 760.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 329,
+        "pm25": 156.19001699051051,
+        "pollutants": {
+          "PM25": 156.19001699051051,
+          "PM10": 271.81598628158656,
+          "NO2": 32.787933891671756,
+          "O3": 67.0293005980551,
+          "CO": 2.960688600164665,
+          "SO2": 21.08735150882842
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.674622"
+    },
+    {
+      "id": "HS-17_69-83_22",
+      "lat": 17.69,
+      "lon": 83.22,
+      "location_name": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "district": "",
+      "dominant_pollutant": "SO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0005,
+        "CO": 0.0908,
+        "SO2": 0.0014,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.6647,
+        "PM25": 114.6156
+      },
+      "satellite_observations": {
+        "NO2": 0.0005,
+        "CO": 0.0908,
+        "SO2": 0.0014,
+        "HCHO": 0.0007,
+        "aerosol_index": 1.6647
+      },
+      "meteorological_conditions": {
+        "temperature_c": 30.4,
+        "humidity_pct": 29.8,
+        "wind_speed_kmh": 28.1,
+        "wind_direction_deg": 250.0,
+        "pressure_hpa": 994.9,
+        "precipitation_mm": 0.2,
+        "visibility_km": 14.7,
+        "boundary_layer_height_m": 852.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 282,
+        "pm25": 114.61562412335371,
+        "pollutants": {
+          "PM25": 114.61562412335371,
+          "PM10": 268.0902834393919,
+          "NO2": 66.09292889800979,
+          "O3": 56.0737768374743,
+          "CO": 2.183951336114566,
+          "SO2": 73.84180145842635
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.676609"
+    },
+    {
+      "id": "HS-25_59-85_14",
+      "lat": 25.59,
+      "lon": 85.14,
+      "location_name": "Patna",
+      "state": "Bihar",
+      "district": "",
+      "dominant_pollutant": "SO2",
+      "severity_score": 0.92,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.0367,
+        "SO2": 0.0012,
+        "HCHO": 0.0001,
+        "aerosol_index": 1.2384,
+        "PM25": 100.3405
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.0367,
+        "SO2": 0.0012,
+        "HCHO": 0.0001,
+        "aerosol_index": 1.2384
+      },
+      "meteorological_conditions": {
+        "temperature_c": 40.9,
+        "humidity_pct": 30.6,
+        "wind_speed_kmh": 9.8,
+        "wind_direction_deg": 191.0,
+        "pressure_hpa": 1016.5,
+        "precipitation_mm": 0.5,
+        "visibility_km": 11.5,
+        "boundary_layer_height_m": 737.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 235,
+        "pm25": 100.34049495342671,
+        "pollutants": {
+          "PM25": 100.34049495342671,
+          "PM10": 169.2309708749605,
+          "NO2": 52.42880369045007,
+          "O3": 81.33542476530458,
+          "CO": 3.253527713186174,
+          "SO2": 63.55874113105411
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.680234"
+    },
+    {
+      "id": "HS-30_90-75_86",
+      "lat": 30.9,
+      "lon": 75.86,
+      "location_name": "Ludhiana",
+      "state": "Punjab",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0008,
+        "CO": 0.067,
+        "SO2": 0.001,
+        "HCHO": 0.0001,
+        "aerosol_index": 2.032,
+        "PM25": 145.4458
+      },
+      "satellite_observations": {
+        "NO2": 0.0008,
+        "CO": 0.067,
+        "SO2": 0.001,
+        "HCHO": 0.0001,
+        "aerosol_index": 2.032
+      },
+      "meteorological_conditions": {
+        "temperature_c": 41.2,
+        "humidity_pct": 40.9,
+        "wind_speed_kmh": 1.3,
+        "wind_direction_deg": 114.0,
+        "pressure_hpa": 990.0,
+        "precipitation_mm": 0.6,
+        "visibility_km": 11.7,
+        "boundary_layer_height_m": 1076.0
+      },
+      "fire_observations": [
+        {
+          "lat": 30.5,
+          "lon": 76.0,
+          "frp": 85.3,
+          "confidence": 95,
+          "acq_date": "2026-07-19",
+          "satellite": "MODIS",
+          "is_active": true
+        },
+        {
+          "lat": 30.8,
+          "lon": 75.5,
+          "frp": 62.1,
+          "confidence": 88,
+          "acq_date": "2026-07-18",
+          "satellite": "VIIRS",
+          "is_active": true
+        }
+      ],
+      "aqi_data": {
+        "aqi": 320,
+        "pm25": 145.44575850067065,
+        "pollutants": {
+          "PM25": 145.44575850067065,
+          "PM10": 261.363874170093,
+          "NO2": 53.34346374388186,
+          "O3": 61.10154719077184,
+          "CO": 2.0203140912804636,
+          "SO2": 43.983978410557604
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.682248"
+    },
+    {
+      "id": "HS-31_63-74_87",
+      "lat": 31.63,
+      "lon": 74.87,
+      "location_name": "Amritsar",
+      "state": "Punjab",
+      "district": "",
+      "dominant_pollutant": "NO2",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0006,
+        "CO": 0.1076,
+        "SO2": 0.0007,
+        "HCHO": 0.0008,
+        "aerosol_index": 1.5249,
+        "PM25": 107.71
+      },
+      "satellite_observations": {
+        "NO2": 0.0006,
+        "CO": 0.1076,
+        "SO2": 0.0007,
+        "HCHO": 0.0008,
+        "aerosol_index": 1.5249
+      },
+      "meteorological_conditions": {
+        "temperature_c": 26.8,
+        "humidity_pct": 20.3,
+        "wind_speed_kmh": 34.6,
+        "wind_direction_deg": 36.0,
+        "pressure_hpa": 1018.7,
+        "precipitation_mm": 0.0,
+        "visibility_km": 7.7,
+        "boundary_layer_height_m": 935.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 259,
+        "pm25": 107.71002720227966,
+        "pollutants": {
+          "PM25": 107.71002720227966,
+          "PM10": 193.01292760858126,
+          "NO2": 29.68109274393465,
+          "O3": 20.419984719458377,
+          "CO": 2.1979688580939984,
+          "SO2": 37.450894922351814
+        },
+        "category": "Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.684261"
+    },
+    {
+      "id": "HS-27_18-78_02",
+      "lat": 27.18,
+      "lon": 78.02,
+      "location_name": "Agra",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0004,
+        "CO": 0.0449,
+        "SO2": 0.0015,
+        "HCHO": 0.0007,
+        "aerosol_index": 0.8117,
+        "PM25": 218.1827
+      },
+      "satellite_observations": {
+        "NO2": 0.0004,
+        "CO": 0.0449,
+        "SO2": 0.0015,
+        "HCHO": 0.0007,
+        "aerosol_index": 0.8117
+      },
+      "meteorological_conditions": {
+        "temperature_c": 25.0,
+        "humidity_pct": 85.2,
+        "wind_speed_kmh": 26.1,
+        "wind_direction_deg": 158.0,
+        "pressure_hpa": 1013.2,
+        "precipitation_mm": 0.1,
+        "visibility_km": 9.0,
+        "boundary_layer_height_m": 1116.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 376,
+        "pm25": 218.18267222368803,
+        "pollutants": {
+          "PM25": 218.18267222368803,
+          "PM10": 514.9054645327778,
+          "NO2": 57.628335618041355,
+          "O3": 15.011145208309165,
+          "CO": 2.4123249298599783,
+          "SO2": 39.11978920113993
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.686260"
+    },
+    {
+      "id": "HS-25_32-82_97",
+      "lat": 25.32,
+      "lon": 82.97,
+      "location_name": "Varanasi",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.1132,
+        "SO2": 0.0008,
+        "HCHO": 0.0001,
+        "aerosol_index": 1.4092,
+        "PM25": 200.1095
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.1132,
+        "SO2": 0.0008,
+        "HCHO": 0.0001,
+        "aerosol_index": 1.4092
+      },
+      "meteorological_conditions": {
+        "temperature_c": 33.6,
+        "humidity_pct": 24.4,
+        "wind_speed_kmh": 38.2,
+        "wind_direction_deg": 17.0,
+        "pressure_hpa": 1012.3,
+        "precipitation_mm": 0.2,
+        "visibility_km": 11.2,
+        "boundary_layer_height_m": 1085.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 362,
+        "pm25": 200.10953233927373,
+        "pollutants": {
+          "PM25": 200.10953233927373,
+          "PM10": 473.27188698233937,
+          "NO2": 70.88988939543735,
+          "O3": 38.41986810487107,
+          "CO": 3.2905028043137805,
+          "SO2": 32.01277274707892
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.687261"
+    },
+    {
+      "id": "HS-26_14-91_74",
+      "lat": 26.14,
+      "lon": 91.74,
+      "location_name": "Guwahati",
+      "state": "Assam",
+      "district": "",
+      "dominant_pollutant": "HCHO",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0003,
+        "CO": 0.0966,
+        "SO2": 0.0008,
+        "HCHO": 0.0007,
+        "aerosol_index": 0.5732,
+        "PM25": 83.1086
+      },
+      "satellite_observations": {
+        "NO2": 0.0003,
+        "CO": 0.0966,
+        "SO2": 0.0008,
+        "HCHO": 0.0007,
+        "aerosol_index": 0.5732
+      },
+      "meteorological_conditions": {
+        "temperature_c": 36.2,
+        "humidity_pct": 61.3,
+        "wind_speed_kmh": 15.6,
+        "wind_direction_deg": 284.0,
+        "pressure_hpa": 1018.1,
+        "precipitation_mm": 0.1,
+        "visibility_km": 7.7,
+        "boundary_layer_height_m": 1198.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 177,
+        "pm25": 83.10855941737921,
+        "pollutants": {
+          "PM25": 83.10855941737921,
+          "PM10": 203.33321566968218,
+          "NO2": 67.95640042863432,
+          "O3": 13.447285287561366,
+          "CO": 2.8870753928304467,
+          "SO2": 19.303534312935554
+        },
+        "category": "Moderate"
+      },
+      "timestamp": "2026-07-20T17:36:31.689260"
+    },
+    {
+      "id": "HS-30_73-76_78",
+      "lat": 30.73,
+      "lon": 76.78,
+      "location_name": "Chandigarh",
+      "state": "Chandigarh",
+      "district": "",
+      "dominant_pollutant": "HCHO",
+      "severity_score": 0.85,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0002,
+        "CO": 0.0832,
+        "SO2": 0.0004,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.7674,
+        "PM25": 80.2931
+      },
+      "satellite_observations": {
+        "NO2": 0.0002,
+        "CO": 0.0832,
+        "SO2": 0.0004,
+        "HCHO": 0.0006,
+        "aerosol_index": 0.7674
+      },
+      "meteorological_conditions": {
+        "temperature_c": 32.9,
+        "humidity_pct": 49.1,
+        "wind_speed_kmh": 10.4,
+        "wind_direction_deg": 300.0,
+        "pressure_hpa": 994.0,
+        "precipitation_mm": 0.1,
+        "visibility_km": 14.3,
+        "boundary_layer_height_m": 553.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 168,
+        "pm25": 80.29308519136954,
+        "pollutants": {
+          "PM25": 80.29308519136954,
+          "PM10": 179.32858199208522,
+          "NO2": 63.032202944343986,
+          "O3": 75.4400088509486,
+          "CO": 3.5862309899904674,
+          "SO2": 55.584487768705934
+        },
+        "category": "Moderate"
+      },
+      "timestamp": "2026-07-20T17:36:31.691260"
+    },
+    {
+      "id": "HS-30_32-78_03",
+      "lat": 30.32,
+      "lon": 78.03,
+      "location_name": "Dehradun",
+      "state": "Uttarakhand",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0002,
+        "CO": 0.0676,
+        "SO2": 0.0009,
+        "HCHO": 0.0008,
+        "aerosol_index": 0.6658,
+        "PM25": 209.6201
+      },
+      "satellite_observations": {
+        "NO2": 0.0002,
+        "CO": 0.0676,
+        "SO2": 0.0009,
+        "HCHO": 0.0008,
+        "aerosol_index": 0.6658
+      },
+      "meteorological_conditions": {
+        "temperature_c": 35.7,
+        "humidity_pct": 55.7,
+        "wind_speed_kmh": 23.2,
+        "wind_direction_deg": 313.0,
+        "pressure_hpa": 1010.3,
+        "precipitation_mm": 0.3,
+        "visibility_km": 6.4,
+        "boundary_layer_height_m": 899.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 369,
+        "pm25": 209.6200974577578,
+        "pollutants": {
+          "PM25": 209.6200974577578,
+          "PM10": 320.70650185679006,
+          "NO2": 57.523631864193455,
+          "O3": 85.21760557136983,
+          "CO": 2.778336290792194,
+          "SO2": 51.677550061429216
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.694378"
+    },
+    {
+      "id": "HS-23_34-85_31",
+      "lat": 23.34,
+      "lon": 85.31,
+      "location_name": "Ranchi",
+      "state": "Jharkhand",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 0.84,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0001,
+        "CO": 0.0839,
+        "SO2": 0.0003,
+        "HCHO": 0.0002,
+        "aerosol_index": 0.9669,
+        "PM25": 164.1705
+      },
+      "satellite_observations": {
+        "NO2": 0.0001,
+        "CO": 0.0839,
+        "SO2": 0.0003,
+        "HCHO": 0.0002,
+        "aerosol_index": 0.9669
+      },
+      "meteorological_conditions": {
+        "temperature_c": 35.5,
+        "humidity_pct": 63.2,
+        "wind_speed_kmh": 16.2,
+        "wind_direction_deg": 336.0,
+        "pressure_hpa": 1012.3,
+        "precipitation_mm": 1.1,
+        "visibility_km": 10.4,
+        "boundary_layer_height_m": 1409.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 335,
+        "pm25": 164.17053925289142,
+        "pollutants": {
+          "PM25": 164.17053925289142,
+          "PM10": 281.1999325658925,
+          "NO2": 64.15409559179926,
+          "O3": 72.28983016219999,
+          "CO": 0.5004623763201661,
+          "SO2": 40.84076472301139
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.696400"
+    },
+    {
+      "id": "HS-21_25-81_63",
+      "lat": 21.25,
+      "lon": 81.63,
+      "location_name": "Raipur",
+      "state": "Chhattisgarh",
+      "district": "",
+      "dominant_pollutant": "aerosol_index",
+      "severity_score": 0.89,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0005,
+        "CO": 0.0162,
+        "SO2": 0.0004,
+        "HCHO": 0.0002,
+        "aerosol_index": 3.052,
+        "PM25": 55.1141
+      },
+      "satellite_observations": {
+        "NO2": 0.0005,
+        "CO": 0.0162,
+        "SO2": 0.0004,
+        "HCHO": 0.0002,
+        "aerosol_index": 3.052
+      },
+      "meteorological_conditions": {
+        "temperature_c": 39.3,
+        "humidity_pct": 46.1,
+        "wind_speed_kmh": 20.9,
+        "wind_direction_deg": 94.0,
+        "pressure_hpa": 1006.5,
+        "precipitation_mm": 0.0,
+        "visibility_km": 13.6,
+        "boundary_layer_height_m": 988.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 92,
+        "pm25": 55.11407705311602,
+        "pollutants": {
+          "PM25": 55.11407705311602,
+          "PM10": 127.24535149873684,
+          "NO2": 75.1375031500383,
+          "O3": 58.38811581129413,
+          "CO": 0.8754314307273308,
+          "SO2": 17.395077884551178
+        },
+        "category": "Satisfactory"
+      },
+      "timestamp": "2026-07-20T17:36:31.697951"
+    },
+    {
+      "id": "HS-20_30-85_82",
+      "lat": 20.3,
+      "lon": 85.82,
+      "location_name": "Bhubaneswar",
+      "state": "Odisha",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0007,
+        "CO": 0.0403,
+        "SO2": 0.0007,
+        "HCHO": 0.0002,
+        "aerosol_index": 2.1969,
+        "PM25": 228.6269
+      },
+      "satellite_observations": {
+        "NO2": 0.0007,
+        "CO": 0.0403,
+        "SO2": 0.0007,
+        "HCHO": 0.0002,
+        "aerosol_index": 2.1969
+      },
+      "meteorological_conditions": {
+        "temperature_c": 39.3,
+        "humidity_pct": 26.7,
+        "wind_speed_kmh": 4.1,
+        "wind_direction_deg": 299.0,
+        "pressure_hpa": 1001.0,
+        "precipitation_mm": 0.6,
+        "visibility_km": 10.2,
+        "boundary_layer_height_m": 591.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 384,
+        "pm25": 228.62685626844026,
+        "pollutants": {
+          "PM25": 228.62685626844026,
+          "PM10": 536.7798401444034,
+          "NO2": 53.440743538365226,
+          "O3": 71.71159701118188,
+          "CO": 2.2577685666064777,
+          "SO2": 55.06258650773954
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.699950"
+    },
+    {
+      "id": "HS-8_52-76_94",
+      "lat": 8.52,
+      "lon": 76.94,
+      "location_name": "Thiruvananthapuram",
+      "state": "Kerala",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0004,
+        "CO": 0.0165,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 3.2845,
+        "PM25": 233.2106
+      },
+      "satellite_observations": {
+        "NO2": 0.0004,
+        "CO": 0.0165,
+        "SO2": 0.0011,
+        "HCHO": 0.0005,
+        "aerosol_index": 3.2845
+      },
+      "meteorological_conditions": {
+        "temperature_c": 36.2,
+        "humidity_pct": 57.6,
+        "wind_speed_kmh": 33.1,
+        "wind_direction_deg": 220.0,
+        "pressure_hpa": 1009.0,
+        "precipitation_mm": 0.6,
+        "visibility_km": 13.9,
+        "boundary_layer_height_m": 1450.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 387,
+        "pm25": 233.21055819880655,
+        "pollutants": {
+          "PM25": 233.21055819880655,
+          "PM10": 381.37029753361594,
+          "NO2": 51.110623536894266,
+          "O3": 82.49194434226983,
+          "CO": 3.7077500559241074,
+          "SO2": 37.479045456800236
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.700950"
+    },
+    {
+      "id": "HS-34_08-74_80",
+      "lat": 34.08,
+      "lon": 74.8,
+      "location_name": "Srinagar",
+      "state": "Jammu & Kashmir",
+      "district": "",
+      "dominant_pollutant": "PM25",
+      "severity_score": 1.0,
+      "severity_label": "Very High",
+      "detected_pollutants": {
+        "NO2": 0.0004,
+        "CO": 0.0312,
+        "SO2": 0.0009,
+        "HCHO": 0.0006,
+        "aerosol_index": 1.6555,
+        "PM25": 177.5894
+      },
+      "satellite_observations": {
+        "NO2": 0.0004,
+        "CO": 0.0312,
+        "SO2": 0.0009,
+        "HCHO": 0.0006,
+        "aerosol_index": 1.6555
+      },
+      "meteorological_conditions": {
+        "temperature_c": 17.8,
+        "humidity_pct": 58.8,
+        "wind_speed_kmh": 22.2,
+        "wind_direction_deg": 287.0,
+        "pressure_hpa": 1019.9,
+        "precipitation_mm": 0.0,
+        "visibility_km": 13.3,
+        "boundary_layer_height_m": 1292.0
+      },
+      "fire_observations": [],
+      "aqi_data": {
+        "aqi": 345,
+        "pm25": 177.58940527259853,
+        "pollutants": {
+          "PM25": 177.58940527259853,
+          "PM10": 439.68046831711666,
+          "NO2": 66.5791344913026,
+          "O3": 63.83413516440511,
+          "CO": 0.6810149045896399,
+          "SO2": 17.57620704362027
+        },
+        "category": "Very Poor"
+      },
+      "timestamp": "2026-07-20T17:36:31.702950"
+    }
+  ],
+  "attributions": [
+    {
+      "hotspot_id": "HS-28_61-77_23",
+      "most_probable_cause": "industrial",
+      "confidence": 21.9,
+      "probability_distribution": {
+        "industrial": 21.9,
+        "brick_kiln": 12.4,
+        "crop_burning": 11.8,
+        "power_plant": 10.9,
+        "construction": 10.0,
+        "urban_congestion": 8.8,
+        "diesel_traffic": 8.6,
+        "waste_burning": 7.7,
+        "dust_storm": 5.4,
+        "forest_fire": 2.5,
+        "mining": 0.0
+      },
+      "top_features": [
+        "industrial",
+        "brick_kiln",
+        "crop_burning",
+        "power_plant",
+        "construction"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0005, 2.5x threshold)",
+        "1 nearby construction sources (min dist: 11.1km)",
+        "Elevated SO2 (0.0011, 2.2x threshold)",
+        "1 nearby urban congestion sources (min dist: 0.0km)",
+        "HCHO signature consistent with biomass burning",
+        "1 nearby power plant sources (min dist: 16.5km)",
+        "Elevated HCHO (0.0006, 1.8x threshold)",
+        "High wind speed (22.7 km/h)",
+        "Elevated PM25 (228.9590, 3.8x threshold)",
+        "1 nearby brick kiln sources (min dist: 21.2km)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Delhi Urban Congestion Zone",
+          "lat": 28.61,
+          "lon": 77.23,
+          "type": "urban_congestion",
+          "state": "Delhi",
+          "distance_km": 0.0
+        },
+        {
+          "name": "Okhla Industrial Area",
+          "lat": 28.55,
+          "lon": 77.28,
+          "type": "industrial",
+          "state": "Delhi",
+          "sector": "garment_electronics",
+          "distance_km": 8.7
+        },
+        {
+          "name": "Delhi-NCR Construction Belt",
+          "lat": 28.55,
+          "lon": 77.15,
+          "type": "construction",
+          "state": "Delhi/NCR",
+          "distance_km": 11.1
+        },
+        {
+          "name": "Noida Sector 58 Industrial Area",
+          "lat": 28.59,
+          "lon": 77.33,
+          "type": "industrial",
+          "state": "Uttar Pradesh",
+          "sector": "it_electronics",
+          "distance_km": 11.3
+        },
+        {
+          "name": "Badarpur Thermal Power Plant",
+          "lat": 28.47,
+          "lon": 77.28,
+          "type": "power_plant",
+          "state": "Delhi",
+          "fuel": "coal",
+          "capacity_mw": 705,
+          "distance_km": 16.5
+        }
+      ],
+      "alternative_causes": {
+        "brick_kiln": 12.4,
+        "crop_burning": 11.8,
+        "power_plant": 10.9,
+        "construction": 10.0,
+        "urban_congestion": 8.8,
+        "diesel_traffic": 8.6,
+        "waste_burning": 7.7,
+        "dust_storm": 5.4,
+        "forest_fire": 2.5,
+        "mining": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-19_08-72_88",
+      "most_probable_cause": "crop_burning",
+      "confidence": 21.1,
+      "probability_distribution": {
+        "crop_burning": 21.1,
+        "diesel_traffic": 16.3,
+        "construction": 13.6,
+        "waste_burning": 12.2,
+        "industrial": 9.3,
+        "brick_kiln": 9.3,
+        "dust_storm": 7.1,
+        "forest_fire": 5.7,
+        "power_plant": 2.7,
+        "urban_congestion": 2.7,
+        "mining": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "diesel_traffic",
+        "construction",
+        "waste_burning",
+        "industrial"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.0768, 1.5x threshold)",
+        "Elevated PM25 (223.6235, 3.7x threshold)",
+        "Elevated HCHO (0.0005, 1.7x threshold)",
+        "High wind speed (24.0 km/h)",
+        "1 nearby diesel traffic sources (min dist: 0.0km)",
+        "1 nearby construction sources (min dist: 0.0km)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Mumbai Metro Construction Corridor",
+          "lat": 19.08,
+          "lon": 72.88,
+          "type": "construction",
+          "state": "Maharashtra",
+          "distance_km": 0.0
+        },
+        {
+          "name": "Mumbai Traffic Corridor",
+          "lat": 19.08,
+          "lon": 72.88,
+          "type": "diesel_traffic",
+          "state": "Maharashtra",
+          "distance_km": 0.0
+        }
+      ],
+      "alternative_causes": {
+        "diesel_traffic": 16.3,
+        "construction": 13.6,
+        "waste_burning": 12.2,
+        "industrial": 9.3,
+        "brick_kiln": 9.3,
+        "dust_storm": 7.1,
+        "forest_fire": 5.7,
+        "power_plant": 2.7,
+        "urban_congestion": 2.7,
+        "mining": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-12_97-77_59",
+      "most_probable_cause": "crop_burning",
+      "confidence": 17.3,
+      "probability_distribution": {
+        "crop_burning": 17.3,
+        "diesel_traffic": 16.9,
+        "industrial": 11.5,
+        "construction": 10.9,
+        "forest_fire": 8.3,
+        "power_plant": 8.3,
+        "waste_burning": 7.9,
+        "urban_congestion": 6.1,
+        "brick_kiln": 5.4,
+        "mining": 3.7,
+        "dust_storm": 3.7
+      },
+      "top_features": [
+        "crop_burning",
+        "diesel_traffic",
+        "industrial",
+        "construction",
+        "forest_fire"
+      ],
+      "supporting_evidence": [
+        "Elevated aerosol_index (1.9117, 1.9x threshold)",
+        "Elevated HCHO (0.0007, 2.5x threshold)",
+        "Elevated SO2 (0.0006, 1.2x threshold)",
+        "Elevated PM25 (100.9882, 1.7x threshold)",
+        "1 nearby construction sources (min dist: 0.0km)",
+        "1 nearby diesel traffic sources (min dist: 1.1km)",
+        "Elevated NO2 (0.0006, 3.2x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Bengaluru Construction Zone",
+          "lat": 12.97,
+          "lon": 77.59,
+          "type": "construction",
+          "state": "Karnataka",
+          "distance_km": 0.0
+        },
+        {
+          "name": "Bengaluru Traffic Corridor",
+          "lat": 12.97,
+          "lon": 77.6,
+          "type": "diesel_traffic",
+          "state": "Karnataka",
+          "distance_km": 1.1
+        }
+      ],
+      "alternative_causes": {
+        "diesel_traffic": 16.9,
+        "industrial": 11.5,
+        "construction": 10.9,
+        "forest_fire": 8.3,
+        "power_plant": 8.3,
+        "waste_burning": 7.9,
+        "urban_congestion": 6.1,
+        "brick_kiln": 5.4,
+        "mining": 3.7,
+        "dust_storm": 3.7
+      }
+    },
+    {
+      "hotspot_id": "HS-17_39-78_49",
+      "most_probable_cause": "crop_burning",
+      "confidence": 21.5,
+      "probability_distribution": {
+        "crop_burning": 21.5,
+        "industrial": 19.8,
+        "power_plant": 12.1,
+        "forest_fire": 10.4,
+        "brick_kiln": 8.2,
+        "diesel_traffic": 7.0,
+        "urban_congestion": 7.0,
+        "waste_burning": 6.9,
+        "mining": 3.5,
+        "dust_storm": 3.5,
+        "construction": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "power_plant",
+        "forest_fire",
+        "brick_kiln"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0003, 1.7x threshold)",
+        "Elevated CO (0.0715, 1.4x threshold)",
+        "Elevated HCHO (0.0005, 1.7x threshold)",
+        "Elevated aerosol_index (1.5651, 1.6x threshold)",
+        "Elevated SO2 (0.0011, 2.3x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Hyderabad IT & Industrial Belt",
+          "lat": 17.44,
+          "lon": 78.38,
+          "type": "industrial",
+          "state": "Telangana",
+          "distance_km": 13.4
+        }
+      ],
+      "alternative_causes": {
+        "industrial": 19.8,
+        "power_plant": 12.1,
+        "forest_fire": 10.4,
+        "brick_kiln": 8.2,
+        "diesel_traffic": 7.0,
+        "urban_congestion": 7.0,
+        "waste_burning": 6.9,
+        "mining": 3.5,
+        "dust_storm": 3.5,
+        "construction": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-23_02-72_57",
+      "most_probable_cause": "crop_burning",
+      "confidence": 23.2,
+      "probability_distribution": {
+        "crop_burning": 23.2,
+        "industrial": 13.7,
+        "power_plant": 13.7,
+        "forest_fire": 11.4,
+        "brick_kiln": 7.3,
+        "mining": 6.6,
+        "dust_storm": 6.6,
+        "diesel_traffic": 6.4,
+        "urban_congestion": 6.4,
+        "waste_burning": 4.7,
+        "construction": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "power_plant",
+        "forest_fire",
+        "brick_kiln"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0003, 1.6x threshold)",
+        "HCHO signature consistent with biomass burning",
+        "Elevated SO2 (0.0009, 1.8x threshold)",
+        "Elevated aerosol_index (1.6760, 1.7x threshold)",
+        "Elevated HCHO (0.0004, 1.2x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.7,
+        "power_plant": 13.7,
+        "forest_fire": 11.4,
+        "brick_kiln": 7.3,
+        "mining": 6.6,
+        "dust_storm": 6.6,
+        "diesel_traffic": 6.4,
+        "urban_congestion": 6.4,
+        "waste_burning": 4.7,
+        "construction": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-13_08-80_27",
+      "most_probable_cause": "industrial",
+      "confidence": 20.8,
+      "probability_distribution": {
+        "industrial": 20.8,
+        "power_plant": 12.1,
+        "diesel_traffic": 12.0,
+        "crop_burning": 11.5,
+        "urban_congestion": 9.4,
+        "brick_kiln": 9.0,
+        "dust_storm": 8.3,
+        "waste_burning": 6.3,
+        "forest_fire": 5.9,
+        "construction": 2.6,
+        "mining": 2.2
+      },
+      "top_features": [
+        "industrial",
+        "power_plant",
+        "diesel_traffic",
+        "crop_burning",
+        "urban_congestion"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (102.1003, 1.7x threshold)",
+        "Elevated aerosol_index (1.4347, 1.4x threshold)",
+        "High wind speed (31.4 km/h)",
+        "Elevated NO2 (0.0007, 3.7x threshold)",
+        "Elevated CO (0.1197, 2.4x threshold)",
+        "Elevated SO2 (0.0009, 1.8x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Chennai Industrial & Port Corridor",
+          "lat": 13.08,
+          "lon": 80.28,
+          "type": "industrial",
+          "state": "Tamil Nadu",
+          "distance_km": 1.1
+        }
+      ],
+      "alternative_causes": {
+        "power_plant": 12.1,
+        "diesel_traffic": 12.0,
+        "crop_burning": 11.5,
+        "urban_congestion": 9.4,
+        "brick_kiln": 9.0,
+        "dust_storm": 8.3,
+        "waste_burning": 6.3,
+        "forest_fire": 5.9,
+        "construction": 2.6,
+        "mining": 2.2
+      }
+    },
+    {
+      "hotspot_id": "HS-22_57-88_36",
+      "most_probable_cause": "crop_burning",
+      "confidence": 15.4,
+      "probability_distribution": {
+        "crop_burning": 15.4,
+        "industrial": 14.6,
+        "brick_kiln": 13.0,
+        "urban_congestion": 11.7,
+        "diesel_traffic": 11.4,
+        "power_plant": 9.0,
+        "waste_burning": 7.9,
+        "construction": 5.6,
+        "forest_fire": 5.3,
+        "mining": 3.1,
+        "dust_storm": 3.1
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "brick_kiln",
+        "urban_congestion",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (226.2129, 3.8x threshold)",
+        "Elevated NO2 (0.0008, 3.9x threshold)",
+        "1 nearby brick kiln sources (min dist: 29.9km)",
+        "Elevated SO2 (0.0011, 2.2x threshold)",
+        "1 nearby urban congestion sources (min dist: 0.0km)",
+        "Elevated aerosol_index (2.0551, 2.1x threshold)",
+        "Elevated HCHO (0.0005, 1.5x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Kolkata Traffic Zone",
+          "lat": 22.57,
+          "lon": 88.36,
+          "type": "urban_congestion",
+          "state": "West Bengal",
+          "distance_km": 0.0
+        },
+        {
+          "name": "West Bengal Brick Kiln Cluster",
+          "lat": 22.8,
+          "lon": 88.5,
+          "type": "brick_kiln",
+          "state": "West Bengal",
+          "distance_km": 29.9
+        }
+      ],
+      "alternative_causes": {
+        "industrial": 14.6,
+        "brick_kiln": 13.0,
+        "urban_congestion": 11.7,
+        "diesel_traffic": 11.4,
+        "power_plant": 9.0,
+        "waste_burning": 7.9,
+        "construction": 5.6,
+        "forest_fire": 5.3,
+        "mining": 3.1,
+        "dust_storm": 3.1
+      }
+    },
+    {
+      "hotspot_id": "HS-18_52-73_86",
+      "most_probable_cause": "crop_burning",
+      "confidence": 22.7,
+      "probability_distribution": {
+        "crop_burning": 22.7,
+        "industrial": 13.3,
+        "diesel_traffic": 10.4,
+        "waste_burning": 10.1,
+        "power_plant": 9.8,
+        "forest_fire": 9.3,
+        "brick_kiln": 8.6,
+        "urban_congestion": 6.9,
+        "construction": 3.5,
+        "mining": 2.7,
+        "dust_storm": 2.7
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "diesel_traffic",
+        "waste_burning",
+        "power_plant"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (104.6868, 1.7x threshold)",
+        "Elevated HCHO (0.0007, 2.2x threshold)",
+        "Elevated aerosol_index (1.3641, 1.4x threshold)",
+        "Elevated CO (0.0550, 1.1x threshold)",
+        "Elevated SO2 (0.0007, 1.5x threshold)",
+        "Elevated NO2 (0.0005, 2.4x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.3,
+        "diesel_traffic": 10.4,
+        "waste_burning": 10.1,
+        "power_plant": 9.8,
+        "forest_fire": 9.3,
+        "brick_kiln": 8.6,
+        "urban_congestion": 6.9,
+        "construction": 3.5,
+        "mining": 2.7,
+        "dust_storm": 2.7
+      }
+    },
+    {
+      "hotspot_id": "HS-26_91-75_79",
+      "most_probable_cause": "crop_burning",
+      "confidence": 19.6,
+      "probability_distribution": {
+        "crop_burning": 19.6,
+        "industrial": 15.8,
+        "brick_kiln": 13.1,
+        "waste_burning": 11.9,
+        "diesel_traffic": 11.8,
+        "power_plant": 10.0,
+        "forest_fire": 6.0,
+        "urban_congestion": 5.9,
+        "construction": 5.9,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "brick_kiln",
+        "waste_burning",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.1027, 2.1x threshold)",
+        "Elevated SO2 (0.0013, 2.6x threshold)",
+        "Elevated PM25 (229.7115, 3.8x threshold)",
+        "Elevated NO2 (0.0004, 1.8x threshold)",
+        "Elevated HCHO (0.0006, 1.9x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 15.8,
+        "brick_kiln": 13.1,
+        "waste_burning": 11.9,
+        "diesel_traffic": 11.8,
+        "power_plant": 10.0,
+        "forest_fire": 6.0,
+        "urban_congestion": 5.9,
+        "construction": 5.9,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-26_85-80_95",
+      "most_probable_cause": "crop_burning",
+      "confidence": 20.3,
+      "probability_distribution": {
+        "crop_burning": 20.3,
+        "forest_fire": 17.3,
+        "industrial": 11.3,
+        "brick_kiln": 11.3,
+        "waste_burning": 9.8,
+        "diesel_traffic": 8.1,
+        "power_plant": 6.4,
+        "construction": 4.9,
+        "mining": 3.6,
+        "dust_storm": 3.6,
+        "urban_congestion": 3.2
+      },
+      "top_features": [
+        "crop_burning",
+        "forest_fire",
+        "industrial",
+        "brick_kiln",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.1188, 2.4x threshold)",
+        "Elevated HCHO (0.0004, 1.3x threshold)",
+        "Elevated PM25 (216.7244, 3.6x threshold)",
+        "Elevated SO2 (0.0012, 2.4x threshold)",
+        "Elevated aerosol_index (2.6755, 2.7x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "forest_fire": 17.3,
+        "industrial": 11.3,
+        "brick_kiln": 11.3,
+        "waste_burning": 9.8,
+        "diesel_traffic": 8.1,
+        "power_plant": 6.4,
+        "construction": 4.9,
+        "mining": 3.6,
+        "dust_storm": 3.6,
+        "urban_congestion": 3.2
+      }
+    },
+    {
+      "hotspot_id": "HS-26_45-80_33",
+      "most_probable_cause": "crop_burning",
+      "confidence": 19.4,
+      "probability_distribution": {
+        "crop_burning": 19.4,
+        "forest_fire": 19.0,
+        "industrial": 11.9,
+        "brick_kiln": 10.1,
+        "waste_burning": 8.6,
+        "power_plant": 8.2,
+        "diesel_traffic": 8.0,
+        "urban_congestion": 4.3,
+        "construction": 3.8,
+        "mining": 3.3,
+        "dust_storm": 3.3
+      },
+      "top_features": [
+        "crop_burning",
+        "forest_fire",
+        "industrial",
+        "brick_kiln",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated SO2 (0.0013, 2.6x threshold)",
+        "Elevated HCHO (0.0005, 1.6x threshold)",
+        "Elevated CO (0.0826, 1.7x threshold)",
+        "Elevated aerosol_index (2.2127, 2.2x threshold)",
+        "Elevated NO2 (0.0002, 1.2x threshold)",
+        "Elevated PM25 (151.2001, 2.5x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "forest_fire": 19.0,
+        "industrial": 11.9,
+        "brick_kiln": 10.1,
+        "waste_burning": 8.6,
+        "power_plant": 8.2,
+        "diesel_traffic": 8.0,
+        "urban_congestion": 4.3,
+        "construction": 3.8,
+        "mining": 3.3,
+        "dust_storm": 3.3
+      }
+    },
+    {
+      "hotspot_id": "HS-21_15-79_09",
+      "most_probable_cause": "crop_burning",
+      "confidence": 16.5,
+      "probability_distribution": {
+        "crop_burning": 16.5,
+        "industrial": 15.7,
+        "brick_kiln": 13.0,
+        "diesel_traffic": 12.3,
+        "waste_burning": 9.6,
+        "power_plant": 8.8,
+        "construction": 7.0,
+        "forest_fire": 5.7,
+        "urban_congestion": 5.3,
+        "mining": 3.1,
+        "dust_storm": 3.1
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "brick_kiln",
+        "diesel_traffic",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0003, 1.5x threshold)",
+        "Elevated aerosol_index (1.6356, 1.6x threshold)",
+        "Elevated CO (0.0679, 1.4x threshold)",
+        "Elevated PM25 (219.7595, 3.7x threshold)",
+        "Elevated SO2 (0.0009, 1.8x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 15.7,
+        "brick_kiln": 13.0,
+        "diesel_traffic": 12.3,
+        "waste_burning": 9.6,
+        "power_plant": 8.8,
+        "construction": 7.0,
+        "forest_fire": 5.7,
+        "urban_congestion": 5.3,
+        "mining": 3.1,
+        "dust_storm": 3.1
+      }
+    },
+    {
+      "hotspot_id": "HS-22_72-75_86",
+      "most_probable_cause": "industrial",
+      "confidence": 18.9,
+      "probability_distribution": {
+        "industrial": 18.9,
+        "diesel_traffic": 14.6,
+        "brick_kiln": 13.2,
+        "dust_storm": 10.9,
+        "power_plant": 9.9,
+        "crop_burning": 9.0,
+        "construction": 9.0,
+        "waste_burning": 9.0,
+        "urban_congestion": 5.6,
+        "forest_fire": 0.0,
+        "mining": 0.0
+      },
+      "top_features": [
+        "industrial",
+        "diesel_traffic",
+        "brick_kiln",
+        "dust_storm",
+        "power_plant"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (197.8310, 3.3x threshold)",
+        "Elevated NO2 (0.0004, 2.1x threshold)",
+        "Elevated SO2 (0.0008, 1.6x threshold)",
+        "High wind speed (36.0 km/h)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "diesel_traffic": 14.6,
+        "brick_kiln": 13.2,
+        "dust_storm": 10.9,
+        "power_plant": 9.9,
+        "crop_burning": 9.0,
+        "construction": 9.0,
+        "waste_burning": 9.0,
+        "urban_congestion": 5.6,
+        "forest_fire": 0.0,
+        "mining": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-23_26-77_41",
+      "most_probable_cause": "industrial",
+      "confidence": 18.4,
+      "probability_distribution": {
+        "industrial": 18.4,
+        "crop_burning": 17.6,
+        "brick_kiln": 10.2,
+        "diesel_traffic": 10.0,
+        "power_plant": 9.7,
+        "waste_burning": 8.4,
+        "dust_storm": 7.7,
+        "forest_fire": 6.2,
+        "urban_congestion": 6.0,
+        "construction": 3.9,
+        "mining": 1.7
+      },
+      "top_features": [
+        "industrial",
+        "crop_burning",
+        "brick_kiln",
+        "diesel_traffic",
+        "power_plant"
+      ],
+      "supporting_evidence": [
+        "High wind speed (38.6 km/h)",
+        "Elevated PM25 (156.1900, 2.6x threshold)",
+        "Elevated NO2 (0.0005, 2.3x threshold)",
+        "Elevated CO (0.0880, 1.8x threshold)",
+        "Elevated SO2 (0.0012, 2.4x threshold)",
+        "Elevated HCHO (0.0004, 1.2x threshold)",
+        "Elevated aerosol_index (1.1539, 1.2x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Mandideep Industrial Area",
+          "lat": 23.13,
+          "lon": 77.53,
+          "type": "industrial",
+          "state": "Madhya Pradesh",
+          "sector": "pharma_auto",
+          "distance_km": 19.6
+        }
+      ],
+      "alternative_causes": {
+        "crop_burning": 17.6,
+        "brick_kiln": 10.2,
+        "diesel_traffic": 10.0,
+        "power_plant": 9.7,
+        "waste_burning": 8.4,
+        "dust_storm": 7.7,
+        "forest_fire": 6.2,
+        "urban_congestion": 6.0,
+        "construction": 3.9,
+        "mining": 1.7
+      }
+    },
+    {
+      "hotspot_id": "HS-17_69-83_22",
+      "most_probable_cause": "crop_burning",
+      "confidence": 19.2,
+      "probability_distribution": {
+        "crop_burning": 19.2,
+        "industrial": 13.3,
+        "power_plant": 10.5,
+        "brick_kiln": 9.7,
+        "waste_burning": 9.2,
+        "diesel_traffic": 9.1,
+        "forest_fire": 8.9,
+        "dust_storm": 8.4,
+        "urban_congestion": 6.3,
+        "construction": 2.8,
+        "mining": 2.5
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "power_plant",
+        "brick_kiln",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.0908, 1.8x threshold)",
+        "Elevated PM25 (114.6156, 1.9x threshold)",
+        "Elevated HCHO (0.0007, 2.5x threshold)",
+        "High wind speed (28.1 km/h)",
+        "Elevated aerosol_index (1.6647, 1.7x threshold)",
+        "Elevated NO2 (0.0005, 2.4x threshold)",
+        "Elevated SO2 (0.0014, 2.8x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.3,
+        "power_plant": 10.5,
+        "brick_kiln": 9.7,
+        "waste_burning": 9.2,
+        "diesel_traffic": 9.1,
+        "forest_fire": 8.9,
+        "dust_storm": 8.4,
+        "urban_congestion": 6.3,
+        "construction": 2.8,
+        "mining": 2.5
+      }
+    },
+    {
+      "hotspot_id": "HS-25_59-85_14",
+      "most_probable_cause": "industrial",
+      "confidence": 20.0,
+      "probability_distribution": {
+        "industrial": 20.0,
+        "power_plant": 14.3,
+        "brick_kiln": 14.1,
+        "diesel_traffic": 11.6,
+        "crop_burning": 9.9,
+        "urban_congestion": 5.9,
+        "construction": 5.7,
+        "waste_burning": 5.7,
+        "forest_fire": 4.2,
+        "mining": 4.2,
+        "dust_storm": 4.2
+      },
+      "top_features": [
+        "industrial",
+        "power_plant",
+        "brick_kiln",
+        "diesel_traffic",
+        "crop_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0003, 1.7x threshold)",
+        "Elevated aerosol_index (1.2384, 1.2x threshold)",
+        "Elevated PM25 (100.3405, 1.7x threshold)",
+        "Elevated SO2 (0.0012, 2.5x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "power_plant": 14.3,
+        "brick_kiln": 14.1,
+        "diesel_traffic": 11.6,
+        "crop_burning": 9.9,
+        "urban_congestion": 5.9,
+        "construction": 5.7,
+        "waste_burning": 5.7,
+        "forest_fire": 4.2,
+        "mining": 4.2,
+        "dust_storm": 4.2
+      }
+    },
+    {
+      "hotspot_id": "HS-30_90-75_86",
+      "most_probable_cause": "industrial",
+      "confidence": 19.5,
+      "probability_distribution": {
+        "industrial": 19.5,
+        "forest_fire": 17.7,
+        "crop_burning": 11.2,
+        "diesel_traffic": 11.0,
+        "power_plant": 10.3,
+        "brick_kiln": 8.2,
+        "urban_congestion": 7.5,
+        "waste_burning": 5.4,
+        "construction": 3.5,
+        "mining": 2.9,
+        "dust_storm": 2.9
+      },
+      "top_features": [
+        "industrial",
+        "forest_fire",
+        "crop_burning",
+        "diesel_traffic",
+        "power_plant"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.0670, 1.3x threshold)",
+        "Elevated NO2 (0.0008, 3.9x threshold)",
+        "Elevated SO2 (0.0010, 1.9x threshold)",
+        "Elevated PM25 (145.4458, 2.4x threshold)",
+        "Active fire detected (FRP=85.3 MW)",
+        "Elevated aerosol_index (2.0320, 2.0x threshold)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Ludhiana Industrial Belt",
+          "lat": 30.9,
+          "lon": 75.86,
+          "type": "industrial",
+          "state": "Punjab",
+          "sector": "textile_engineering",
+          "distance_km": 0.0
+        }
+      ],
+      "alternative_causes": {
+        "forest_fire": 17.7,
+        "crop_burning": 11.2,
+        "diesel_traffic": 11.0,
+        "power_plant": 10.3,
+        "brick_kiln": 8.2,
+        "urban_congestion": 7.5,
+        "waste_burning": 5.4,
+        "construction": 3.5,
+        "mining": 2.9,
+        "dust_storm": 2.9
+      }
+    },
+    {
+      "hotspot_id": "HS-31_63-74_87",
+      "most_probable_cause": "crop_burning",
+      "confidence": 19.3,
+      "probability_distribution": {
+        "crop_burning": 19.3,
+        "industrial": 12.6,
+        "diesel_traffic": 10.5,
+        "power_plant": 9.9,
+        "waste_burning": 9.7,
+        "forest_fire": 9.3,
+        "dust_storm": 8.1,
+        "brick_kiln": 7.9,
+        "urban_congestion": 7.8,
+        "construction": 2.6,
+        "mining": 2.2
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "diesel_traffic",
+        "power_plant",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated SO2 (0.0007, 1.4x threshold)",
+        "Elevated NO2 (0.0006, 3.1x threshold)",
+        "Elevated aerosol_index (1.5249, 1.5x threshold)",
+        "Elevated HCHO (0.0008, 2.6x threshold)",
+        "Elevated CO (0.1076, 2.2x threshold)",
+        "Elevated PM25 (107.7100, 1.8x threshold)",
+        "High wind speed (34.6 km/h)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 12.6,
+        "diesel_traffic": 10.5,
+        "power_plant": 9.9,
+        "waste_burning": 9.7,
+        "forest_fire": 9.3,
+        "dust_storm": 8.1,
+        "brick_kiln": 7.9,
+        "urban_congestion": 7.8,
+        "construction": 2.6,
+        "mining": 2.2
+      }
+    },
+    {
+      "hotspot_id": "HS-27_18-78_02",
+      "most_probable_cause": "crop_burning",
+      "confidence": 17.2,
+      "probability_distribution": {
+        "crop_burning": 17.2,
+        "industrial": 16.1,
+        "brick_kiln": 12.4,
+        "waste_burning": 11.5,
+        "diesel_traffic": 10.6,
+        "power_plant": 9.3,
+        "dust_storm": 7.5,
+        "construction": 6.9,
+        "forest_fire": 4.7,
+        "urban_congestion": 3.8,
+        "mining": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "brick_kiln",
+        "waste_burning",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "High wind speed (26.1 km/h)",
+        "Elevated PM25 (218.1827, 3.6x threshold)",
+        "Elevated SO2 (0.0015, 2.9x threshold)",
+        "Elevated HCHO (0.0007, 2.5x threshold)",
+        "HCHO signature consistent with biomass burning",
+        "Elevated NO2 (0.0004, 2.0x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 16.1,
+        "brick_kiln": 12.4,
+        "waste_burning": 11.5,
+        "diesel_traffic": 10.6,
+        "power_plant": 9.3,
+        "dust_storm": 7.5,
+        "construction": 6.9,
+        "forest_fire": 4.7,
+        "urban_congestion": 3.8,
+        "mining": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-25_32-82_97",
+      "most_probable_cause": "crop_burning",
+      "confidence": 14.9,
+      "probability_distribution": {
+        "crop_burning": 14.9,
+        "industrial": 14.4,
+        "brick_kiln": 11.9,
+        "diesel_traffic": 11.7,
+        "waste_burning": 9.2,
+        "dust_storm": 8.9,
+        "power_plant": 8.9,
+        "urban_congestion": 6.2,
+        "forest_fire": 6.1,
+        "construction": 5.5,
+        "mining": 2.3
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "brick_kiln",
+        "diesel_traffic",
+        "waste_burning"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (200.1095, 3.3x threshold)",
+        "Elevated NO2 (0.0003, 1.5x threshold)",
+        "Elevated aerosol_index (1.4092, 1.4x threshold)",
+        "Elevated SO2 (0.0008, 1.6x threshold)",
+        "High wind speed (38.2 km/h)",
+        "Elevated CO (0.1132, 2.3x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 14.4,
+        "brick_kiln": 11.9,
+        "diesel_traffic": 11.7,
+        "waste_burning": 9.2,
+        "dust_storm": 8.9,
+        "power_plant": 8.9,
+        "urban_congestion": 6.2,
+        "forest_fire": 6.1,
+        "construction": 5.5,
+        "mining": 2.3
+      }
+    },
+    {
+      "hotspot_id": "HS-26_14-91_74",
+      "most_probable_cause": "crop_burning",
+      "confidence": 23.1,
+      "probability_distribution": {
+        "crop_burning": 23.1,
+        "industrial": 13.5,
+        "waste_burning": 12.4,
+        "power_plant": 10.6,
+        "brick_kiln": 10.4,
+        "diesel_traffic": 10.3,
+        "forest_fire": 9.4,
+        "urban_congestion": 7.3,
+        "construction": 3.0,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "waste_burning",
+        "power_plant",
+        "brick_kiln"
+      ],
+      "supporting_evidence": [
+        "Elevated SO2 (0.0008, 1.5x threshold)",
+        "Elevated NO2 (0.0003, 1.5x threshold)",
+        "Elevated PM25 (83.1086, 1.4x threshold)",
+        "Elevated HCHO (0.0007, 2.5x threshold)",
+        "Elevated CO (0.0966, 1.9x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.5,
+        "waste_burning": 12.4,
+        "power_plant": 10.6,
+        "brick_kiln": 10.4,
+        "diesel_traffic": 10.3,
+        "forest_fire": 9.4,
+        "urban_congestion": 7.3,
+        "construction": 3.0,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-30_73-76_78",
+      "most_probable_cause": "crop_burning",
+      "confidence": 26.8,
+      "probability_distribution": {
+        "crop_burning": 26.8,
+        "waste_burning": 13.4,
+        "industrial": 11.4,
+        "diesel_traffic": 11.4,
+        "forest_fire": 9.8,
+        "brick_kiln": 8.1,
+        "power_plant": 7.8,
+        "urban_congestion": 7.8,
+        "construction": 3.6,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "waste_burning",
+        "industrial",
+        "diesel_traffic",
+        "forest_fire"
+      ],
+      "supporting_evidence": [
+        "Elevated CO (0.0832, 1.7x threshold)",
+        "Elevated HCHO (0.0006, 2.0x threshold)",
+        "Elevated NO2 (0.0002, 1.2x threshold)",
+        "Elevated PM25 (80.2931, 1.3x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "waste_burning": 13.4,
+        "industrial": 11.4,
+        "diesel_traffic": 11.4,
+        "forest_fire": 9.8,
+        "brick_kiln": 8.1,
+        "power_plant": 7.8,
+        "urban_congestion": 7.8,
+        "construction": 3.6,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-30_32-78_03",
+      "most_probable_cause": "crop_burning",
+      "confidence": 23.1,
+      "probability_distribution": {
+        "crop_burning": 23.1,
+        "waste_burning": 13.9,
+        "industrial": 12.2,
+        "brick_kiln": 12.2,
+        "diesel_traffic": 9.0,
+        "dust_storm": 7.4,
+        "forest_fire": 7.4,
+        "construction": 6.5,
+        "power_plant": 5.7,
+        "urban_congestion": 2.5,
+        "mining": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "waste_burning",
+        "industrial",
+        "brick_kiln",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (209.6201, 3.5x threshold)",
+        "Elevated SO2 (0.0009, 1.7x threshold)",
+        "Elevated HCHO (0.0008, 2.6x threshold)",
+        "High wind speed (23.2 km/h)",
+        "Elevated CO (0.0676, 1.4x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "waste_burning": 13.9,
+        "industrial": 12.2,
+        "brick_kiln": 12.2,
+        "diesel_traffic": 9.0,
+        "dust_storm": 7.4,
+        "forest_fire": 7.4,
+        "construction": 6.5,
+        "power_plant": 5.7,
+        "urban_congestion": 2.5,
+        "mining": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-23_34-85_31",
+      "most_probable_cause": "crop_burning",
+      "confidence": 20.1,
+      "probability_distribution": {
+        "crop_burning": 20.1,
+        "industrial": 13.9,
+        "waste_burning": 13.9,
+        "brick_kiln": 13.9,
+        "diesel_traffic": 13.9,
+        "construction": 8.6,
+        "forest_fire": 5.3,
+        "power_plant": 5.3,
+        "urban_congestion": 5.3,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "waste_burning",
+        "brick_kiln",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (164.1705, 2.7x threshold)",
+        "Elevated CO (0.0839, 1.7x threshold)",
+        "CO enhancement from incomplete combustion"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.9,
+        "waste_burning": 13.9,
+        "brick_kiln": 13.9,
+        "diesel_traffic": 13.9,
+        "construction": 8.6,
+        "forest_fire": 5.3,
+        "power_plant": 5.3,
+        "urban_congestion": 5.3,
+        "mining": 0.0,
+        "dust_storm": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-21_25-81_63",
+      "most_probable_cause": "dust_storm",
+      "confidence": 23.6,
+      "probability_distribution": {
+        "dust_storm": 23.6,
+        "industrial": 18.7,
+        "forest_fire": 10.2,
+        "crop_burning": 10.2,
+        "mining": 10.2,
+        "power_plant": 9.0,
+        "diesel_traffic": 9.0,
+        "urban_congestion": 9.0,
+        "construction": 0.0,
+        "waste_burning": 0.0,
+        "brick_kiln": 0.0
+      },
+      "top_features": [
+        "dust_storm",
+        "industrial",
+        "forest_fire",
+        "crop_burning",
+        "mining"
+      ],
+      "supporting_evidence": [
+        "Elevated NO2 (0.0005, 2.7x threshold)",
+        "High wind speed (20.9 km/h)",
+        "Elevated aerosol_index (3.0520, 3.1x threshold)",
+        "1 nearby industrial sources (min dist: 27.8km)"
+      ],
+      "nearest_sources": [
+        {
+          "name": "Bhilai Steel Plant",
+          "lat": 21.23,
+          "lon": 81.38,
+          "type": "industrial",
+          "state": "Chhattisgarh",
+          "sector": "steel",
+          "distance_km": 27.8
+        }
+      ],
+      "alternative_causes": {
+        "industrial": 18.7,
+        "forest_fire": 10.2,
+        "crop_burning": 10.2,
+        "mining": 10.2,
+        "power_plant": 9.0,
+        "diesel_traffic": 9.0,
+        "urban_congestion": 9.0,
+        "construction": 0.0,
+        "waste_burning": 0.0,
+        "brick_kiln": 0.0
+      }
+    },
+    {
+      "hotspot_id": "HS-20_30-85_82",
+      "most_probable_cause": "industrial",
+      "confidence": 17.5,
+      "probability_distribution": {
+        "industrial": 17.5,
+        "diesel_traffic": 14.8,
+        "crop_burning": 12.0,
+        "brick_kiln": 10.2,
+        "power_plant": 9.8,
+        "construction": 7.6,
+        "waste_burning": 7.6,
+        "urban_congestion": 7.2,
+        "forest_fire": 4.4,
+        "mining": 4.4,
+        "dust_storm": 4.4
+      },
+      "top_features": [
+        "industrial",
+        "diesel_traffic",
+        "crop_burning",
+        "brick_kiln",
+        "power_plant"
+      ],
+      "supporting_evidence": [
+        "Elevated PM25 (228.6269, 3.8x threshold)",
+        "Elevated NO2 (0.0007, 3.6x threshold)",
+        "Elevated SO2 (0.0007, 1.3x threshold)",
+        "Elevated aerosol_index (2.1969, 2.2x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "diesel_traffic": 14.8,
+        "crop_burning": 12.0,
+        "brick_kiln": 10.2,
+        "power_plant": 9.8,
+        "construction": 7.6,
+        "waste_burning": 7.6,
+        "urban_congestion": 7.2,
+        "forest_fire": 4.4,
+        "mining": 4.4,
+        "dust_storm": 4.4
+      }
+    },
+    {
+      "hotspot_id": "HS-8_52-76_94",
+      "most_probable_cause": "crop_burning",
+      "confidence": 18.8,
+      "probability_distribution": {
+        "crop_burning": 18.8,
+        "industrial": 12.8,
+        "dust_storm": 11.5,
+        "brick_kiln": 9.6,
+        "diesel_traffic": 9.3,
+        "waste_burning": 8.9,
+        "forest_fire": 7.9,
+        "power_plant": 6.7,
+        "construction": 6.1,
+        "mining": 5.2,
+        "urban_congestion": 3.2
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "dust_storm",
+        "brick_kiln",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated aerosol_index (3.2845, 3.3x threshold)",
+        "High wind speed (33.1 km/h)",
+        "Elevated HCHO (0.0005, 1.8x threshold)",
+        "Elevated SO2 (0.0011, 2.2x threshold)",
+        "Elevated PM25 (233.2106, 3.9x threshold)",
+        "Elevated NO2 (0.0004, 2.1x threshold)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 12.8,
+        "dust_storm": 11.5,
+        "brick_kiln": 9.6,
+        "diesel_traffic": 9.3,
+        "waste_burning": 8.9,
+        "forest_fire": 7.9,
+        "power_plant": 6.7,
+        "construction": 6.1,
+        "mining": 5.2,
+        "urban_congestion": 3.2
+      }
+    },
+    {
+      "hotspot_id": "HS-34_08-74_80",
+      "most_probable_cause": "crop_burning",
+      "confidence": 19.3,
+      "probability_distribution": {
+        "crop_burning": 19.3,
+        "industrial": 13.0,
+        "dust_storm": 11.2,
+        "waste_burning": 10.1,
+        "diesel_traffic": 9.6,
+        "brick_kiln": 9.3,
+        "forest_fire": 7.5,
+        "power_plant": 7.2,
+        "construction": 5.8,
+        "urban_congestion": 3.8,
+        "mining": 3.3
+      },
+      "top_features": [
+        "crop_burning",
+        "industrial",
+        "dust_storm",
+        "waste_burning",
+        "diesel_traffic"
+      ],
+      "supporting_evidence": [
+        "Elevated SO2 (0.0009, 1.7x threshold)",
+        "Elevated NO2 (0.0004, 1.9x threshold)",
+        "Elevated HCHO (0.0006, 2.1x threshold)",
+        "Elevated PM25 (177.5894, 3.0x threshold)",
+        "Elevated aerosol_index (1.6555, 1.7x threshold)",
+        "High wind speed (22.2 km/h)"
+      ],
+      "nearest_sources": [],
+      "alternative_causes": {
+        "industrial": 13.0,
+        "dust_storm": 11.2,
+        "waste_burning": 10.1,
+        "diesel_traffic": 9.6,
+        "brick_kiln": 9.3,
+        "forest_fire": 7.5,
+        "power_plant": 7.2,
+        "construction": 5.8,
+        "urban_congestion": 3.8,
+        "mining": 3.3
+      }
+    }
+  ],
+  "explanations": [
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "21.9%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Delhi (28.61, 77.23)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 21.9% confidence",
+        "  - Elevated NO2 (0.0005, 2.5x threshold)",
+        "  - 1 nearby construction sources (min dist: 11.1km)",
+        "  - Elevated SO2 (0.0011, 2.2x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 228.959,
+          "importance": 0.999
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.0908,
+          "importance": 0.0
+        },
+        {
+          "feature": "CO",
+          "value": 0.0392,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0011,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0006,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0005 mol/m\u00b2",
+        "TROPOMI CO: 0.0392 mol/m\u00b2",
+        "TROPOMI SO2: 0.0011 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0006 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.0908 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 31.1\u00b0C",
+        "Humidity: 51.9%",
+        "Wind: 22.7 km/h from ESE",
+        "Visibility: 11.0 km",
+        "Boundary Layer: 536.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 384 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.626966",
+      "spatial_context": "Location: Delhi, Delhi (28.6100\u00b0N, 77.2300\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "21.1%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Mumbai (19.08, 72.88)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 21.1% confidence",
+        "  - Elevated CO (0.0768, 1.5x threshold)",
+        "  - Elevated PM25 (223.6235, 3.7x threshold)",
+        "  - Elevated HCHO (0.0005, 1.7x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 223.6235,
+          "importance": 0.996
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.8751,
+          "importance": 0.004
+        },
+        {
+          "feature": "CO",
+          "value": 0.0768,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0005,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0005,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0001 mol/m\u00b2",
+        "TROPOMI CO: 0.0768 mol/m\u00b2",
+        "TROPOMI SO2: 0.0005 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0005 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.8751 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 29.2\u00b0C",
+        "Humidity: 81.5%",
+        "Wind: 24.0 km/h from NE",
+        "Visibility: 4.0 km",
+        "Boundary Layer: 685.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 380 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.628966",
+      "spatial_context": "Location: Mumbai, Maharashtra (19.0800\u00b0N, 72.8800\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "17.3%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Bengaluru (12.97, 77.59)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 17.3% confidence",
+        "  - Elevated aerosol_index (1.9117, 1.9x threshold)",
+        "  - Elevated HCHO (0.0007, 2.5x threshold)",
+        "  - Elevated SO2 (0.0006, 1.2x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 100.9882,
+          "importance": 0.981
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.9117,
+          "importance": 0.019
+        },
+        {
+          "feature": "CO",
+          "value": 0.0418,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0007,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0006,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0006 mol/m\u00b2",
+        "TROPOMI CO: 0.0418 mol/m\u00b2",
+        "TROPOMI SO2: 0.0006 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0007 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.9117 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 19.1\u00b0C",
+        "Humidity: 65.0%",
+        "Wind: 17.8 km/h from W",
+        "Visibility: 1.2 km",
+        "Boundary Layer: 1105.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 237 (Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.636574",
+      "spatial_context": "Location: Bengaluru, Karnataka (12.9700\u00b0N, 77.5900\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "21.5%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Hyderabad (17.39, 78.49)",
+        "Step 2: Dominant pollutant identified as SO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 21.5% confidence",
+        "  - Elevated NO2 (0.0003, 1.7x threshold)",
+        "  - Elevated CO (0.0715, 1.4x threshold)",
+        "  - Elevated HCHO (0.0005, 1.7x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 52.1459,
+          "importance": 0.97
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.5651,
+          "importance": 0.029
+        },
+        {
+          "feature": "CO",
+          "value": 0.0715,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0011,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0005,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.0715 mol/m\u00b2",
+        "TROPOMI SO2: 0.0011 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0005 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.5651 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 17.7\u00b0C",
+        "Humidity: 92.7%",
+        "Wind: 8.4 km/h from NE",
+        "Visibility: 11.3 km",
+        "Boundary Layer: 1274.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 87 (Satisfactory)",
+        "Dominant pollutant in satellite data: SO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.648842",
+      "spatial_context": "Location: Hyderabad, Telangana (17.3900\u00b0N, 78.4900\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "23.2%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Ahmedabad (23.02, 72.57)",
+        "Step 2: Dominant pollutant identified as SO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 23.2% confidence",
+        "  - Elevated NO2 (0.0003, 1.6x threshold)",
+        "  - HCHO signature consistent with biomass burning",
+        "  - Elevated SO2 (0.0009, 1.8x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 49.1321,
+          "importance": 0.966
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.676,
+          "importance": 0.033
+        },
+        {
+          "feature": "CO",
+          "value": 0.0321,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0009,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0004,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.0321 mol/m\u00b2",
+        "TROPOMI SO2: 0.0009 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0004 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.6760 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 19.6\u00b0C",
+        "Humidity: 46.9%",
+        "Wind: 7.5 km/h from NNW",
+        "Visibility: 7.3 km",
+        "Boundary Layer: 1341.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 82 (Satisfactory)",
+        "Dominant pollutant in satellite data: SO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.654508",
+      "spatial_context": "Location: Ahmedabad, Gujarat (23.0200\u00b0N, 72.5700\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "20.8%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Chennai (13.08, 80.27)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 20.8% confidence",
+        "  - Elevated PM25 (102.1003, 1.7x threshold)",
+        "  - Elevated aerosol_index (1.4347, 1.4x threshold)",
+        "  - High wind speed (31.4 km/h)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 102.1003,
+          "importance": 0.985
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.4347,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.1197,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0009,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0007 mol/m\u00b2",
+        "TROPOMI CO: 0.1197 mol/m\u00b2",
+        "TROPOMI SO2: 0.0009 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0002 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.4347 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 26.8\u00b0C",
+        "Humidity: 44.8%",
+        "Wind: 31.4 km/h from ESE",
+        "Visibility: 7.9 km",
+        "Boundary Layer: 1473.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 241 (Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.657600",
+      "spatial_context": "Location: Chennai, Tamil Nadu (13.0800\u00b0N, 80.2700\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "15.4%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Kolkata (22.57, 88.36)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 15.4% confidence",
+        "  - Elevated PM25 (226.2129, 3.8x threshold)",
+        "  - Elevated NO2 (0.0008, 3.9x threshold)",
+        "  - 1 nearby brick kiln sources (min dist: 29.9km)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 226.2129,
+          "importance": 0.991
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 2.0551,
+          "importance": 0.009
+        },
+        {
+          "feature": "CO",
+          "value": 0.0164,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0011,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0008,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0008 mol/m\u00b2",
+        "TROPOMI CO: 0.0164 mol/m\u00b2",
+        "TROPOMI SO2: 0.0011 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0005 mol/m\u00b2",
+        "TROPOMI aerosol_index: 2.0551 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 23.3\u00b0C",
+        "Humidity: 85.2%",
+        "Wind: 12.4 km/h from ENE",
+        "Visibility: 6.9 km",
+        "Boundary Layer: 464.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 382 (Very Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.661608",
+      "spatial_context": "Location: Kolkata, West Bengal (22.5700\u00b0N, 88.3600\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "22.7%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Pune (18.52, 73.86)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 22.7% confidence",
+        "  - Elevated PM25 (104.6868, 1.7x threshold)",
+        "  - Elevated HCHO (0.0007, 2.2x threshold)",
+        "  - Elevated aerosol_index (1.3641, 1.4x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 104.6868,
+          "importance": 0.987
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.3641,
+          "importance": 0.013
+        },
+        {
+          "feature": "CO",
+          "value": 0.055,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0007,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0005 mol/m\u00b2",
+        "TROPOMI CO: 0.0550 mol/m\u00b2",
+        "TROPOMI SO2: 0.0007 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0007 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.3641 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 19.7\u00b0C",
+        "Humidity: 37.5%",
+        "Wind: 6.0 km/h from SSE",
+        "Visibility: 2.3 km",
+        "Boundary Layer: 631.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 249 (Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.663610",
+      "spatial_context": "Location: Pune, Maharashtra (18.5200\u00b0N, 73.8600\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "19.6%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Jaipur (26.91, 75.79)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 19.6% confidence",
+        "  - Elevated CO (0.1027, 2.1x threshold)",
+        "  - Elevated SO2 (0.0013, 2.6x threshold)",
+        "  - Elevated PM25 (229.7115, 3.8x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 229.7115,
+          "importance": 0.999
+        },
+        {
+          "feature": "CO",
+          "value": 0.1027,
+          "importance": 0.0
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.0794,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0013,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0006,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0004 mol/m\u00b2",
+        "TROPOMI CO: 0.1027 mol/m\u00b2",
+        "TROPOMI SO2: 0.0013 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0006 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.0794 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 30.0\u00b0C",
+        "Humidity: 37.9%",
+        "Wind: 14.2 km/h from ESE",
+        "Visibility: 8.8 km",
+        "Boundary Layer: 596.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 385 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.665629",
+      "spatial_context": "Location: Jaipur, Rajasthan (26.9100\u00b0N, 75.7900\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "20.3%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Lucknow (26.85, 80.95)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 20.3% confidence",
+        "  - Elevated CO (0.1188, 2.4x threshold)",
+        "  - Elevated HCHO (0.0004, 1.3x threshold)",
+        "  - Elevated PM25 (216.7244, 3.6x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 216.7244,
+          "importance": 0.987
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 2.6755,
+          "importance": 0.012
+        },
+        {
+          "feature": "CO",
+          "value": 0.1188,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0012,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0004,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0002 mol/m\u00b2",
+        "TROPOMI CO: 0.1188 mol/m\u00b2",
+        "TROPOMI SO2: 0.0012 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0004 mol/m\u00b2",
+        "TROPOMI aerosol_index: 2.6755 mol/m\u00b2",
+        "NASA FIRMS fire: FRP=28.4 MW, confidence=55% (VIIRS)"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 36.2\u00b0C",
+        "Humidity: 62.3%",
+        "Wind: 19.1 km/h from W",
+        "Visibility: 2.3 km",
+        "Boundary Layer: 1021.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 375 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.667621",
+      "spatial_context": "Location: Lucknow, Uttar Pradesh (26.8500\u00b0N, 80.9500\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "19.4%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Kanpur (26.45, 80.33)",
+        "Step 2: Dominant pollutant identified as SO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 19.4% confidence",
+        "  - Elevated SO2 (0.0013, 2.6x threshold)",
+        "  - Elevated HCHO (0.0005, 1.6x threshold)",
+        "  - Elevated CO (0.0826, 1.7x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 151.2001,
+          "importance": 0.985
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 2.2127,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.0826,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0013,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0005,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0002 mol/m\u00b2",
+        "TROPOMI CO: 0.0826 mol/m\u00b2",
+        "TROPOMI SO2: 0.0013 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0005 mol/m\u00b2",
+        "TROPOMI aerosol_index: 2.2127 mol/m\u00b2",
+        "NASA FIRMS fire: FRP=35.6 MW, confidence=60% (MODIS)"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 35.6\u00b0C",
+        "Humidity: 52.8%",
+        "Wind: 11.6 km/h from SSW",
+        "Visibility: 12.0 km",
+        "Boundary Layer: 842.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 325 (Very Poor)",
+        "Dominant pollutant in satellite data: SO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.668621",
+      "spatial_context": "Location: Kanpur, Uttar Pradesh (26.4500\u00b0N, 80.3300\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "16.5%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Nagpur (21.15, 79.09)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 16.5% confidence",
+        "  - Elevated NO2 (0.0003, 1.5x threshold)",
+        "  - Elevated aerosol_index (1.6356, 1.6x threshold)",
+        "  - Elevated CO (0.0679, 1.4x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 219.7595,
+          "importance": 0.992
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.6356,
+          "importance": 0.007
+        },
+        {
+          "feature": "CO",
+          "value": 0.0679,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0009,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0003,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.0679 mol/m\u00b2",
+        "TROPOMI SO2: 0.0009 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0003 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.6356 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 25.1\u00b0C",
+        "Humidity: 42.1%",
+        "Wind: 10.6 km/h from WNW",
+        "Visibility: 14.1 km",
+        "Boundary Layer: 451.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 377 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.670624",
+      "spatial_context": "Location: Nagpur, Maharashtra (21.1500\u00b0N, 79.0900\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "18.9%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Indore (22.72, 75.86)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 18.9% confidence",
+        "  - Elevated PM25 (197.8310, 3.3x threshold)",
+        "  - Elevated NO2 (0.0004, 2.1x threshold)",
+        "  - Elevated SO2 (0.0008, 1.6x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 197.831,
+          "importance": 0.995
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.9483,
+          "importance": 0.005
+        },
+        {
+          "feature": "CO",
+          "value": 0.0457,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0008,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0004,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0004 mol/m\u00b2",
+        "TROPOMI CO: 0.0457 mol/m\u00b2",
+        "TROPOMI SO2: 0.0008 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0002 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.9483 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 21.8\u00b0C",
+        "Humidity: 42.9%",
+        "Wind: 36.0 km/h from SW",
+        "Visibility: 5.7 km",
+        "Boundary Layer: 283.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 360 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.672607",
+      "spatial_context": "Location: Indore, Madhya Pradesh (22.7200\u00b0N, 75.8600\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "18.4%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Bhopal (23.26, 77.41)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 18.4% confidence",
+        "  - High wind speed (38.6 km/h)",
+        "  - Elevated PM25 (156.1900, 2.6x threshold)",
+        "  - Elevated NO2 (0.0005, 2.3x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 156.19,
+          "importance": 0.992
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.1539,
+          "importance": 0.007
+        },
+        {
+          "feature": "CO",
+          "value": 0.088,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0012,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0005,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0005 mol/m\u00b2",
+        "TROPOMI CO: 0.0880 mol/m\u00b2",
+        "TROPOMI SO2: 0.0012 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0004 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.1539 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 23.7\u00b0C",
+        "Humidity: 76.1%",
+        "Wind: 38.6 km/h from SE",
+        "Visibility: 4.0 km",
+        "Boundary Layer: 760.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 329 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.674622",
+      "spatial_context": "Location: Bhopal, Madhya Pradesh (23.2600\u00b0N, 77.4100\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "19.2%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Visakhapatnam (17.69, 83.22)",
+        "Step 2: Dominant pollutant identified as SO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 19.2% confidence",
+        "  - Elevated CO (0.0908, 1.8x threshold)",
+        "  - Elevated PM25 (114.6156, 1.9x threshold)",
+        "  - Elevated HCHO (0.0007, 2.5x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 114.6156,
+          "importance": 0.985
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.6647,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.0908,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0014,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0005 mol/m\u00b2",
+        "TROPOMI CO: 0.0908 mol/m\u00b2",
+        "TROPOMI SO2: 0.0014 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0007 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.6647 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 30.4\u00b0C",
+        "Humidity: 29.8%",
+        "Wind: 28.1 km/h from WSW",
+        "Visibility: 14.7 km",
+        "Boundary Layer: 852.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 282 (Poor)",
+        "Dominant pollutant in satellite data: SO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.676609",
+      "spatial_context": "Location: Visakhapatnam, Andhra Pradesh (17.6900\u00b0N, 83.2200\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "20.0%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Patna (25.59, 85.14)",
+        "Step 2: Dominant pollutant identified as SO2 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 20.0% confidence",
+        "  - Elevated NO2 (0.0003, 1.7x threshold)",
+        "  - Elevated aerosol_index (1.2384, 1.2x threshold)",
+        "  - Elevated PM25 (100.3405, 1.7x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 100.3405,
+          "importance": 0.987
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.2384,
+          "importance": 0.012
+        },
+        {
+          "feature": "CO",
+          "value": 0.0367,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0012,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0003,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.0367 mol/m\u00b2",
+        "TROPOMI SO2: 0.0012 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0001 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.2384 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 40.9\u00b0C",
+        "Humidity: 30.6%",
+        "Wind: 9.8 km/h from S",
+        "Visibility: 11.5 km",
+        "Boundary Layer: 737.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 235 (Poor)",
+        "Dominant pollutant in satellite data: SO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.680234",
+      "spatial_context": "Location: Patna, Bihar (25.5900\u00b0N, 85.1400\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "19.5%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Ludhiana (30.90, 75.86)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 19.5% confidence",
+        "  - Elevated CO (0.0670, 1.3x threshold)",
+        "  - Elevated NO2 (0.0008, 3.9x threshold)",
+        "  - Elevated SO2 (0.0010, 1.9x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 145.4458,
+          "importance": 0.986
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 2.032,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.067,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.001,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0008,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0008 mol/m\u00b2",
+        "TROPOMI CO: 0.0670 mol/m\u00b2",
+        "TROPOMI SO2: 0.0010 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0001 mol/m\u00b2",
+        "TROPOMI aerosol_index: 2.0320 mol/m\u00b2",
+        "NASA FIRMS fire: FRP=85.3 MW, confidence=95% (MODIS)",
+        "NASA FIRMS fire: FRP=62.1 MW, confidence=88% (VIIRS)"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 41.2\u00b0C",
+        "Humidity: 40.9%",
+        "Wind: 1.3 km/h from ESE",
+        "Visibility: 11.7 km",
+        "Boundary Layer: 1076.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 320 (Very Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.682248",
+      "spatial_context": "Location: Ludhiana, Punjab (30.9000\u00b0N, 75.8600\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "19.3%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Amritsar (31.63, 74.87)",
+        "Step 2: Dominant pollutant identified as NO2 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 19.3% confidence",
+        "  - Elevated SO2 (0.0007, 1.4x threshold)",
+        "  - Elevated NO2 (0.0006, 3.1x threshold)",
+        "  - Elevated aerosol_index (1.5249, 1.5x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 107.71,
+          "importance": 0.985
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.5249,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.1076,
+          "importance": 0.001
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0008,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0006 mol/m\u00b2",
+        "TROPOMI CO: 0.1076 mol/m\u00b2",
+        "TROPOMI SO2: 0.0007 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0008 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.5249 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 26.8\u00b0C",
+        "Humidity: 20.3%",
+        "Wind: 34.6 km/h from NE",
+        "Visibility: 7.7 km",
+        "Boundary Layer: 935.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 259 (Poor)",
+        "Dominant pollutant in satellite data: NO2"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.684261",
+      "spatial_context": "Location: Amritsar, Punjab (31.6300\u00b0N, 74.8700\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "17.2%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Agra (27.18, 78.02)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 17.2% confidence",
+        "  - High wind speed (26.1 km/h)",
+        "  - Elevated PM25 (218.1827, 3.6x threshold)",
+        "  - Elevated SO2 (0.0015, 2.9x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 218.1827,
+          "importance": 0.996
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.8117,
+          "importance": 0.004
+        },
+        {
+          "feature": "CO",
+          "value": 0.0449,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0015,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0004 mol/m\u00b2",
+        "TROPOMI CO: 0.0449 mol/m\u00b2",
+        "TROPOMI SO2: 0.0015 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0007 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.8117 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 25.0\u00b0C",
+        "Humidity: 85.2%",
+        "Wind: 26.1 km/h from SSE",
+        "Visibility: 9.0 km",
+        "Boundary Layer: 1116.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 376 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.686260",
+      "spatial_context": "Location: Agra, Uttar Pradesh (27.1800\u00b0N, 78.0200\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "14.9%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Varanasi (25.32, 82.97)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 14.9% confidence",
+        "  - Elevated PM25 (200.1095, 3.3x threshold)",
+        "  - Elevated NO2 (0.0003, 1.5x threshold)",
+        "  - Elevated aerosol_index (1.4092, 1.4x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 200.1095,
+          "importance": 0.992
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.4092,
+          "importance": 0.007
+        },
+        {
+          "feature": "CO",
+          "value": 0.1132,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0008,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0003,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.1132 mol/m\u00b2",
+        "TROPOMI SO2: 0.0008 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0001 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.4092 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 33.6\u00b0C",
+        "Humidity: 24.4%",
+        "Wind: 38.2 km/h from NNE",
+        "Visibility: 11.2 km",
+        "Boundary Layer: 1085.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 362 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.687261",
+      "spatial_context": "Location: Varanasi, Uttar Pradesh (25.3200\u00b0N, 82.9700\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "23.1%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Guwahati (26.14, 91.74)",
+        "Step 2: Dominant pollutant identified as HCHO (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 23.1% confidence",
+        "  - Elevated SO2 (0.0008, 1.5x threshold)",
+        "  - Elevated NO2 (0.0003, 1.5x threshold)",
+        "  - Elevated PM25 (83.1086, 1.4x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 83.1086,
+          "importance": 0.992
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.5732,
+          "importance": 0.007
+        },
+        {
+          "feature": "CO",
+          "value": 0.0966,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0008,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0003 mol/m\u00b2",
+        "TROPOMI CO: 0.0966 mol/m\u00b2",
+        "TROPOMI SO2: 0.0008 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0007 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.5732 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 36.2\u00b0C",
+        "Humidity: 61.3%",
+        "Wind: 15.6 km/h from WNW",
+        "Visibility: 7.7 km",
+        "Boundary Layer: 1198.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 177 (Moderate)",
+        "Dominant pollutant in satellite data: HCHO"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.689260",
+      "spatial_context": "Location: Guwahati, Assam (26.1400\u00b0N, 91.7400\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "26.8%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Chandigarh (30.73, 76.78)",
+        "Step 2: Dominant pollutant identified as HCHO (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 26.8% confidence",
+        "  - Elevated CO (0.0832, 1.7x threshold)",
+        "  - Elevated HCHO (0.0006, 2.0x threshold)",
+        "  - Elevated NO2 (0.0002, 1.2x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 80.2931,
+          "importance": 0.99
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.7674,
+          "importance": 0.009
+        },
+        {
+          "feature": "CO",
+          "value": 0.0832,
+          "importance": 0.001
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0006,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0004,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0002 mol/m\u00b2",
+        "TROPOMI CO: 0.0832 mol/m\u00b2",
+        "TROPOMI SO2: 0.0004 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0006 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.7674 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 32.9\u00b0C",
+        "Humidity: 49.1%",
+        "Wind: 10.4 km/h from WNW",
+        "Visibility: 14.3 km",
+        "Boundary Layer: 553.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 168 (Moderate)",
+        "Dominant pollutant in satellite data: HCHO"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.691260",
+      "spatial_context": "Location: Chandigarh, Chandigarh (30.7300\u00b0N, 76.7800\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "23.1%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Dehradun (30.32, 78.03)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 23.1% confidence",
+        "  - Elevated PM25 (209.6201, 3.5x threshold)",
+        "  - Elevated SO2 (0.0009, 1.7x threshold)",
+        "  - Elevated HCHO (0.0008, 2.6x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 209.6201,
+          "importance": 0.997
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.6658,
+          "importance": 0.003
+        },
+        {
+          "feature": "CO",
+          "value": 0.0676,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0009,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0008,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0002 mol/m\u00b2",
+        "TROPOMI CO: 0.0676 mol/m\u00b2",
+        "TROPOMI SO2: 0.0009 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0008 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.6658 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 35.7\u00b0C",
+        "Humidity: 55.7%",
+        "Wind: 23.2 km/h from NW",
+        "Visibility: 6.4 km",
+        "Boundary Layer: 899.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 369 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.694378",
+      "spatial_context": "Location: Dehradun, Uttarakhand (30.3200\u00b0N, 78.0300\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "20.1%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Ranchi (23.34, 85.31)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 20.1% confidence",
+        "  - Elevated PM25 (164.1705, 2.7x threshold)",
+        "  - Elevated CO (0.0839, 1.7x threshold)",
+        "  - CO enhancement from incomplete combustion"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 164.1705,
+          "importance": 0.994
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 0.9669,
+          "importance": 0.006
+        },
+        {
+          "feature": "CO",
+          "value": 0.0839,
+          "importance": 0.001
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0003,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0002,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0001 mol/m\u00b2",
+        "TROPOMI CO: 0.0839 mol/m\u00b2",
+        "TROPOMI SO2: 0.0003 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0002 mol/m\u00b2",
+        "TROPOMI aerosol_index: 0.9669 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 35.5\u00b0C",
+        "Humidity: 63.2%",
+        "Wind: 16.2 km/h from NNW",
+        "Visibility: 10.4 km",
+        "Boundary Layer: 1409.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 335 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.696400",
+      "spatial_context": "Location: Ranchi, Jharkhand (23.3400\u00b0N, 85.3100\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Dust Storm",
+      "confidence": "23.6%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Raipur (21.25, 81.63)",
+        "Step 2: Dominant pollutant identified as aerosol_index (severity: Very High)",
+        "Step 3: Source attribution suggests dust storm with 23.6% confidence",
+        "  - Elevated NO2 (0.0005, 2.7x threshold)",
+        "  - High wind speed (20.9 km/h)",
+        "  - Elevated aerosol_index (3.0520, 3.1x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 55.1141,
+          "importance": 0.947
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 3.052,
+          "importance": 0.052
+        },
+        {
+          "feature": "CO",
+          "value": 0.0162,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0005,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0004,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0005 mol/m\u00b2",
+        "TROPOMI CO: 0.0162 mol/m\u00b2",
+        "TROPOMI SO2: 0.0004 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0002 mol/m\u00b2",
+        "TROPOMI aerosol_index: 3.0520 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 39.3\u00b0C",
+        "Humidity: 46.1%",
+        "Wind: 20.9 km/h from E",
+        "Visibility: 13.6 km",
+        "Boundary Layer: 988.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 92 (Satisfactory)",
+        "Dominant pollutant in satellite data: aerosol_index"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.697951",
+      "spatial_context": "Location: Raipur, Chhattisgarh (21.2500\u00b0N, 81.6300\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Industrial",
+      "confidence": "17.5%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Bhubaneswar (20.30, 85.82)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests industrial with 17.5% confidence",
+        "  - Elevated PM25 (228.6269, 3.8x threshold)",
+        "  - Elevated NO2 (0.0007, 3.6x threshold)",
+        "  - Elevated SO2 (0.0007, 1.3x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 228.6269,
+          "importance": 0.99
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 2.1969,
+          "importance": 0.01
+        },
+        {
+          "feature": "CO",
+          "value": 0.0403,
+          "importance": 0.0
+        },
+        {
+          "feature": "NO2",
+          "value": 0.0007,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0007,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0007 mol/m\u00b2",
+        "TROPOMI CO: 0.0403 mol/m\u00b2",
+        "TROPOMI SO2: 0.0007 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0002 mol/m\u00b2",
+        "TROPOMI aerosol_index: 2.1969 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 39.3\u00b0C",
+        "Humidity: 26.7%",
+        "Wind: 4.1 km/h from WNW",
+        "Visibility: 10.2 km",
+        "Boundary Layer: 591.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 384 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.699950",
+      "spatial_context": "Location: Bhubaneswar, Odisha (20.3000\u00b0N, 85.8200\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "18.8%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Thiruvananthapuram (8.52, 76.94)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 18.8% confidence",
+        "  - Elevated aerosol_index (3.2845, 3.3x threshold)",
+        "  - High wind speed (33.1 km/h)",
+        "  - Elevated HCHO (0.0005, 1.8x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 233.2106,
+          "importance": 0.986
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 3.2845,
+          "importance": 0.014
+        },
+        {
+          "feature": "CO",
+          "value": 0.0165,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0011,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0005,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0004 mol/m\u00b2",
+        "TROPOMI CO: 0.0165 mol/m\u00b2",
+        "TROPOMI SO2: 0.0011 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0005 mol/m\u00b2",
+        "TROPOMI aerosol_index: 3.2845 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 36.2\u00b0C",
+        "Humidity: 57.6%",
+        "Wind: 33.1 km/h from SW",
+        "Visibility: 13.9 km",
+        "Boundary Layer: 1450.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 387 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.700950",
+      "spatial_context": "Location: Thiruvananthapuram, Kerala (8.5200\u00b0N, 76.9400\u00b0E)"
+    },
+    {
+      "most_probable_cause": "Crop Burning",
+      "confidence": "19.3%",
+      "reasoning_tree": [
+        "Step 1: Detected pollution hotspot at Srinagar (34.08, 74.80)",
+        "Step 2: Dominant pollutant identified as PM25 (severity: Very High)",
+        "Step 3: Source attribution suggests crop burning with 19.3% confidence",
+        "  - Elevated SO2 (0.0009, 1.7x threshold)",
+        "  - Elevated NO2 (0.0004, 1.9x threshold)",
+        "  - Elevated HCHO (0.0006, 2.1x threshold)"
+      ],
+      "top_influential_features": [
+        {
+          "feature": "PM25",
+          "value": 177.5894,
+          "importance": 0.991
+        },
+        {
+          "feature": "aerosol_index",
+          "value": 1.6555,
+          "importance": 0.009
+        },
+        {
+          "feature": "CO",
+          "value": 0.0312,
+          "importance": 0.0
+        },
+        {
+          "feature": "SO2",
+          "value": 0.0009,
+          "importance": 0.0
+        },
+        {
+          "feature": "HCHO",
+          "value": 0.0006,
+          "importance": 0.0
+        }
+      ],
+      "satellite_evidence": [
+        "TROPOMI NO2: 0.0004 mol/m\u00b2",
+        "TROPOMI CO: 0.0312 mol/m\u00b2",
+        "TROPOMI SO2: 0.0009 mol/m\u00b2",
+        "TROPOMI HCHO: 0.0006 mol/m\u00b2",
+        "TROPOMI aerosol_index: 1.6555 mol/m\u00b2"
+      ],
+      "meteorological_evidence": [
+        "Temperature: 17.8\u00b0C",
+        "Humidity: 58.8%",
+        "Wind: 22.2 km/h from WNW",
+        "Visibility: 13.3 km",
+        "Boundary Layer: 1292.0 m"
+      ],
+      "historical_context": [
+        "Current AQI: 345 (Very Poor)",
+        "Dominant pollutant in satellite data: PM25"
+      ],
+      "temporal_context": "Detected at 2026-07-20T17:36:31.702950",
+      "spatial_context": "Location: Srinagar, Jammu & Kashmir (34.0800\u00b0N, 74.8000\u00b0E)"
+    }
+  ],
+  "recommendations": [
+    {
+      "hotspot_id": "HS-30_32-78_03",
+      "location_name": "Dehradun",
+      "priority": 1,
+      "risk_score": 0.81,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 23.1,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-28_61-77_23",
+      "location_name": "Delhi",
+      "priority": 2,
+      "risk_score": 0.8,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 21.9,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-19_08-72_88",
+      "location_name": "Mumbai",
+      "priority": 3,
+      "risk_score": 0.8,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 21.1,
+      "population_exposed": 12400000
+    },
+    {
+      "hotspot_id": "HS-30_90-75_86",
+      "location_name": "Ludhiana",
+      "priority": 4,
+      "risk_score": 0.8,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 19.5,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-31_63-74_87",
+      "location_name": "Amritsar",
+      "priority": 5,
+      "risk_score": 0.8,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 19.3,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-34_08-74_80",
+      "location_name": "Srinagar",
+      "priority": 6,
+      "risk_score": 0.8,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 19.3,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-27_18-78_02",
+      "location_name": "Agra",
+      "priority": 7,
+      "risk_score": 0.79,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 17.2,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-30_73-76_78",
+      "location_name": "Chandigarh",
+      "priority": 8,
+      "risk_score": 0.77,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 26.8,
+      "population_exposed": 19000000
+    },
+    {
+      "hotspot_id": "HS-8_52-76_94",
+      "location_name": "Thiruvananthapuram",
+      "priority": 9,
+      "risk_score": 0.76,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 18.8,
+      "population_exposed": 8400000
+    },
+    {
+      "hotspot_id": "HS-12_97-77_59",
+      "location_name": "Bengaluru",
+      "priority": 10,
+      "risk_score": 0.75,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 17.3,
+      "population_exposed": 8400000
+    },
+    {
+      "hotspot_id": "HS-13_08-80_27",
+      "location_name": "Chennai",
+      "priority": 11,
+      "risk_score": 0.73,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 20.8,
+      "population_exposed": 7100000
+    },
+    {
+      "hotspot_id": "HS-17_39-78_49",
+      "location_name": "Hyderabad",
+      "priority": 12,
+      "risk_score": 0.72,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 21.5,
+      "population_exposed": 6800000
+    },
+    {
+      "hotspot_id": "HS-17_69-83_22",
+      "location_name": "Visakhapatnam",
+      "priority": 13,
+      "risk_score": 0.72,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 19.2,
+      "population_exposed": 6800000
+    },
+    {
+      "hotspot_id": "HS-21_15-79_09",
+      "location_name": "Nagpur",
+      "priority": 14,
+      "risk_score": 0.71,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 16.5,
+      "population_exposed": 6800000
+    },
+    {
+      "hotspot_id": "HS-21_25-81_63",
+      "location_name": "Raipur",
+      "priority": 15,
+      "risk_score": 0.7,
+      "recommendation": "Issue Public Health Advisory; Deploy medical camps; Distribute masks",
+      "responsible_authority": "Disaster Management Authority / IMD",
+      "action_type": "public_health_advisory",
+      "severity": "Very High",
+      "confidence": 23.6,
+      "population_exposed": 6800000
+    },
+    {
+      "hotspot_id": "HS-22_72-75_86",
+      "location_name": "Indore",
+      "priority": 16,
+      "risk_score": 0.68,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 18.9,
+      "population_exposed": 5500000
+    },
+    {
+      "hotspot_id": "HS-26_14-91_74",
+      "location_name": "Guwahati",
+      "priority": 17,
+      "risk_score": 0.67,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 23.1,
+      "population_exposed": 4500000
+    },
+    {
+      "hotspot_id": "HS-20_30-85_82",
+      "location_name": "Bhubaneswar",
+      "priority": 18,
+      "risk_score": 0.66,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 17.5,
+      "population_exposed": 4500000
+    },
+    {
+      "hotspot_id": "HS-22_57-88_36",
+      "location_name": "Kolkata",
+      "priority": 19,
+      "risk_score": 0.65,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 15.4,
+      "population_exposed": 4500000
+    },
+    {
+      "hotspot_id": "HS-23_02-72_57",
+      "location_name": "Ahmedabad",
+      "priority": 20,
+      "risk_score": 0.64,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 23.2,
+      "population_exposed": 5500000
+    },
+    {
+      "hotspot_id": "HS-18_52-73_86",
+      "location_name": "Pune",
+      "priority": 21,
+      "risk_score": 0.63,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 22.7,
+      "population_exposed": 3100000
+    },
+    {
+      "hotspot_id": "HS-26_91-75_79",
+      "location_name": "Jaipur",
+      "priority": 22,
+      "risk_score": 0.62,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 19.6,
+      "population_exposed": 3000000
+    },
+    {
+      "hotspot_id": "HS-23_26-77_41",
+      "location_name": "Bhopal",
+      "priority": 23,
+      "risk_score": 0.62,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 18.4,
+      "population_exposed": 3000000
+    },
+    {
+      "hotspot_id": "HS-26_85-80_95",
+      "location_name": "Lucknow",
+      "priority": 24,
+      "risk_score": 0.62,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 20.3,
+      "population_exposed": 2800000
+    },
+    {
+      "hotspot_id": "HS-26_45-80_33",
+      "location_name": "Kanpur",
+      "priority": 25,
+      "risk_score": 0.62,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 19.4,
+      "population_exposed": 2800000
+    },
+    {
+      "hotspot_id": "HS-23_34-85_31",
+      "location_name": "Ranchi",
+      "priority": 26,
+      "risk_score": 0.61,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 20.1,
+      "population_exposed": 4500000
+    },
+    {
+      "hotspot_id": "HS-25_32-82_97",
+      "location_name": "Varanasi",
+      "priority": 27,
+      "risk_score": 0.61,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "responsible_authority": "State Pollution Control Board / Agriculture Dept",
+      "action_type": "enforcement_action",
+      "severity": "Very High",
+      "confidence": 14.9,
+      "population_exposed": 2800000
+    },
+    {
+      "hotspot_id": "HS-25_59-85_14",
+      "location_name": "Patna",
+      "priority": 28,
+      "risk_score": 0.59,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated",
+      "responsible_authority": "State Pollution Control Board / CPCB",
+      "action_type": "inspection",
+      "severity": "Very High",
+      "confidence": 20.0,
+      "population_exposed": 2800000
+    }
+  ]
+}

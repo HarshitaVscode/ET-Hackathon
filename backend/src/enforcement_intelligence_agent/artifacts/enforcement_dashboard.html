@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vayu-Drishti — Enforcement Intelligence Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #050510; color: #e0e0e0; overflow: hidden; }
+  #app { display: flex; height: 100vh; }
+  #map { flex: 1; height: 100vh; background: #050510; }
+  #panel { width: 420px; background: #0a0a1a; border-left: 1px solid #1a1a3a; overflow-y: auto; padding: 0; display: flex; flex-direction: column; }
+  .panel-header { background: linear-gradient(135deg, #0f0f2a, #1a0a2e); padding: 20px 24px; border-bottom: 1px solid #1a1a3a; }
+  .panel-header h1 { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+  .panel-header h1 span { color: #3b82f6; }
+  .panel-header .subtitle { font-size: 11px; color: #6b7280; margin-top: 4px; }
+  .panel-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 16px 24px; background: #0d0d20; border-bottom: 1px solid #1a1a3a; }
+  .stat-card { background: #111128; border-radius: 8px; padding: 12px; border: 1px solid #1a1a3a; }
+  .stat-card .value { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-card .label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .stat-card .value.red { color: #ef4444; }
+  .stat-card .value.orange { color: #f97316; }
+  .stat-card .value.yellow { color: #eab308; }
+  .stat-card .value.green { color: #22c55e; }
+  .panel-section { padding: 16px 24px; border-bottom: 1px solid #1a1a3a; }
+  .panel-section h3 { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .hotspot-list { padding: 0; }
+  .hotspot-item { display: flex; align-items: center; gap: 12px; padding: 10px 24px; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; }
+  .hotspot-item:hover { background: #111128; }
+  .hotspot-item.active { background: #111128; border-left-color: #3b82f6; }
+  .hotspot-marker-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .hotspot-info { flex: 1; min-width: 0; }
+  .hotspot-info .name { font-size: 13px; font-weight: 600; color: #fff; }
+  .hotspot-info .detail { font-size: 10px; color: #6b7280; }
+  .hotspot-info .cause { font-size: 10px; color: #3b82f6; }
+  .hotspot-priority { font-size: 11px; font-weight: 700; color: #6b7280; width: 24px; text-align: center; }
+  .detail-panel { padding: 20px 24px; flex: 1; overflow-y: auto; display: none; }
+  .detail-panel.show { display: block; }
+  .detail-panel h2 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .detail-panel .location-sub { font-size: 12px; color: #6b7280; margin-bottom: 16px; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .detail-item { background: #111128; border-radius: 8px; padding: 12px; border: 1px solid #1a1a3a; }
+  .detail-item .lbl { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+  .detail-item .val { font-size: 14px; font-weight: 600; color: #fff; margin-top: 2px; }
+  .detail-item .val.conf { color: #3b82f6; }
+  .evidence-box { background: #111128; border-radius: 8px; padding: 12px; border: 1px solid #1a1a3a; margin-bottom: 12px; }
+  .evidence-box .title { font-size: 10px; color: #6b7280; text-transform: uppercase; margin-bottom: 6px; }
+  .evidence-box ul { list-style: none; padding: 0; }
+  .evidence-box li { font-size: 11px; color: #c0c0c0; padding: 3px 0; padding-left: 12px; position: relative; }
+  .evidence-box li::before { content: "›"; position: absolute; left: 0; color: #3b82f6; font-weight: bold; }
+  .alternatives-box { margin-top: 8px; }
+  .alt-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .alt-bar .alt-label { font-size: 10px; color: #a0a0a0; width: 80px; }
+  .alt-bar .alt-track { flex: 1; height: 6px; background: #1a1a3a; border-radius: 3px; overflow: hidden; }
+  .alt-bar .alt-fill { height: 100%; border-radius: 3px; background: #3b82f6; }
+  .alt-bar .alt-pct { font-size: 10px; color: #6b7280; width: 40px; text-align: right; }
+  .rec-box { background: linear-gradient(135deg, #0f1a3a, #1a0a2e); border-radius: 8px; padding: 12px; border: 1px solid #1a3a5a; margin-top: 12px; }
+  .rec-box .rec-title { font-size: 10px; color: #3b82f6; text-transform: uppercase; margin-bottom: 4px; }
+  .rec-box .rec-text { font-size: 12px; color: #c0d0f0; }
+  .rec-box .rec-auth { font-size: 10px; color: #6b7280; margin-top: 4px; }
+  .leaflet-container { background: #050510 !important; }
+  .leaflet-control-attribution { display: none !important; }
+  .leaflet-popup-content-wrapper { background: #111128 !important; color: #e0e0e0 !important; border: 1px solid #1a1a3a !important; border-radius: 8px !important; }
+  .leaflet-popup-tip { background: #111128 !important; border: 1px solid #1a1a3a !important; }
+  .leaflet-popup-close-button { color: #6b7280 !important; }
+  ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: #0a0a1a; } ::-webkit-scrollbar-thumb { background: #1a1a3a; border-radius: 2px; }
+  .glow-pulse { animation: pulse 2s infinite; }
+  @@keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+  .severity-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; text-transform: uppercase; }
+  .severity-badge.vh { background: rgba(239,68,68,0.2); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+  .severity-badge.h { background: rgba(249,115,22,0.2); color: #f97316; border: 1px solid rgba(249,115,22,0.3); }
+  .severity-badge.m { background: rgba(234,179,8,0.2); color: #eab308; border: 1px solid rgba(234,179,8,0.3); }
+  .severity-badge.l { background: rgba(34,197,94,0.2); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <div id="panel">
+    <div class="panel-header">
+      <h1>VAYU-DRISHTI <span>Enforcement Intelligence</span></h1>
+      <div class="subtitle">Real-time pollution hotspot detection & prioritisation | July 20, 2026 17:36</div>
+    </div>
+    <div class="panel-stats" id="statsPanel">
+      <div class="stat-card"><div class="value red" id="totalCount">0</div><div class="label">Total Hotspots</div></div>
+      <div class="stat-card"><div class="value orange" id="criticalCount">0</div><div class="label">Critical (Top 5)</div></div>
+      <div class="stat-card"><div class="value yellow" id="highCount">0</div><div class="label">High Priority (6-15)</div></div>
+      <div class="stat-card"><div class="value green" id="lowCount">0</div><div class="label">Monitoring</div></div>
+    </div>
+    <div class="panel-section" style="padding: 8px 0 0 0; flex: 1; display: flex; flex-direction: column;">
+      <div style="padding: 8px 24px 4px;"><h3>Prioritised Hotspots</h3></div>
+      <div class="hotspot-list" id="hotspotList"></div>
+    </div>
+    <div class="detail-panel" id="detailPanel">
+      <h2 id="detailName">Select a hotspot</h2>
+      <div class="location-sub" id="detailLocation">Click on a map marker or hotspot in the list</div>
+      <div class="detail-grid">
+        <div class="detail-item"><div class="lbl">Severity</div><div class="val" id="detailSeverity">—</div></div>
+        <div class="detail-item"><div class="lbl">Confidence</div><div class="val conf" id="detailConfidence">—</div></div>
+        <div class="detail-item"><div class="lbl">Dominant Pollutant</div><div class="val" id="detailPollutant">—</div></div>
+        <div class="detail-item"><div class="lbl">AQI / PM2.5</div><div class="val" id="detailAQI">—</div></div>
+        <div class="detail-item"><div class="lbl">Population Exposed</div><div class="val" id="detailPopulation">—</div></div>
+        <div class="detail-item"><div class="lbl">Source</div><div class="val" id="detailCause">—</div></div>
+      </div>
+      <div class="evidence-box"><div class="title">Supporting Evidence</div><ul id="detailEvidence"></ul></div>
+      <div class="evidence-box"><div class="title">Alternative Sources</div><div id="detailAlternatives"></div></div>
+      <div class="rec-box">
+        <div class="rec-title">Recommended Action</div>
+        <div class="rec-text" id="detailRecommendation">—</div>
+        <div class="rec-auth" id="detailAuthority">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const hotspots = [{"lat": 28.61, "lon": 77.23, "name": "Delhi", "state": "Delhi", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "21.9%", "dominant_pollutant": "PM25", "aqi": 384, "pm25": "228.95896665088233", "population": "19,000,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated NO2 (0.0005, 2.5x threshold)<br>1 nearby construction sources (min dist: 11.1km)<br>Elevated SO2 (0.0011, 2.2x threshold)<br>1 nearby urban congestion sources (min dist: 0.0km)", "alternatives": "&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Crop Burning: 0.1%<br>&nbsp;&nbsp;Power Plant: 0.1%"}, {"lat": 19.08, "lon": 72.88, "name": "Mumbai", "state": "Maharashtra", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "21.1%", "dominant_pollutant": "PM25", "aqi": 380, "pm25": "223.62347477321578", "population": "12,400,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated CO (0.0768, 1.5x threshold)<br>Elevated PM25 (223.6235, 3.7x threshold)<br>Elevated HCHO (0.0005, 1.7x threshold)<br>High wind speed (24.0 km/h)", "alternatives": "&nbsp;&nbsp;Diesel Traffic: 0.2%<br>&nbsp;&nbsp;Construction: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%"}, {"lat": 12.97, "lon": 77.59, "name": "Bengaluru", "state": "Karnataka", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "17.3%", "dominant_pollutant": "NO2", "aqi": 237, "pm25": "100.98824610541477", "population": "8,400,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated aerosol_index (1.9117, 1.9x threshold)<br>Elevated HCHO (0.0007, 2.5x threshold)<br>Elevated SO2 (0.0006, 1.2x threshold)<br>Elevated PM25 (100.9882, 1.7x threshold)", "alternatives": "&nbsp;&nbsp;Diesel Traffic: 0.2%<br>&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Construction: 0.1%"}, {"lat": 17.39, "lon": 78.49, "name": "Hyderabad", "state": "Telangana", "severity": "Very High", "severity_score": "0.99", "color": "255, 68, 68", "size": 29.60463597642011, "cause": "Crop Burning", "confidence": "21.5%", "dominant_pollutant": "SO2", "aqi": 87, "pm25": "52.145936998141224", "population": "6,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated NO2 (0.0003, 1.7x threshold)<br>Elevated CO (0.0715, 1.4x threshold)<br>Elevated HCHO (0.0005, 1.7x threshold)<br>Elevated aerosol_index (1.5651, 1.6x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.2%<br>&nbsp;&nbsp;Power Plant: 0.1%<br>&nbsp;&nbsp;Forest Fire: 0.1%"}, {"lat": 23.02, "lon": 72.57, "name": "Ahmedabad", "state": "Gujarat", "severity": "Very High", "severity_score": "0.81", "color": "255, 68, 68", "size": 24.385832238441626, "cause": "Crop Burning", "confidence": "23.2%", "dominant_pollutant": "SO2", "aqi": 82, "pm25": "49.1320863605134", "population": "5,500,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated NO2 (0.0003, 1.6x threshold)<br>HCHO signature consistent with biomass burning<br>Elevated SO2 (0.0009, 1.8x threshold)<br>Elevated aerosol_index (1.6760, 1.7x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Power Plant: 0.1%<br>&nbsp;&nbsp;Forest Fire: 0.1%"}, {"lat": 13.08, "lon": 80.27, "name": "Chennai", "state": "Tamil Nadu", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "20.8%", "dominant_pollutant": "NO2", "aqi": 241, "pm25": "102.10026899249446", "population": "7,100,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated PM25 (102.1003, 1.7x threshold)<br>Elevated aerosol_index (1.4347, 1.4x threshold)<br>High wind speed (31.4 km/h)<br>Elevated NO2 (0.0007, 3.7x threshold)", "alternatives": "&nbsp;&nbsp;Power Plant: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%<br>&nbsp;&nbsp;Crop Burning: 0.1%"}, {"lat": 22.57, "lon": 88.36, "name": "Kolkata", "state": "West Bengal", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "15.4%", "dominant_pollutant": "NO2", "aqi": 382, "pm25": "226.21285710573284", "population": "4,500,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated PM25 (226.2129, 3.8x threshold)<br>Elevated NO2 (0.0008, 3.9x threshold)<br>1 nearby brick kiln sources (min dist: 29.9km)<br>Elevated SO2 (0.0011, 2.2x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Urban Congestion: 0.1%"}, {"lat": 18.52, "lon": 73.86, "name": "Pune", "state": "Maharashtra", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "22.7%", "dominant_pollutant": "NO2", "aqi": 249, "pm25": "104.68683752813425", "population": "3,100,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated PM25 (104.6868, 1.7x threshold)<br>Elevated HCHO (0.0007, 2.2x threshold)<br>Elevated aerosol_index (1.3641, 1.4x threshold)<br>Elevated CO (0.0550, 1.1x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%"}, {"lat": 26.91, "lon": 75.79, "name": "Jaipur", "state": "Rajasthan", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "19.6%", "dominant_pollutant": "PM25", "aqi": 385, "pm25": "229.71146025309196", "population": "3,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated CO (0.1027, 2.1x threshold)<br>Elevated SO2 (0.0013, 2.6x threshold)<br>Elevated PM25 (229.7115, 3.8x threshold)<br>Elevated NO2 (0.0004, 1.8x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.2%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%"}, {"lat": 26.85, "lon": 80.95, "name": "Lucknow", "state": "Uttar Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "20.3%", "dominant_pollutant": "PM25", "aqi": 375, "pm25": "216.72438666453453", "population": "2,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated CO (0.1188, 2.4x threshold)<br>Elevated HCHO (0.0004, 1.3x threshold)<br>Elevated PM25 (216.7244, 3.6x threshold)<br>Elevated SO2 (0.0012, 2.4x threshold)", "alternatives": "&nbsp;&nbsp;Forest Fire: 0.2%<br>&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 26.45, "lon": 80.33, "name": "Kanpur", "state": "Uttar Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "19.4%", "dominant_pollutant": "SO2", "aqi": 325, "pm25": "151.20008181217514", "population": "2,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated SO2 (0.0013, 2.6x threshold)<br>Elevated HCHO (0.0005, 1.6x threshold)<br>Elevated CO (0.0826, 1.7x threshold)<br>Elevated aerosol_index (2.2127, 2.2x threshold)", "alternatives": "&nbsp;&nbsp;Forest Fire: 0.2%<br>&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 21.15, "lon": 79.09, "name": "Nagpur", "state": "Maharashtra", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "16.5%", "dominant_pollutant": "PM25", "aqi": 377, "pm25": "219.75953334379577", "population": "6,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated NO2 (0.0003, 1.5x threshold)<br>Elevated aerosol_index (1.6356, 1.6x threshold)<br>Elevated CO (0.0679, 1.4x threshold)<br>Elevated PM25 (219.7595, 3.7x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.2%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 22.72, "lon": 75.86, "name": "Indore", "state": "Madhya Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "18.9%", "dominant_pollutant": "PM25", "aqi": 360, "pm25": "197.83095336290188", "population": "5,500,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated PM25 (197.8310, 3.3x threshold)<br>Elevated NO2 (0.0004, 2.1x threshold)<br>Elevated SO2 (0.0008, 1.6x threshold)<br>High wind speed (36.0 km/h)", "alternatives": "&nbsp;&nbsp;Diesel Traffic: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Dust Storm: 0.1%"}, {"lat": 23.26, "lon": 77.41, "name": "Bhopal", "state": "Madhya Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "18.4%", "dominant_pollutant": "PM25", "aqi": 329, "pm25": "156.19001699051051", "population": "3,000,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "High wind speed (38.6 km/h)<br>Elevated PM25 (156.1900, 2.6x threshold)<br>Elevated NO2 (0.0005, 2.3x threshold)<br>Elevated CO (0.0880, 1.8x threshold)", "alternatives": "&nbsp;&nbsp;Crop Burning: 0.2%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 17.69, "lon": 83.22, "name": "Visakhapatnam", "state": "Andhra Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "19.2%", "dominant_pollutant": "SO2", "aqi": 282, "pm25": "114.61562412335371", "population": "6,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated CO (0.0908, 1.8x threshold)<br>Elevated PM25 (114.6156, 1.9x threshold)<br>Elevated HCHO (0.0007, 2.5x threshold)<br>High wind speed (28.1 km/h)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Power Plant: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 25.59, "lon": 85.14, "name": "Patna", "state": "Bihar", "severity": "Very High", "severity_score": "0.92", "color": "255, 68, 68", "size": 27.489086077984027, "cause": "Industrial", "confidence": "20.0%", "dominant_pollutant": "SO2", "aqi": 235, "pm25": "100.34049495342671", "population": "2,800,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated NO2 (0.0003, 1.7x threshold)<br>Elevated aerosol_index (1.2384, 1.2x threshold)<br>Elevated PM25 (100.3405, 1.7x threshold)<br>Elevated SO2 (0.0012, 2.5x threshold)", "alternatives": "&nbsp;&nbsp;Power Plant: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 30.9, "lon": 75.86, "name": "Ludhiana", "state": "Punjab", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "19.5%", "dominant_pollutant": "NO2", "aqi": 320, "pm25": "145.44575850067065", "population": "19,000,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated CO (0.0670, 1.3x threshold)<br>Elevated NO2 (0.0008, 3.9x threshold)<br>Elevated SO2 (0.0010, 1.9x threshold)<br>Elevated PM25 (145.4458, 2.4x threshold)", "alternatives": "&nbsp;&nbsp;Forest Fire: 0.2%<br>&nbsp;&nbsp;Crop Burning: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 31.63, "lon": 74.87, "name": "Amritsar", "state": "Punjab", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "19.3%", "dominant_pollutant": "NO2", "aqi": 259, "pm25": "107.71002720227966", "population": "19,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated SO2 (0.0007, 1.4x threshold)<br>Elevated NO2 (0.0006, 3.1x threshold)<br>Elevated aerosol_index (1.5249, 1.5x threshold)<br>Elevated HCHO (0.0008, 2.6x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%<br>&nbsp;&nbsp;Power Plant: 0.1%"}, {"lat": 27.18, "lon": 78.02, "name": "Agra", "state": "Uttar Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "17.2%", "dominant_pollutant": "PM25", "aqi": 376, "pm25": "218.18267222368803", "population": "19,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "High wind speed (26.1 km/h)<br>Elevated PM25 (218.1827, 3.6x threshold)<br>Elevated SO2 (0.0015, 2.9x threshold)<br>Elevated HCHO (0.0007, 2.5x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.2%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%"}, {"lat": 25.32, "lon": 82.97, "name": "Varanasi", "state": "Uttar Pradesh", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "14.9%", "dominant_pollutant": "PM25", "aqi": 362, "pm25": "200.10953233927373", "population": "2,800,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated PM25 (200.1095, 3.3x threshold)<br>Elevated NO2 (0.0003, 1.5x threshold)<br>Elevated aerosol_index (1.4092, 1.4x threshold)<br>Elevated SO2 (0.0008, 1.6x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 26.14, "lon": 91.74, "name": "Guwahati", "state": "Assam", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "23.1%", "dominant_pollutant": "HCHO", "aqi": 177, "pm25": "83.10855941737921", "population": "4,500,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated SO2 (0.0008, 1.5x threshold)<br>Elevated NO2 (0.0003, 1.5x threshold)<br>Elevated PM25 (83.1086, 1.4x threshold)<br>Elevated HCHO (0.0007, 2.5x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%<br>&nbsp;&nbsp;Power Plant: 0.1%"}, {"lat": 30.73, "lon": 76.78, "name": "Chandigarh", "state": "Chandigarh", "severity": "Very High", "severity_score": "0.85", "color": "255, 68, 68", "size": 25.42597201065278, "cause": "Crop Burning", "confidence": "26.8%", "dominant_pollutant": "HCHO", "aqi": 168, "pm25": "80.29308519136954", "population": "19,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated CO (0.0832, 1.7x threshold)<br>Elevated HCHO (0.0006, 2.0x threshold)<br>Elevated NO2 (0.0002, 1.2x threshold)<br>Elevated PM25 (80.2931, 1.3x threshold)", "alternatives": "&nbsp;&nbsp;Waste Burning: 0.1%<br>&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Diesel Traffic: 0.1%"}, {"lat": 30.32, "lon": 78.03, "name": "Dehradun", "state": "Uttarakhand", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "23.1%", "dominant_pollutant": "PM25", "aqi": 369, "pm25": "209.6200974577578", "population": "19,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated PM25 (209.6201, 3.5x threshold)<br>Elevated SO2 (0.0009, 1.7x threshold)<br>Elevated HCHO (0.0008, 2.6x threshold)<br>High wind speed (23.2 km/h)", "alternatives": "&nbsp;&nbsp;Waste Burning: 0.1%<br>&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 23.34, "lon": 85.31, "name": "Ranchi", "state": "Jharkhand", "severity": "Very High", "severity_score": "0.84", "color": "255, 68, 68", "size": 25.11507371517912, "cause": "Crop Burning", "confidence": "20.1%", "dominant_pollutant": "PM25", "aqi": 335, "pm25": "164.17053925289142", "population": "4,500,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated PM25 (164.1705, 2.7x threshold)<br>Elevated CO (0.0839, 1.7x threshold)<br>CO enhancement from incomplete combustion", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 21.25, "lon": 81.63, "name": "Raipur", "state": "Chhattisgarh", "severity": "Very High", "severity_score": "0.89", "color": "255, 68, 68", "size": 26.674674446084026, "cause": "Dust Storm", "confidence": "23.6%", "dominant_pollutant": "aerosol_index", "aqi": 92, "pm25": "55.11407705311602", "population": "6,800,000", "recommendation": "Issue Public Health Advisory; Deploy medical camps; Distribute masks", "authority": "Disaster Management Authority / IMD", "evidence": "Elevated NO2 (0.0005, 2.7x threshold)<br>High wind speed (20.9 km/h)<br>Elevated aerosol_index (3.0520, 3.1x threshold)<br>1 nearby industrial sources (min dist: 27.8km)", "alternatives": "&nbsp;&nbsp;Industrial: 0.2%<br>&nbsp;&nbsp;Forest Fire: 0.1%<br>&nbsp;&nbsp;Crop Burning: 0.1%"}, {"lat": 20.3, "lon": 85.82, "name": "Bhubaneswar", "state": "Odisha", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Industrial", "confidence": "17.5%", "dominant_pollutant": "PM25", "aqi": 384, "pm25": "228.62685626844026", "population": "4,500,000", "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown notice if violated", "authority": "State Pollution Control Board / CPCB", "evidence": "Elevated PM25 (228.6269, 3.8x threshold)<br>Elevated NO2 (0.0007, 3.6x threshold)<br>Elevated SO2 (0.0007, 1.3x threshold)<br>Elevated aerosol_index (2.1969, 2.2x threshold)", "alternatives": "&nbsp;&nbsp;Diesel Traffic: 0.1%<br>&nbsp;&nbsp;Crop Burning: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 8.52, "lon": 76.94, "name": "Thiruvananthapuram", "state": "Kerala", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "18.8%", "dominant_pollutant": "PM25", "aqi": 387, "pm25": "233.21055819880655", "population": "8,400,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated aerosol_index (3.2845, 3.3x threshold)<br>High wind speed (33.1 km/h)<br>Elevated HCHO (0.0005, 1.8x threshold)<br>Elevated SO2 (0.0011, 2.2x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Dust Storm: 0.1%<br>&nbsp;&nbsp;Brick Kiln: 0.1%"}, {"lat": 34.08, "lon": 74.8, "name": "Srinagar", "state": "Jammu & Kashmir", "severity": "Very High", "severity_score": "1.00", "color": "255, 68, 68", "size": 30.0, "cause": "Crop Burning", "confidence": "19.3%", "dominant_pollutant": "PM25", "aqi": 345, "pm25": "177.58940527259853", "population": "19,000,000", "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine", "authority": "State Pollution Control Board / Agriculture Dept", "evidence": "Elevated SO2 (0.0009, 1.7x threshold)<br>Elevated NO2 (0.0004, 1.9x threshold)<br>Elevated HCHO (0.0006, 2.1x threshold)<br>Elevated PM25 (177.5894, 3.0x threshold)", "alternatives": "&nbsp;&nbsp;Industrial: 0.1%<br>&nbsp;&nbsp;Dust Storm: 0.1%<br>&nbsp;&nbsp;Waste Burning: 0.1%"}];
+const geojsonData = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"name": "Andhra Pradesh", "code": "AP"}, "geometry": {"type": "Polygon", "coordinates": [[[79.5, 13.5], [80.5, 13.5], [80.5, 14.5], [79.5, 14.5], [79.5, 13.5]]]}}, {"type": "Feature", "properties": {"name": "Arunachal Pradesh", "code": "AR"}, "geometry": {"type": "Polygon", "coordinates": [[[91.5, 26.5], [97.5, 26.5], [97.5, 29.0], [91.5, 29.0], [91.5, 26.5]]]}}, {"type": "Feature", "properties": {"name": "Assam", "code": "AS"}, "geometry": {"type": "Polygon", "coordinates": [[[89.5, 24.0], [96.0, 24.0], [96.0, 28.0], [89.5, 28.0], [89.5, 24.0]]]}}, {"type": "Feature", "properties": {"name": "Bihar", "code": "BR"}, "geometry": {"type": "Polygon", "coordinates": [[[83.0, 24.0], [88.0, 24.0], [88.0, 27.5], [83.0, 27.5], [83.0, 24.0]]]}}, {"type": "Feature", "properties": {"name": "Chhattisgarh", "code": "CG"}, "geometry": {"type": "Polygon", "coordinates": [[[80.0, 18.0], [84.0, 18.0], [84.0, 24.0], [80.0, 24.0], [80.0, 18.0]]]}}, {"type": "Feature", "properties": {"name": "Delhi", "code": "DL"}, "geometry": {"type": "Polygon", "coordinates": [[[76.8, 28.4], [77.3, 28.4], [77.3, 28.9], [76.8, 28.9], [76.8, 28.4]]]}}, {"type": "Feature", "properties": {"name": "Goa", "code": "GA"}, "geometry": {"type": "Polygon", "coordinates": [[[73.8, 14.8], [74.3, 14.8], [74.3, 15.8], [73.8, 15.8], [73.8, 14.8]]]}}, {"type": "Feature", "properties": {"name": "Gujarat", "code": "GJ"}, "geometry": {"type": "Polygon", "coordinates": [[[68.0, 20.0], [74.5, 20.0], [74.5, 24.5], [68.0, 24.5], [68.0, 20.0]]]}}, {"type": "Feature", "properties": {"name": "Haryana", "code": "HR"}, "geometry": {"type": "Polygon", "coordinates": [[[74.5, 28.0], [77.5, 28.0], [77.5, 31.0], [74.5, 31.0], [74.5, 28.0]]]}}, {"type": "Feature", "properties": {"name": "Himachal Pradesh", "code": "HP"}, "geometry": {"type": "Polygon", "coordinates": [[[75.5, 30.0], [79.0, 30.0], [79.0, 33.0], [75.5, 33.0], [75.5, 30.0]]]}}, {"type": "Feature", "properties": {"name": "Jharkhand", "code": "JH"}, "geometry": {"type": "Polygon", "coordinates": [[[83.0, 22.0], [87.5, 22.0], [87.5, 25.0], [83.0, 25.0], [83.0, 22.0]]]}}, {"type": "Feature", "properties": {"name": "Karnataka", "code": "KA"}, "geometry": {"type": "Polygon", "coordinates": [[[74.0, 11.5], [78.5, 11.5], [78.5, 18.5], [74.0, 18.5], [74.0, 11.5]]]}}, {"type": "Feature", "properties": {"name": "Kerala", "code": "KL"}, "geometry": {"type": "Polygon", "coordinates": [[[74.5, 8.0], [77.5, 8.0], [77.5, 12.5], [74.5, 12.5], [74.5, 8.0]]]}}, {"type": "Feature", "properties": {"name": "Madhya Pradesh", "code": "MP"}, "geometry": {"type": "Polygon", "coordinates": [[[74.0, 21.0], [82.5, 21.0], [82.5, 27.0], [74.0, 27.0], [74.0, 21.0]]]}}, {"type": "Feature", "properties": {"name": "Maharashtra", "code": "MH"}, "geometry": {"type": "Polygon", "coordinates": [[[72.5, 16.0], [80.5, 16.0], [80.5, 22.0], [72.5, 22.0], [72.5, 16.0]]]}}, {"type": "Feature", "properties": {"name": "Manipur", "code": "MN"}, "geometry": {"type": "Polygon", "coordinates": [[[93.0, 24.0], [94.5, 24.0], [94.5, 25.5], [93.0, 25.5], [93.0, 24.0]]]}}, {"type": "Feature", "properties": {"name": "Meghalaya", "code": "ML"}, "geometry": {"type": "Polygon", "coordinates": [[[89.5, 25.0], [93.0, 25.0], [93.0, 26.5], [89.5, 26.5], [89.5, 25.0]]]}}, {"type": "Feature", "properties": {"name": "Mizoram", "code": "MZ"}, "geometry": {"type": "Polygon", "coordinates": [[[92.0, 22.0], [93.5, 22.0], [93.5, 24.5], [92.0, 24.5], [92.0, 22.0]]]}}, {"type": "Feature", "properties": {"name": "Nagaland", "code": "NL"}, "geometry": {"type": "Polygon", "coordinates": [[[93.0, 25.5], [95.0, 25.5], [95.0, 27.0], [93.0, 27.0], [93.0, 25.5]]]}}, {"type": "Feature", "properties": {"name": "Odisha", "code": "OD"}, "geometry": {"type": "Polygon", "coordinates": [[[81.0, 17.5], [87.5, 17.5], [87.5, 22.5], [81.0, 22.5], [81.0, 17.5]]]}}, {"type": "Feature", "properties": {"name": "Punjab", "code": "PB"}, "geometry": {"type": "Polygon", "coordinates": [[[73.8, 29.5], [76.8, 29.5], [76.8, 32.5], [73.8, 32.5], [73.8, 29.5]]]}}, {"type": "Feature", "properties": {"name": "Rajasthan", "code": "RJ"}, "geometry": {"type": "Polygon", "coordinates": [[[69.5, 23.0], [78.0, 23.0], [78.0, 30.5], [69.5, 30.5], [69.5, 23.0]]]}}, {"type": "Feature", "properties": {"name": "Sikkim", "code": "SK"}, "geometry": {"type": "Polygon", "coordinates": [[[88.0, 27.0], [89.0, 27.0], [89.0, 28.5], [88.0, 28.5], [88.0, 27.0]]]}}, {"type": "Feature", "properties": {"name": "Tamil Nadu", "code": "TN"}, "geometry": {"type": "Polygon", "coordinates": [[[76.5, 8.0], [80.5, 8.0], [80.5, 13.5], [76.5, 13.5], [76.5, 8.0]]]}}, {"type": "Feature", "properties": {"name": "Telangana", "code": "TS"}, "geometry": {"type": "Polygon", "coordinates": [[[77.0, 16.0], [81.5, 16.0], [81.5, 20.0], [77.0, 20.0], [77.0, 16.0]]]}}, {"type": "Feature", "properties": {"name": "Tripura", "code": "TR"}, "geometry": {"type": "Polygon", "coordinates": [[[90.0, 22.5], [92.0, 22.5], [92.0, 24.5], [90.0, 24.5], [90.0, 22.5]]]}}, {"type": "Feature", "properties": {"name": "Uttar Pradesh", "code": "UP"}, "geometry": {"type": "Polygon", "coordinates": [[[77.0, 24.0], [84.5, 24.0], [84.5, 30.0], [77.0, 30.0], [77.0, 24.0]]]}}, {"type": "Feature", "properties": {"name": "Uttarakhand", "code": "UK"}, "geometry": {"type": "Polygon", "coordinates": [[[77.5, 28.5], [81.0, 28.5], [81.0, 31.5], [77.5, 31.5], [77.5, 28.5]]]}}, {"type": "Feature", "properties": {"name": "West Bengal", "code": "WB"}, "geometry": {"type": "Polygon", "coordinates": [[[86.0, 21.5], [89.5, 21.5], [89.5, 27.5], [86.0, 27.5], [86.0, 21.5]]]}}, {"type": "Feature", "properties": {"name": "Jammu & Kashmir", "code": "JK"}, "geometry": {"type": "Polygon", "coordinates": [[[73.5, 32.5], [80.0, 32.5], [80.0, 37.0], [73.5, 37.0], [73.5, 32.5]]]}}]};
+
+const map = L.map('map', {
+    center: [22.5, 80.0],
+    zoom: 5,
+    zoomControl: true,
+    attributionControl: false,
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+}).addTo(map);
+
+L.geoJSON(geojsonData, {
+    style: {
+        color: '#1a1a3a',
+        weight: 1.2,
+        fillColor: '#0a0a1a',
+        fillOpacity: 0.3,
+    },
+}).addTo(map);
+
+function severityColor(sev) {
+    return {'Very High': '#ef4444', 'High': '#f97316', 'Moderate': '#eab308', 'Low': '#22c55e'}[sev] || '#6366f1';
+}
+function severityBadge(sev) {
+    const cls = {'Very High': 'vh', 'High': 'h', 'Moderate': 'm', 'Low': 'l'}[sev] || 'l';
+    return `<span class="severity-badge ${cls}">${sev}</span>`;
+}
+
+let markers = [];
+let selectedIdx = -1;
+
+function flyTo(idx) {
+    const h = hotspots[idx];
+    if (!h) return;
+    map.flyTo([h.lat, h.lon], 8, {duration: 0.8});
+    selectHotspot(idx);
+}
+
+function selectHotspot(idx) {
+    selectedIdx = idx;
+    const h = hotspots[idx];
+    document.querySelectorAll('.hotspot-item').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+    });
+    const dp = document.getElementById('detailPanel');
+    dp.classList.add('show');
+    document.getElementById('detailName').textContent = h.name;
+    document.getElementById('detailLocation').textContent = `${h.state} | ${h.lat.toFixed(4)}°N, ${h.lon.toFixed(4)}°E`;
+    document.getElementById('detailSeverity').innerHTML = severityBadge(h.severity);
+    document.getElementById('detailConfidence').textContent = h.confidence;
+    document.getElementById('detailPollutant').textContent = h.dominant_pollutant;
+    document.getElementById('detailAQI').textContent = `AQI ${h.aqi} | PM2.5 ${h.pm25}`;
+    document.getElementById('detailPopulation').textContent = h.population;
+    document.getElementById('detailCause').textContent = h.cause;
+    document.getElementById('detailRecommendation').textContent = h.recommendation;
+    document.getElementById('detailAuthority').textContent = `Responsible: ${h.authority}`;
+    const evList = document.getElementById('detailEvidence');
+    evList.innerHTML = h.evidence.split('<br>').map(e => `<li>${e}</li>`).join('');
+    const altDiv = document.getElementById('detailAlternatives');
+    altDiv.innerHTML = h.alternatives ? h.alternatives.split('<br>').map(line => {
+        const parts = line.replace(/&nbsp;/g,'').trim().split(':');
+        if (parts.length === 2) {
+            const name = parts[0].trim();
+            const pct = parseFloat(parts[1]);
+            return `<div class="alt-bar"><span class="alt-label">${name}</span><div class="alt-track"><div class="alt-fill" style="width:${pct}%"></div></div><span class="alt-pct">${pct}%</span></div>`;
+        }
+        return '';
+    }).join('') : '<div style="font-size:11px;color:#6b7280">No alternative sources identified</div>';
+}
+
+hotspots.forEach((h, i) => {
+    const size = Math.max(10, Math.min(h.size, 40));
+    const color = severityColor(h.severity);
+    const marker = L.circleMarker([h.lat, h.lon], {
+        radius: size,
+        fillColor: color,
+        color: color,
+        weight: 2,
+        opacity: 0.8,
+        fillOpacity: 0.3,
+    }).addTo(map);
+    marker.on('click', () => flyTo(i));
+    markers.push(marker);
+});
+
+const listEl = document.getElementById('hotspotList');
+hotspots.forEach((h, i) => {
+    const div = document.createElement('div');
+    div.className = 'hotspot-item';
+    div.innerHTML = `
+      <div class="hotspot-priority">#${i + 1}</div>
+      <div class="hotspot-marker-dot" style="background:${severityColor(h.severity)}"></div>
+      <div class="hotspot-info">
+        <div class="name">${h.name}</div>
+        <div class="detail">${h.state} | AQI ${h.aqi} | ${h.severity}</div>
+        <div class="cause">${h.cause} (${h.confidence})</div>
+      </div>
+    `;
+    div.addEventListener('click', () => flyTo(i));
+    listEl.appendChild(div);
+});
+
+document.getElementById('totalCount').textContent = hotspots.length;
+document.getElementById('criticalCount').textContent = Math.min(5, hotspots.length);
+document.getElementById('highCount').textContent = Math.max(0, Math.min(10, hotspots.length - 5));
+document.getElementById('lowCount').textContent = Math.max(0, hotspots.length - 15);
+
+if (hotspots.length > 0) flyTo(0);
+</script>
+</body>
+</html>
