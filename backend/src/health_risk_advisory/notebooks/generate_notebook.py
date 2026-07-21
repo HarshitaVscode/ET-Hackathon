@@ -1196,39 +1196,53 @@ RISK_COLORS_HEX = {"Minimal": "#22c55e", "Low": "#84cc16", "Moderate": "#eab308"
 WARD_NAMES = {v["name"]: k for k, v in WARDS.items()}
 
 def make_risk_gauge_html(score: float, level: str, label: str = "HEALTH RISK") -> str:
-    pct = score * 100
+    pct = min(score * 100, 100)
     color = RISK_COLORS_HEX.get(level, "#6b7280")
+    dash = pct * 2.513  # 2 * pi * r (r=60) ≈ 376.99, arc is ~60% = 226.19 → scale factor 2.513
     return f'''
-    <div style="text-align:center;padding:10px">
-      <svg width="180" height="130" viewBox="0 0 180 130">
-        <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#22c55e"/><stop offset="40%" stop-color="#eab308"/>
-          <stop offset="70%" stop-color="#f97316"/><stop offset="100%" stop-color="#dc2626"/>
-        </linearGradient></defs>
-        <path d="M20,110 A70,70 0 0,1 160,110" stroke="#333" stroke-width="18" fill="none" stroke-linecap="round"/>
-        <path d="M20,110 A70,70 0 0,1 160,110" stroke="url(#g)" stroke-width="18" fill="none" stroke-linecap="round"
-              stroke-dasharray="{pct*1.4/100*440},{440}" stroke-dashoffset="0" transform="rotate(180,90,110)"/>
-        <text x="90" y="85" text-anchor="middle" fill="white" font-size="36" font-weight="bold">{score:.2f}</text>
-        <text x="90" y="105" text-anchor="middle" fill="{color}" font-size="14" font-weight="bold">{level}</text>
-        <text x="90" y="15" text-anchor="middle" fill="#aaa" font-size="11">{label}</text>
+    <div style="text-align:center;padding:5px;animation:fadeIn 0.6s ease-out">
+      <svg width="220" height="160" viewBox="0 0 220 160">
+        <defs>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#22c55e"/><stop offset="35%" stop-color="#eab308"/>
+            <stop offset="65%" stop-color="#f97316"/><stop offset="100%" stop-color="#dc2626"/>
+          </linearGradient>
+          <filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <path d="M20,130 A90,90 0 0,1 200,130" stroke="#1e293b" stroke-width="22" fill="none" stroke-linecap="round"/>
+        <path d="M20,130 A90,90 0 0,1 200,130" stroke="url(#g2)" stroke-width="22" fill="none" stroke-linecap="round"
+              stroke-dasharray="{dash},{377}" stroke-dashoffset="0" transform="rotate(180,110,130)"
+              style="transition: stroke-dasharray 1s ease-out;filter:url(#glow2)"/>
+        <text x="110" y="95" text-anchor="middle" fill="white" font-size="44" font-weight="bold" filter="url(#glow2)">{score:.2f}</text>
+        <text x="110" y="120" text-anchor="middle" fill="{color}" font-size="16" font-weight="bold">{level.upper()}</text>
+        <text x="110" y="20" text-anchor="middle" fill="#64748b" font-size="11" letter-spacing="2">{label}</text>
+        <text x="30" y="155" text-anchor="middle" fill="#475569" font-size="9">0</text>
+        <text x="110" y="155" text-anchor="middle" fill="#475569" font-size="9">0.5</text>
+        <text x="190" y="155" text-anchor="middle" fill="#475569" font-size="9">1.0</text>
       </svg>
     </div>'''
 
 def make_stat_card_html(icon: str, label: str, value: str, color: str = "#3b82f6") -> str:
     return f'''
-    <div style="background:#16213e;border-radius:10px;padding:12px;text-align:center;border-left:4px solid {color};
-                min-width:130px;flex:1;margin:4px">
-      <div style="font-size:24px;margin-bottom:4px">{icon}</div>
-      <div style="font-size:22px;font-weight:bold;color:white">{value}</div>
-      <div style="font-size:11px;color:#94a3b8;margin-top:2px">{label}</div>
+    <div class="kpi-card" style="background:linear-gradient(135deg,#1a2744 0%,#16213e 100%);border-radius:12px;padding:14px;
+                text-align:center;border-top:3px solid {color};box-shadow:0 4px 20px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.05);transition:all 0.3s ease;animation:slideUp 0.4s ease-out">
+      <div style="font-size:28px;margin-bottom:6px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))">{icon}</div>
+      <div style="font-size:24px;font-weight:bold;color:white;text-shadow:0 2px 4px rgba(0,0,0,0.3)">{value}</div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px">{label}</div>
     </div>'''
 
 def make_recommendation_card(icon: str, title: str, desc: str, color: str = "#3b82f6") -> str:
     return f'''
-    <div style="background:#1a2744;border-radius:8px;padding:10px;border-left:3px solid {color};margin:4px;flex:1;min-width:160px">
-      <div style="font-size:20px;margin-bottom:4px">{icon}</div>
-      <div style="font-size:13px;font-weight:bold;color:white">{title}</div>
-      <div style="font-size:11px;color:#94a3b8;margin-top:3px">{desc}</div>
+    <div class="rec-card" style="background:linear-gradient(135deg,#1a2744 0%,#0f1a33 100%);border-radius:10px;padding:12px;
+                border-left:3px solid {color};margin:5px;flex:1;min-width:180px;
+                box-shadow:0 2px 12px rgba(0,0,0,0.2);transition:all 0.3s ease;
+                animation:slideUp 0.5s ease-out">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <div style="font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))">{icon}</div>
+        <div style="font-size:13px;font-weight:bold;color:white;text-shadow:0 1px 2px rgba(0,0,0,0.3)">{title}</div>
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin-left:32px;line-height:1.4">{desc}</div>
     </div>'''
 
 ward_dropdown = widgets.Dropdown(options=sorted(WARD_NAMES.keys()), value="Karol Bagh", description="Ward:", layout={"width": "250px"})
@@ -1261,6 +1275,69 @@ def get_adv_row(ward_name: str, horizon: int = 24):
     matches = advisory_df[(advisory_df["ward_name"] == ward_name)]
     return matches.iloc[0] if len(matches) > 0 else None
 
+def make_ward_map_html(ward_name: str, horizon: int) -> str:
+    cells = ""
+    sorted_wards = sorted(WARDS.items(), key=lambda x: x[1]["lat"], reverse=True)
+    for i, (wid, winfo) in enumerate(sorted_wards):
+        wn = winfo["name"]
+        h_row = risk_df[(risk_df["ward_id"] == wid) & (risk_df["forecast_hour"] == horizon)]
+        if len(h_row) == 0:
+            h_row = risk_df[(risk_df["ward_id"] == wid) & (risk_df["forecast_hour"] == 24)]
+        if len(h_row) == 0:
+            continue
+        hr = h_row.iloc[0]
+        lvl = hr["risk_level"]
+        c = RISK_COLORS_HEX.get(lvl, "#6b7280")
+        is_active = wn == ward_name
+        border = f"2px solid {c}" if is_active else f"1px solid rgba(255,255,255,0.08)"
+        shadow = f"0 0 20px {c}40" if is_active else "none"
+        cells += f'''
+        <div style="background:{"linear-gradient(135deg,#1a2744,#16213e)" if is_active else "#0d1117"};border-radius:8px;
+                    padding:8px;text-align:center;border:{border};cursor:pointer;
+                    box-shadow:{shadow};transition:all 0.3s ease;
+                    animation:fadeIn 0.5s ease-out;animation-delay:{i*0.05}s">
+          <div style="font-size:10px;color:{c};font-weight:bold;text-transform:uppercase;letter-spacing:0.5px">{wn}</div>
+          <div style="font-size:16px;font-weight:bold;color:white;margin:2px 0">{hr['forecast_aqi']:.0f}</div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+            <div style="width:8px;height:8px;border-radius:50%;background:{c};animation:pulse 2s infinite"></div>
+            <div style="font-size:9px;color:#94a3b8">{lvl}</div>
+          </div>
+          <div style="height:3px;background:#1e293b;border-radius:2px;margin-top:4px">
+            <div style="height:3px;background:{c};border-radius:2px;width:{hr['risk_score']*100}%;transition:width 1s ease"></div>
+          </div>
+        </div>'''
+    region_legend = '''
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;font-size:10px;color:#64748b">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e"></span>Minimal</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#84cc16"></span>Low</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#eab308"></span>Moderate</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#f97316"></span>High</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#dc2626"></span>Critical</span>
+    </div>'''
+    return f'''
+    <div style="background:#0d1117;border-radius:12px;padding:14px;animation:fadeIn 0.6s ease-out">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:bold;color:white">🗺️ Ward Risk Map — All 12 Wards</div>
+        <div style="font-size:10px;color:#64748b">Risk at {horizon}h forecast</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px">{cells}</div>
+      {region_legend}
+    </div>'''
+
+def make_insight_bar(label: str, value: float, max_val: float, color: str, icon: str, suffix: str = "") -> str:
+    pct = min(value / max_val * 100, 100)
+    return f'''
+    <div style="margin:6px 0;animation:slideUp 0.4s ease-out">
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px">
+        <span style="color:#94a3b8">{icon} {label}</span>
+        <span style="color:white;font-weight:bold">{value}{suffix}</span>
+      </div>
+      <div style="height:6px;background:#1e293b;border-radius:3px;overflow:hidden">
+        <div style="height:6px;background:linear-gradient(90deg,{color}88,{color});border-radius:3px;
+                    width:{pct}%;transition:width 1.2s ease-out"></div>
+      </div>
+    </div>'''
+
 def update_dashboard(ward_name: str, horizon: int):
     with output_main:
         clear_output(wait=True)
@@ -1283,9 +1360,12 @@ def update_dashboard(ward_name: str, horizon: int):
         subtitle = {"immediate": "Take action now", "short-term": "Prepare", "medium-term": "Plan ahead"}
 
         gauge = make_risk_gauge_html(risk_score, risk_level)
-        cards_html = "<div style='display:flex;flex-wrap:wrap;gap:6px;margin:10px 0'>"
+        aqi_cat = get_aqi_category(aqi)
+        aqi_c = get_aqi_color(aqi)
+
+        cards_html = "<div class='kpi-grid' style='display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0'>"
         cards_html += make_stat_card_html("🏙️", "Ward", ward_name, "#3b82f6")
-        cards_html += make_stat_card_html("📊", "AQI", f"{aqi:.0f}", get_aqi_color(aqi))
+        cards_html += make_stat_card_html("📊", "AQI", f"{aqi:.0f}", aqi_c)
         cards_html += make_stat_card_html("⚠️", "Risk Score", f"{risk_score:.3f}", RISK_COLORS_HEX.get(risk_level, "#6b7280"))
         cards_html += make_stat_card_html("👥", "At Risk", f"{exposed:,}", "#f97316")
         cards_html += make_stat_card_html("📈", "Exposure", f"{exposure_pct}%", "#a855f7")
@@ -1295,80 +1375,153 @@ def update_dashboard(ward_name: str, horizon: int):
         cards_html += "</div>"
 
         severity_banner = f'''
-        <div style="background:{RISK_COLORS_HEX.get(risk_level, '#6b7280')};border-radius:8px;padding:14px;margin:10px 0;
-                    display:flex;align-items:center;gap:12px">
-          <div style="font-size:36px">{emoji_level.get(risk_level, "⚠️")}</div>
-          <div>
-            <div style="font-size:20px;font-weight:bold;color:white">{risk_level.upper()} HEALTH RISK</div>
-            <div style="font-size:13px;color:rgba(255,255,255,0.9)">{WARD_NAMES[ward_name]} | {[v[2] for v in RISK_LEVELS if v[2]==risk_level][0] if any(v[2]==risk_level for v in RISK_LEVELS) else ''}</div>
+        <div class="severity-banner" style="background:linear-gradient(135deg,{RISK_COLORS_HEX.get(risk_level,'#6b7280')}dd,{RISK_COLORS_HEX.get(risk_level,'#6b7280')}88);
+                    border-radius:12px;padding:16px 20px;margin:8px 0;display:flex;align-items:center;gap:16px;
+                    box-shadow:0 4px 24px {RISK_COLORS_HEX.get(risk_level,'#6b7280')}30;
+                    border:1px solid {RISK_COLORS_HEX.get(risk_level,'#6b7280')}44;animation:slideUp 0.5s ease-out">
+          <div style="font-size:42px;animation:pulse 2s infinite">{emoji_level.get(risk_level, "⚠️")}</div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span style="font-size:22px;font-weight:bold;color:white;text-shadow:0 2px 8px rgba(0,0,0,0.3)">{risk_level.upper()} HEALTH RISK</span>
+              <span style="background:rgba(0,0,0,0.3);padding:3px 10px;border-radius:20px;font-size:11px;color:rgba(255,255,255,0.9)">AQI {aqi:.0f} · {aqi_cat}</span>
+            </div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.85);margin-top:4px">
+              {ward_name} · {exposed:,} residents at risk ({exposure_pct}% of {total_pop:,})
+            </div>
+          </div>
+          <div style="text-align:right;font-size:10px;color:rgba(255,255,255,0.6);white-space:nowrap">
+            <div>{datetime.now().strftime('%d %b %Y')}</div>
+            <div>{horizon}h forecast</div>
           </div>
         </div>'''
 
-        precaution_cards = ""
+        insight_bars = "<div style='padding:4px 0'>"
+        insight_bars += make_insight_bar("Risk Score", risk_score, 1.0, RISK_COLORS_HEX.get(risk_level, "#6b7280"), "⚠️")
+        insight_bars += make_insight_bar("AQI", aqi, 500, aqi_c, "🌫️")
+        insight_bars += make_insight_bar("Exposure", exposure_pct, 100, "#a855f7", "👥", "%")
+        insight_bars += make_insight_bar("Vulnerability", vrow['vulnerability_score'], 1.0, "#22c55e", "👴")
+        insight_bars += make_insight_bar("Healthcare Access", vrow['healthcare_access'], 1.0, "#3b82f6", "🏥")
+        insight_bars += "</div>"
+
+        ai_insight_cards = f'''
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0">
+          <div style="background:linear-gradient(135deg,#1a2744,#0f1a33);border-radius:10px;padding:12px;animation:slideUp 0.5s ease-out">
+            <div style="font-size:11px;color:#3b82f6;font-weight:bold;text-transform:uppercase;letter-spacing:1px">🌍 Primary Pollutant</div>
+            <div style="font-size:18px;font-weight:bold;color:white;margin-top:4px">{adv['primary_pollutant'] if adv is not None and 'primary_pollutant' in adv else 'PM2.5'}</div>
+            <div style="font-size:10px;color:#64748b;margin-top:2px">Dominant contaminant</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#1a2744,#0f1a33);border-radius:10px;padding:12px;animation:slideUp 0.6s ease-out">
+            <div style="font-size:11px;color:{"#22c55e" if prow is not None and prow['trend']=='improving' else '#eab308' if prow is not None and prow['trend']=='stable' else '#f97316'};font-weight:bold;text-transform:uppercase;letter-spacing:1px">📊 Trend</div>
+            <div style="font-size:18px;font-weight:bold;color:white;margin-top:4px">{(prow['trend'] if prow is not None else 'Unknown').title()}</div>
+            <div style="font-size:10px;color:#64748b;margin-top:2px">{(prow['primary_source'] if prow is not None else 'Unknown').replace('_',' ').title()} source</div>
+          </div>
+        </div>'''
+
+        combined_insight = f'''
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0">
+          <div style="flex:0 0 230px">{gauge}</div>
+          <div style="flex:1;min-width:280px">
+            <div style="background:linear-gradient(135deg,#16213e,#0d1117);border-radius:12px;padding:14px;
+                        border:1px solid rgba(255,255,255,0.05);box-shadow:0 4px 20px rgba(0,0,0,0.2)">
+              <div style="font-size:12px;font-weight:bold;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">🤖 AI INTELLIGENCE SUMMARY</div>
+              {insight_bars}
+              {ai_insight_cards}
+            </div>
+          </div>
+        </div>'''
+
+        precaution_cards = "<div class='rec-grid' style='display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px;margin:8px 0'>"
         template = ADVISORY_TEMPLATES.get(risk_level, ADVISORY_TEMPLATES["Moderate"])
-        for prec in template["precautions"][:6]:
+        for i, prec in enumerate(template["precautions"][:6]):
             precaution_cards += make_recommendation_card("✅", prec[:40], prec[40:] if len(prec) > 40 else "", RISK_COLORS_HEX.get(risk_level, "#3b82f6"))
+        precaution_cards += "</div>"
 
         pop_html = f'''
-        <div style="background:#16213e;border-radius:10px;padding:14px;margin:10px 0">
-          <div style="font-size:15px;font-weight:bold;margin-bottom:10px;color:white">👥 Population-Specific Guidance</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <div style="background:#1a2744;border-radius:8px;padding:10px;flex:1;min-width:120px;text-align:center">
-              <div style="font-size:24px">👶</div><div style="font-size:12px;font-weight:bold;color:white">Children</div>
-              <div style="font-size:11px;color:#94a3b8">{vrow['child_pct']}% of population</div>
+        <div class="section-card" style="background:linear-gradient(135deg,#16213e,#0d1117);border-radius:12px;padding:16px;
+                    margin:10px 0;border:1px solid rgba(255,255,255,0.05);animation:fadeIn 0.6s ease-out">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="font-size:20px">👥</div>
+            <div><span style="font-size:15px;font-weight:bold;color:white">Population-Specific Guidance</span>
+            <span style="font-size:10px;color:#64748b;margin-left:8px">Vulnerable group distribution</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">
+            <div class="pop-card" style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;border-top:3px solid #3b82f6;animation:slideUp 0.4s ease-out">
+              <div style="font-size:28px">👶</div>
+              <div style="font-size:18px;font-weight:bold;color:white">{vrow['child_pct']}%</div>
+              <div style="font-size:11px;color:#94a3b8">Children</div>
+              <div style="height:4px;background:#1e293b;border-radius:2px;margin-top:6px">
+                <div style="height:4px;background:#3b82f6;border-radius:2px;width:{vrow['child_pct']*2}%"></div>
+              </div>
             </div>
-            <div style="background:#1a2744;border-radius:8px;padding:10px;flex:1;min-width:120px;text-align:center">
-              <div style="font-size:24px">👴</div><div style="font-size:12px;font-weight:bold;color:white">Elderly</div>
-              <div style="font-size:11px;color:#94a3b8">{vrow['elderly_pct']}% of population</div>
+            <div class="pop-card" style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;border-top:3px solid #a855f7;animation:slideUp 0.45s ease-out">
+              <div style="font-size:28px">👴</div>
+              <div style="font-size:18px;font-weight:bold;color:white">{vrow['elderly_pct']}%</div>
+              <div style="font-size:11px;color:#94a3b8">Elderly (60+)</div>
+              <div style="height:4px;background:#1e293b;border-radius:2px;margin-top:6px">
+                <div style="height:4px;background:#a855f7;border-radius:2px;width:{vrow['elderly_pct']*2}%"></div>
+              </div>
             </div>
-            <div style="background:#1a2744;border-radius:8px;padding:10px;flex:1;min-width:120px;text-align:center">
-              <div style="font-size:24px">🫁</div><div style="font-size:12px;font-weight:bold;color:white">Respiratory</div>
-              <div style="font-size:11px;color:#94a3b8">{vrow['respiratory_pct']}% prevalence</div>
+            <div class="pop-card" style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;border-top:3px solid #f97316;animation:slideUp 0.5s ease-out">
+              <div style="font-size:28px">🫁</div>
+              <div style="font-size:18px;font-weight:bold;color:white">{vrow['respiratory_pct']}%</div>
+              <div style="font-size:11px;color:#94a3b8">Respiratory</div>
+              <div style="height:4px;background:#1e293b;border-radius:2px;margin-top:6px">
+                <div style="height:4px;background:#f97316;border-radius:2px;width:{vrow['respiratory_pct']*2}%"></div>
+              </div>
             </div>
-            <div style="background:#1a2744;border-radius:8px;padding:10px;flex:1;min-width:120px;text-align:center">
-              <div style="font-size:24px">❤️</div><div style="font-size:12px;font-weight:bold;color:white">Cardiac</div>
-              <div style="font-size:11px;color:#94a3b8">{vrow['cardiovascular_pct']}% prevalence</div>
+            <div class="pop-card" style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;border-top:3px solid #dc2626;animation:slideUp 0.55s ease-out">
+              <div style="font-size:28px">❤️</div>
+              <div style="font-size:18px;font-weight:bold;color:white">{vrow['cardiovascular_pct']}%</div>
+              <div style="font-size:11px;color:#94a3b8">Cardiac</div>
+              <div style="height:4px;background:#1e293b;border-radius:2px;margin-top:6px">
+                <div style="height:4px;background:#dc2626;border-radius:2px;width:{vrow['cardiovascular_pct']*2}%"></div>
+              </div>
             </div>
           </div>
         </div>'''
 
         emergency_html = f'''
-        <div style="background:#16213e;border-radius:10px;padding:14px;margin:10px 0">
-          <div style="font-size:15px;font-weight:bold;margin-bottom:10px;color:white">🚑 Emergency Preparedness</div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px">
-            <div style="flex:1;min-width:120px;background:#1a2744;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:#94a3b8">Healthcare Access</div>
-              <div style="font-size:20px;font-weight:bold;color:white">{vrow['healthcare_access']*100:.0f}%</div>
-              <div style="height:6px;background:#333;border-radius:3px;margin-top:5px">
-                <div style="height:6px;background:{"#22c55e" if vrow['healthcare_access']>0.7 else "#eab308" if vrow['healthcare_access']>0.5 else "#dc2626"};border-radius:3px;width:{vrow['healthcare_access']*100}%"></div>
+        <div class="section-card" style="background:linear-gradient(135deg,#16213e,#0d1117);border-radius:12px;padding:16px;
+                    margin:10px 0;border:1px solid rgba(255,255,255,0.05);animation:fadeIn 0.7s ease-out">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="font-size:20px">🚑</div>
+            <div><span style="font-size:15px;font-weight:bold;color:white">Emergency Preparedness</span>
+            <span style="font-size:10px;color:#64748b;margin-left:8px">Infrastructure readiness indicators</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">
+            <div style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;animation:slideUp 0.4s ease-out">
+              <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">🏥 Healthcare</div>
+              <div style="font-size:24px;font-weight:bold;color:white;margin:4px 0">{vrow['healthcare_access']*100:.0f}%</div>
+              <div style="height:6px;background:#1e293b;border-radius:3px">
+                <div style="height:6px;background:{"#22c55e" if vrow['healthcare_access']>0.7 else "#eab308" if vrow['healthcare_access']>0.5 else "#dc2626"};border-radius:3px;width:{vrow['healthcare_access']*100}%;transition:width 1s ease"></div>
               </div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a2744;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:#94a3b8">Pop. Density</div>
-              <div style="font-size:20px;font-weight:bold;color:white">{vrow['pop_density_per_km2']:,}</div>
-              <div style="font-size:10px;color:#94a3b8">per km²</div>
+            <div style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;animation:slideUp 0.45s ease-out">
+              <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">👥 Population</div>
+              <div style="font-size:24px;font-weight:bold;color:white;margin:4px 0">{total_pop:,}</div>
+              <div style="font-size:10px;color:#64748b">residents</div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a2744;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:#94a3b8">Green Cover</div>
-              <div style="font-size:20px;font-weight:bold;color:white">{vrow['green_cover_pct']:.0f}%</div>
-              <div style="height:6px;background:#333;border-radius:3px;margin-top:5px">
-                <div style="height:6px;background:#22c55e;border-radius:3px;width:{vrow['green_cover_pct']*2}%"></div>
+            <div style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;animation:slideUp 0.5s ease-out">
+              <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">📊 Density</div>
+              <div style="font-size:24px;font-weight:bold;color:white;margin:4px 0">{vrow['pop_density_per_km2']:,}</div>
+              <div style="font-size:10px;color:#64748b">per km²</div>
+            </div>
+            <div style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;animation:slideUp 0.55s ease-out">
+              <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">🌿 Green Cover</div>
+              <div style="font-size:24px;font-weight:bold;color:white;margin:4px 0">{vrow['green_cover_pct']:.0f}%</div>
+              <div style="height:6px;background:#1e293b;border-radius:3px">
+                <div style="height:6px;background:#22c55e;border-radius:3px;width:{vrow['green_cover_pct']*2}%;transition:width 1s ease"></div>
               </div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a2744;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:#94a3b8">Income Group</div>
-              <div style="font-size:20px;font-weight:bold;color:white">{vrow['income_group'].title()}</div>
-              <div style="font-size:10px;color:#94a3b8">{"🟢" if vrow['income_group']=='high' else '🟡' if vrow['income_group']=='medium' else '🔴'}</div>
-            </div>
-            <div style="flex:1;min-width:120px;background:#1a2744;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:#94a3b8">Population</div>
-              <div style="font-size:20px;font-weight:bold;color:white">{total_pop:,}</div>
-              <div style="font-size:10px;color:#94a3b8">residents</div>
+            <div style="background:#1a2744;border-radius:10px;padding:12px;text-align:center;animation:slideUp 0.6s ease-out">
+              <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">💰 Income</div>
+              <div style="font-size:24px;font-weight:bold;color:white;margin:4px 0">{vrow['income_group'].title()}</div>
+              <div style="font-size:16px">{"🟢" if vrow['income_group']=='high' else '🟡' if vrow['income_group']=='medium' else '🔴'}</div>
             </div>
           </div>
         </div>'''
 
-        forecast_timeline = "<div style='display:flex;gap:8px;margin:10px 0'>"
+        forecast_timeline = "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0'>"
         for h in [24, 48, 72]:
             h_row = risk_df[(risk_df["ward_id"] == WARD_NAMES[ward_name]) & (risk_df["forecast_hour"] == h)]
             if len(h_row) > 0:
@@ -1377,50 +1530,79 @@ def update_dashboard(ward_name: str, horizon: int):
                 c = RISK_COLORS_HEX.get(lvl, "#6b7280")
                 today_str = "Today" if h == 24 else "Tomorrow" if h == 48 else "Day 3"
                 forecast_timeline += f'''
-                <div style="flex:1;background:#16213e;border-radius:8px;padding:10px;text-align:center;border-top:3px solid {c}">
-                  <div style="font-size:11px;color:#94a3b8">{today_str}</div>
-                  <div style="font-size:18px;font-weight:bold;color:white">{hr['forecast_aqi']:.0f}</div>
-                  <div style="font-size:12px;color:{c};font-weight:bold">{lvl}</div>
-                  <div style="font-size:11px;color:#94a3b8">{hr['risk_score']:.2f} risk</div>
-                  <div style="height:4px;background:#333;border-radius:2px;margin-top:5px">
-                    <div style="height:4px;background:{c};border-radius:2px;width:{hr['risk_score']*100}%"></div>
+                <div style="background:linear-gradient(180deg,#16213e 0%,#0d1117 100%);border-radius:12px;padding:14px;
+                            text-align:center;border-top:4px solid {c};box-shadow:0 4px 16px rgba(0,0,0,0.2);
+                            animation:slideUp {0.3 + h/240}s ease-out">
+                  <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:bold">{today_str}</div>
+                  <div style="font-size:28px;font-weight:bold;color:white;margin:6px 0;text-shadow:0 2px 8px rgba(0,0,0,0.3)">{hr['forecast_aqi']:.0f}</div>
+                  <div style="font-size:13px;color:{c};font-weight:bold;display:flex;align-items:center;justify-content:center;gap:6px">
+                    <span style="width:8px;height:8px;border-radius:50%;background:{c};display:inline-block"></span>{lvl}
+                  </div>
+                  <div style="font-size:11px;color:#64748b;margin:4px 0">Risk: {hr['risk_score']:.2f}</div>
+                  <div style="height:5px;background:#1e293b;border-radius:3px;margin-top:6px">
+                    <div style="height:5px;background:linear-gradient(90deg,{c}88,{c});border-radius:3px;width:{hr['risk_score']*100}%;transition:width 1s ease"></div>
                   </div>
                 </div>'''
         forecast_timeline += "</div>"
 
+        ward_map = make_ward_map_html(ward_name, horizon)
+
         html_page = f'''
-        <div style="font-family:'Segoe UI',system-ui,sans-serif;background:#0a0e27;color:white;padding:16px;border-radius:12px;max-width:100%">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-            <div style="font-size:28px">🏥</div>
-            <div><div style="font-size:18px;font-weight:bold">VAYU-DRISHTI HEALTH COMMAND DASHBOARD</div>
-            <div style="font-size:11px;color:#94a3b8">Smart City Air Quality Intelligence Platform — Live Health Risk Monitor</div></div>
-            <div style="margin-left:auto;font-size:11px;color:#94a3b8">{datetime.now().strftime('%d %b %Y %H:%M')}</div>
+        <style>
+          @keyframes fadeIn {{ from {{ opacity:0; }} to {{ opacity:1; }} }}
+          @keyframes slideUp {{ from {{ opacity:0; transform:translateY(20px); }} to {{ opacity:1; transform:translateY(0); }} }}
+          @keyframes pulse {{ 0%,100% {{ opacity:1; }} 50% {{ opacity:0.5; }} }}
+          @keyframes countUp {{ from {{ opacity:0; transform:scale(0.8); }} to {{ opacity:1; transform:scale(1); }} }}
+          .kpi-card:hover {{ transform:translateY(-4px) scale(1.02); box-shadow:0 8px 30px rgba(0,0,0,0.4) !important; }}
+          .rec-card:hover {{ transform:translateX(4px); box-shadow:0 4px 20px rgba(0,0,0,0.3) !important; }}
+          .pop-card:hover {{ transform:translateY(-3px); box-shadow:0 6px 24px rgba(0,0,0,0.3) !important; }}
+          .section-card:hover {{ border-color:rgba(59,130,246,0.3) !important; }}
+          .severity-banner:hover {{ transform:scale(1.005); }}
+        </style>
+        <div style="font-family:'Segoe UI',system-ui,sans-serif;background:#0a0e27;color:white;padding:16px;border-radius:12px;width:100%;max-width:100%;box-sizing:border-box">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
+            <div style="width:40px;height:40px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(59,130,246,0.3)">🏥</div>
+            <div>
+              <div style="font-size:17px;font-weight:bold;background:linear-gradient(90deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent">VAYU-DRISHTI HEALTH COMMAND CENTER</div>
+              <div style="font-size:10px;color:#64748b;letter-spacing:1px">SMART CITY AIR QUALITY INTELLIGENCE · LIVE HEALTH RISK MONITOR</div>
+            </div>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+              <div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:6px;font-size:10px;color:#94a3b8">
+                <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s infinite"></span>
+                LIVE
+              </div>
+              <div style="font-size:10px;color:#64748b">{datetime.now().strftime('%d %b %Y · %H:%M')}</div>
+            </div>
           </div>
           {severity_banner}
-          <div style="display:flex;flex-wrap:wrap;gap:10px">
-            <div style="flex:0 0 190px">{gauge}</div>
-            <div style="flex:1;min-width:300px">
-              <div style="background:#16213e;border-radius:10px;padding:14px">
-                <div style="font-size:14px;font-weight:bold;color:white;margin-bottom:8px">🤖 AI-Generated Health Summary</div>
-                <div style="font-size:12px;color:#cbd5e1;line-height:1.6">
-                  <b>{ward_name}</b> faces <b style="color:{RISK_COLORS_HEX.get(risk_level,"#fff")}">{risk_level.lower()}</b> health risk with AQI of <b>{aqi:.0f}</b> ({get_aqi_category(aqi)}).
-                  An estimated <b>{exposed:,} residents ({exposure_pct}%)</b> are at risk out of {total_pop:,}.
-                  {f"The primary pollutant is <b>{adv['primary_pollutant']}</b>." if adv is not None and 'primary_pollutant' in adv else ""}
-                  Vulnerability score is <b>{vrow['vulnerability_score']:.3f}</b> with {vrow['respiratory_pct']}% respiratory disease prevalence.
-                  {f"Trend: <b>{prow['trend']}</b>." if prow is not None else ""}
-                  {subtitle.get('immediate' if horizon <= 24 else 'short-term' if horizon <= 48 else 'medium-term', '')}.
-                </div>
+          {combined_insight}
+          {cards_html}
+          <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin:10px 0">
+            {ward_map}
+            <div>
+              <div style="background:linear-gradient(135deg,#16213e,#0d1117);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.05);animation:fadeIn 0.6s ease-out">
+                <div style="font-size:14px;font-weight:bold;color:white;margin-bottom:10px">📈 Forecast Timeline — {ward_name}</div>
+                {forecast_timeline}
               </div>
             </div>
           </div>
-          {cards_html}
-          {forecast_timeline}
-          <div style="font-size:15px;font-weight:bold;color:white;margin:8px 0 4px">✅ Recommended Precautions</div>
-          <div style="display:flex;flex-wrap:wrap;gap:4px">{precaution_cards}</div>
-          {pop_html}
-          {emergency_html}
-          <div style="text-align:center;margin-top:12px;padding:10px;background:#0d1117;border-radius:8px;font-size:11px;color:#94a3b8">
-            🚑 Emergency: 108 | ☎ Health Helpline: 1800-180-1104 | 🌐 vayudrishti.health/advisory
+          <div class="section-card" style="background:linear-gradient(135deg,#16213e,#0d1117);border-radius:12px;padding:16px;margin:10px 0;border:1px solid rgba(255,255,255,0.05)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+              <div style="font-size:18px">✅</div>
+              <div><span style="font-size:15px;font-weight:bold;color:white">Recommended Precautions</span>
+              <span style="font-size:10px;color:#64748b;margin-left:8px">Based on {risk_level} risk level</span></div>
+            </div>
+            {precaution_cards}
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0">
+            {pop_html}
+            {emergency_html}
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:12px;padding:12px 16px;background:linear-gradient(135deg,#0d1117,#16213e);border-radius:10px;border:1px solid rgba(255,255,255,0.05);font-size:11px;color:#94a3b8;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:6px"><span style="font-size:16px">🚑</span> Emergency: <b style="color:white">108</b></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="font-size:16px">☎</span> Helpline: <b style="color:white">1800-180-1104</b></span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="font-size:16px">🌐</span> vayudrishti.health/advisory</span>
+            <span style="font-size:9px;color:#475569">AI-generated advisory · Follow official protocols</span>
           </div>
         </div>'''
         display(HTML(html_page))
@@ -1431,7 +1613,24 @@ def on_update(change):
 ward_dropdown.observe(on_update, names="value")
 horizon_slider.observe(on_update, names="value")
 
-controls = widgets.HBox([ward_dropdown, horizon_slider])
+controls = widgets.HBox([
+    widgets.VBox([
+        widgets.HTML(value='<div style="font-size:11px;color:#94a3b8;font-weight:bold;letter-spacing:0.5px;margin-bottom:2px">📍 WARD</div>'),
+        ward_dropdown,
+    ], layout={"align_items": "stretch"}),
+    widgets.VBox([
+        widgets.HTML(value='<div style="font-size:11px;color:#94a3b8;font-weight:bold;letter-spacing:0.5px;margin-bottom:2px">⏱ FORECAST</div>'),
+        horizon_slider,
+    ], layout={"align_items": "stretch"}),
+], layout={
+    "border": "1px solid rgba(255,255,255,0.08)",
+    "border-radius": "10px",
+    "padding": "12px 16px",
+    "background": "linear-gradient(135deg, #0d1117, #16213e)",
+    "margin": "4px 0 8px 0",
+    "justify_content": "center",
+    "gap": "24px",
+})
 display(controls)
 display(output_main)
 update_dashboard("Karol Bagh", 24)""")
