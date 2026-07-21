@@ -1433,6 +1433,7 @@ horizon_slider.observe(on_update, names="value")
 
 controls = widgets.HBox([ward_dropdown, horizon_slider])
 display(controls)
+display(output_main)
 update_dashboard("Karol Bagh", 24)""")
 
     md("""### 16.2 Side-by-Side Ward Comparison
