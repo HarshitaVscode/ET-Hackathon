@@ -51,15 +51,27 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime, timedelta
+from IPython.display import display
 
 warnings.filterwarnings("ignore")
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_rows", 100)
 
-# Ensure module is importable
-module_path = Path(os.getcwd()).resolve()
-if str(module_path / "backend") not in sys.path:
-    sys.path.insert(0, str(module_path))
+# Find project root — walk up from multiple starting points
+_start_candidates = [Path(os.getcwd()).resolve()]
+_start_candidates += [Path(p).resolve() for p in sys.path if p and Path(p).exists()]
+_root = None
+for _start in _start_candidates:
+    _p = _start
+    for _ in range(8):
+        if (_p / "backend" / "src" / "hyperlocal_forecast_agent" / "config.py").exists():
+            _root = _p
+            break
+        _p = _p.parent
+    if _root:
+        break
+if _root and str(_root) not in sys.path:
+    sys.path.insert(0, str(_root))
 
 from backend.src.hyperlocal_forecast_agent.config import HFConfig
 from backend.src.hyperlocal_forecast_agent.data.downloader import DataDownloader, load_master_dataset
@@ -82,7 +94,8 @@ print(f"Configuration: {cfg.city}, {cfg.country}")
 print(f"Data dir: {cfg.data_dir}")
 print(f"Artifacts dir: {cfg.artifacts_dir}")
 print(f"Models: {', '.join(cfg.test_models)}")
-print(f"Forecast horizons: {cfg.forecast_horizons}h""")
+print(f"Forecast horizons: {cfg.forecast_horizons}h")
+""")
 
     md("""## 2. Data Acquisition
 
@@ -176,7 +189,8 @@ print(f"\\nFeature matrix: {features.shape}")
 print(f"Feature columns ({len(fe.feature_columns)}):")
 for i, c in enumerate(fe.feature_columns):
     print(f"  {i+1:2d}. {c}")
-print(f"\\nNaN count: {features.isnull().sum().sum()}""")
+print(f"\\nNaN count: {features.isnull().sum().sum()}")
+""")
 
     md("""## 5. Train/Validation/Test Split
 
@@ -270,8 +284,9 @@ best_model_cls = {
 }
 print(f"Walk-forward validation on best model: {best_name}")
 t0 = time.time()
+wf_model = best_model_cls.get(best_name, RandomForestModel)()
 wf_result = walk_forward_validation(
-    all_models.get(best_name, best_model_cls.get(best_name, RandomForestModel)())(),
+    wf_model,
     features, fe.feature_columns, target_col="aqi",
     n_splits=5, horizon=72,
 )
@@ -407,13 +422,13 @@ Use the widgets below to input forecast conditions and get a predicted AQI.""")
 from IPython.display import display, clear_output
 
 # Input widgets
-pm25_slider = widgets.FloatSlider(value=80, min=0, max=500, step=0.1, description="PM2.5 (µg/m³):",
+pm25_slider = widgets.FloatSlider(value=80, min=0, max=500, step=0.1, description="PM2.5 (ug/m3):",
     style={"description_width": "initial"}, layout=widgets.Layout(width="80%"))
-pm10_slider = widgets.FloatSlider(value=150, min=0, max=600, step=0.1, description="PM10 (µg/m³):",
+pm10_slider = widgets.FloatSlider(value=150, min=0, max=600, step=0.1, description="PM10 (ug/m3):",
     style={"description_width": "initial"}, layout=widgets.Layout(width="80%"))
-no2_slider = widgets.FloatSlider(value=45, min=0, max=400, step=0.1, description="NO₂ (µg/m³):",
+no2_slider = widgets.FloatSlider(value=45, min=0, max=400, step=0.1, description="NO2 (ug/m3):",
     style={"description_width": "initial"}, layout=widgets.Layout(width="80%"))
-temp_slider = widgets.FloatSlider(value=34, min=0, max=50, step=0.1, description="Temperature (°C):",
+temp_slider = widgets.FloatSlider(value=34, min=0, max=50, step=0.1, description="Temperature (C):",
     style={"description_width": "initial"}, layout=widgets.Layout(width="80%"))
 humidity_slider = widgets.FloatSlider(value=62, min=0, max=100, step=1, description="Humidity (%):",
     style={"description_width": "initial"}, layout=widgets.Layout(width="80%"))
@@ -423,7 +438,7 @@ ws_slider = widgets.FloatSlider(value=12, min=0, max=100, step=0.1, description=
 horizon_dropdown = widgets.Dropdown(options=[("24 Hours", 24), ("48 Hours", 48), ("72 Hours", 72)],
     value=72, description="Forecast Horizon:", layout=widgets.Layout(width="50%"))
 
-predict_btn = widgets.Button(description="🚀 Predict AQI",
+predict_btn = widgets.Button(description=">> Predict AQI",
     button_style="primary", layout=widgets.Layout(width="200px", height="40px"))
 output = widgets.Output()
 
@@ -462,14 +477,14 @@ def on_predict_clicked(b):
         if total > 0:
             print(f"    PM2.5: {pm25/(pm25+pm10+no2+1)*100:.0f}%")
             print(f"    PM10:  {pm10/(pm25+pm10+no2+1)*100:.0f}%")
-            print(f"    NO₂:   {no2/(pm25+pm10+no2+1)*100:.0f}%")
+            print(f"    NO2:   {no2/(pm25+pm10+no2+1)*100:.0f}%")
         print(f"\\n  Weather Impact:")
-        print(f"    Temp: {'↑ increases' if temp > 35 else '↓ decreases'} AQI (+{abs(temp-30)*0.5:.1f})")
-        print(f"    Wind: {'↑ disperses' if ws > 10 else '↓ stagnation'} AQI (-{ws*0.3:.1f})")
+        print(f"    Temp: {'+increases' if temp > 35 else '-decreases'} AQI (+{abs(temp-30)*0.5:.1f})")
+        print(f"    Wind: {'+disperses' if ws > 10 else '-stagnation'} AQI (-{ws*0.3:.1f})")
         print(f"\\n  Health Advisory:")
-        if aqi_val > 200: print("    🔴 Avoid outdoor activities. Wear N95 mask.")
-        elif aqi_val > 100: print("    🟡 Reduce prolonged outdoor exertion.")
-        else: print("    🟢 Air quality is acceptable.")
+        if aqi_val > 200: print("    [RED] Avoid outdoor activities. Wear N95 mask.")
+        elif aqi_val > 100: print("    [YELLOW] Reduce prolonged outdoor exertion.")
+        else: print("    [GREEN] Air quality is acceptable.")
 
 predict_btn.on_click(on_predict_clicked)
 
@@ -524,7 +539,7 @@ with open(artifacts_dir / "metadata.json", "w") as f:
     json.dump(metadata, f, indent=2)
 print(f"Metadata saved: {artifacts_dir / 'metadata.json'}")
 
-print("\\n✓ All artifacts saved successfully!")""")
+print("[OK] All artifacts saved successfully!")""")
 
     md("""## 13. Model Reload Verification
 
@@ -548,7 +563,7 @@ print(f"Latest AQI: {result['latest_aqi']}")
 print(f"Category: {result['category']}")
 print(f"First 10 predictions: {result['forecast'][:10]}")
 
-print("\\n✓ Model reload verification passed!")""")
+print("[OK] Model reload verification passed!")""")
 
     md("""## 14. Summary
 

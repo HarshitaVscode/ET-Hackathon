@@ -1,0 +1,129 @@
+{
+  "timestamp": "2026-07-20T19:12:29.174556",
+  "total_hotspots": 28,
+  "severity_distribution": {
+    "Low": 20,
+    "Moderate": 8
+  },
+  "source_summary": {
+    "industrial": 12,
+    "crop_burning": 8,
+    "forest_fire": 5,
+    "dust_storm": 2,
+    "power_plant": 1
+  },
+  "model_accuracy": 0.936,
+  "avg_confidence": 19.5,
+  "top_recommendations": [
+    {
+      "priority": 1,
+      "location": "Chandigarh",
+      "state": "Chandigarh",
+      "severity": "Moderate",
+      "source": "forest_fire",
+      "confidence": 20.7,
+      "risk_score": 0.626,
+      "recommendation": "Deploy Fire Management Team; Issue Red Alert; Evacuate if needed",
+      "authority": "Forest Department / ISRO"
+    },
+    {
+      "priority": 2,
+      "location": "Ludhiana",
+      "state": "Punjab",
+      "severity": "Moderate",
+      "source": "forest_fire",
+      "confidence": 20.3,
+      "risk_score": 0.62,
+      "recommendation": "Deploy Fire Management Team; Issue Red Alert; Evacuate if needed",
+      "authority": "Forest Department / ISRO"
+    },
+    {
+      "priority": 3,
+      "location": "Amritsar",
+      "state": "Punjab",
+      "severity": "Moderate",
+      "source": "forest_fire",
+      "confidence": 24.6,
+      "risk_score": 0.61,
+      "recommendation": "Deploy Fire Management Team; Issue Red Alert; Evacuate if needed",
+      "authority": "Forest Department / ISRO"
+    },
+    {
+      "priority": 4,
+      "location": "Agra",
+      "state": "Uttar Pradesh",
+      "severity": "Moderate",
+      "source": "industrial",
+      "confidence": 14.9,
+      "risk_score": 0.598,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown if violated",
+      "authority": "SPCB / CPCB"
+    },
+    {
+      "priority": 5,
+      "location": "Delhi",
+      "state": "Delhi",
+      "severity": "Moderate",
+      "source": "industrial",
+      "confidence": 16.1,
+      "risk_score": 0.595,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown if violated",
+      "authority": "SPCB / CPCB"
+    },
+    {
+      "priority": 6,
+      "location": "Srinagar",
+      "state": "Jammu & Kashmir",
+      "severity": "Moderate",
+      "source": "crop_burning",
+      "confidence": 18.8,
+      "risk_score": 0.59,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "authority": "SPCB / Agriculture Dept"
+    },
+    {
+      "priority": 7,
+      "location": "Dehradun",
+      "state": "Uttarakhand",
+      "severity": "Moderate",
+      "source": "crop_burning",
+      "confidence": 16.8,
+      "risk_score": 0.583,
+      "recommendation": "Issue Crop Burning Notice; Deploy enforcement squad; Impose fine",
+      "authority": "SPCB / Agriculture Dept"
+    },
+    {
+      "priority": 8,
+      "location": "Mumbai",
+      "state": "Maharashtra",
+      "severity": "Low",
+      "source": "industrial",
+      "confidence": 20.4,
+      "risk_score": 0.524,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown if violated",
+      "authority": "SPCB / CPCB"
+    },
+    {
+      "priority": 9,
+      "location": "Bengaluru",
+      "state": "Karnataka",
+      "severity": "Low",
+      "source": "industrial",
+      "confidence": 22.1,
+      "risk_score": 0.519,
+      "recommendation": "Inspect Industrial Facility; Check emission compliance; Issue shutdown if violated",
+      "authority": "SPCB / CPCB"
+    },
+    {
+      "priority": 10,
+      "location": "Raipur",
+      "state": "Chhattisgarh",
+      "severity": "Low",
+      "source": "forest_fire",
+      "confidence": 30.8,
+      "risk_score": 0.5,
+      "recommendation": "Deploy Fire Management Team; Issue Red Alert; Evacuate if needed",
+      "authority": "Forest Department / ISRO"
+    }
+  ]
+}

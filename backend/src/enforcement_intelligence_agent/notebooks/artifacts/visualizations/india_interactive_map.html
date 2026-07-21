@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_497730189a61dd13d1dff60bbb5d071f {
+                    position: relative;
+                    width: 950.0px;
+                    height: 600.0px;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    <div style="position:fixed;bottom:30px;right:30px;z-index:1000;background:rgba(10,10,26,0.9);border:1px solid #1a1a3a;border-radius:8px;padding:12px;font-family:sans-serif;font-size:11px;color:#ccc"><div style="font-weight:bold;color:#fff;margin-bottom:6px;font-size:12px">Hotspot Severity</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;margin-right:6px"></span> Very High</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#f97316;margin-right:6px"></span> High</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#eab308;margin-right:6px"></span> Moderate</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#22c55e;margin-right:6px"></span> Low</div><hr style="border-color:#333;margin:6px 0"><div style="font-size:10px;color:#666">Click markers for details</div></div>
+    
+            <div class="folium-map" id="map_497730189a61dd13d1dff60bbb5d071f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_497730189a61dd13d1dff60bbb5d071f = L.map(
+                "map_497730189a61dd13d1dff60bbb5d071f",
+                {
+                    center: [22.5, 80.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_497730189a61dd13d1dff60bbb5d071f);
+
+            
+
+        
+    
+            var tile_layer_317a46f525c8fe08f921656deaa8516c = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "CartoDB Dark",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_317a46f525c8fe08f921656deaa8516c.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var feature_group_0686a8f77e65bde2a9752dc2d2f2e325 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e42beb9d0ece754c6f14b254b6ee2b25 = L.marker(
+                [15.9, 80.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_9d67fc462fc13797b98d0501c0beae73 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eAndhra Pradesh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e42beb9d0ece754c6f14b254b6ee2b25.setIcon(div_icon_9d67fc462fc13797b98d0501c0beae73);
+            
+    
+            var marker_0a66143a5ac58570ad2f578610f89d3c = L.marker(
+                [27.5, 94.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_7ef5ef51d7ab9fbe876fbf5d9c3f5075 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eArunachal Pradesh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_0a66143a5ac58570ad2f578610f89d3c.setIcon(div_icon_7ef5ef51d7ab9fbe876fbf5d9c3f5075);
+            
+    
+            var marker_1e3ae132b144f63a490eeb7c88057acd = L.marker(
+                [26.5, 92.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_fd8e6ca8978cfe83c967d028beb4ce10 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eAssam\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_1e3ae132b144f63a490eeb7c88057acd.setIcon(div_icon_fd8e6ca8978cfe83c967d028beb4ce10);
+            
+    
+            var marker_5156aa3cb40a8ffd69f6d95be2589f6e = L.marker(
+                [25.8, 86.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_1f22bdc5b0ab88902b1509f145d8cf56 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eBihar\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_5156aa3cb40a8ffd69f6d95be2589f6e.setIcon(div_icon_1f22bdc5b0ab88902b1509f145d8cf56);
+            
+    
+            var marker_43305a71bdf2711f3934cdd99daa9aaf = L.marker(
+                [21.5, 82.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_7097e4d9beef37a33ceca40e2ee346e8 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eChhattisgarh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_43305a71bdf2711f3934cdd99daa9aaf.setIcon(div_icon_7097e4d9beef37a33ceca40e2ee346e8);
+            
+    
+            var marker_82db8c661c1a48e51c5e84180d366c9f = L.marker(
+                [28.65, 77.1],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_f615448ae1ce89faac953809d53c48b4 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eDelhi\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_82db8c661c1a48e51c5e84180d366c9f.setIcon(div_icon_f615448ae1ce89faac953809d53c48b4);
+            
+    
+            var marker_c3d29ded8b28f92e9d2a89f1d6f32822 = L.marker(
+                [15.3, 74.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_50d0d492f309d326360709516e6e9946 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eGoa\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_c3d29ded8b28f92e9d2a89f1d6f32822.setIcon(div_icon_50d0d492f309d326360709516e6e9946);
+            
+    
+            var marker_8af2baa50fb07b29ceb42de2100feeef = L.marker(
+                [22.5, 71.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_7132962646205d1cba50d8a50e662697 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eGujarat\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_8af2baa50fb07b29ceb42de2100feeef.setIcon(div_icon_7132962646205d1cba50d8a50e662697);
+            
+    
+            var marker_5f85f33f69a6bacf463ecd9cd6958e2b = L.marker(
+                [29.5, 76.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_60fe198bce9a7f2c4df3fcb0fe70f495 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eHaryana\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_5f85f33f69a6bacf463ecd9cd6958e2b.setIcon(div_icon_60fe198bce9a7f2c4df3fcb0fe70f495);
+            
+    
+            var marker_faf0be38bed0049731c2ac71e606822b = L.marker(
+                [31.5, 77.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_4399313f1f77f2c46ddf270c1fbbf559 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eHimachal Pradesh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_faf0be38bed0049731c2ac71e606822b.setIcon(div_icon_4399313f1f77f2c46ddf270c1fbbf559);
+            
+    
+            var marker_e7432ffa3ea653e8dbe516faf1a1c9fc = L.marker(
+                [23.5, 85.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_2b5e9fbda376d7b31f6f029272b23eb2 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eJharkhand\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e7432ffa3ea653e8dbe516faf1a1c9fc.setIcon(div_icon_2b5e9fbda376d7b31f6f029272b23eb2);
+            
+    
+            var marker_52d943b9cff7c675a8a24947e8318332 = L.marker(
+                [15.0, 76.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_70113f74cdd5ae5263e1019e5be13511 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eKarnataka\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_52d943b9cff7c675a8a24947e8318332.setIcon(div_icon_70113f74cdd5ae5263e1019e5be13511);
+            
+    
+            var marker_665815fd52d884c3f2212d9709b912c1 = L.marker(
+                [10.5, 76.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_153e68b59b09e679052e0cadfc34c373 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eKerala\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_665815fd52d884c3f2212d9709b912c1.setIcon(div_icon_153e68b59b09e679052e0cadfc34c373);
+            
+    
+            var marker_47bdbfc72080a68269f82b2a1fab2721 = L.marker(
+                [24.0, 78.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_6bfce49ce08283279b6d0879c5512f3c = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eMadhya Pradesh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_47bdbfc72080a68269f82b2a1fab2721.setIcon(div_icon_6bfce49ce08283279b6d0879c5512f3c);
+            
+    
+            var marker_8e78c372c691e9a19f616b041c3b52ed = L.marker(
+                [19.0, 75.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_cad1f367653df453acfe7620fa6d82b7 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eMaharashtra\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_8e78c372c691e9a19f616b041c3b52ed.setIcon(div_icon_cad1f367653df453acfe7620fa6d82b7);
+            
+    
+            var marker_4647cbaa59c95a686639eb7c6b8a48fa = L.marker(
+                [24.8, 93.8],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_5a260cd96b4ed81d352ff76bf9101ded = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eManipur\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_4647cbaa59c95a686639eb7c6b8a48fa.setIcon(div_icon_5a260cd96b4ed81d352ff76bf9101ded);
+            
+    
+            var marker_d7062287d7ab2eb4542e406805fa8808 = L.marker(
+                [25.8, 91.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_6117787e8fa31613f929fa397f935965 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eMeghalaya\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_d7062287d7ab2eb4542e406805fa8808.setIcon(div_icon_6117787e8fa31613f929fa397f935965);
+            
+    
+            var marker_321f5cbae9b20dbe7ebc4cc19cf6ec11 = L.marker(
+                [23.5, 92.8],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_c24de0a0c4aa2125df43a644144c7eeb = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eMizoram\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_321f5cbae9b20dbe7ebc4cc19cf6ec11.setIcon(div_icon_c24de0a0c4aa2125df43a644144c7eeb);
+            
+    
+            var marker_e359cc7d96f2e090bac154165f1add75 = L.marker(
+                [26.2, 94.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_68a86e3a15eef1233799b01cccc275ba = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eNagaland\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e359cc7d96f2e090bac154165f1add75.setIcon(div_icon_68a86e3a15eef1233799b01cccc275ba);
+            
+    
+            var marker_8be82d31ec1d5031f7a061f60f2ef567 = L.marker(
+                [20.5, 84.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_ccb9ad2448aeb887498df7e3625f067c = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eOdisha\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_8be82d31ec1d5031f7a061f60f2ef567.setIcon(div_icon_ccb9ad2448aeb887498df7e3625f067c);
+            
+    
+            var marker_d261223a43dadd9433bc56ee1c764c93 = L.marker(
+                [31.0, 75.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_8b0dd5b104ecab19e8c86fc216a03ec1 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003ePunjab\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_d261223a43dadd9433bc56ee1c764c93.setIcon(div_icon_8b0dd5b104ecab19e8c86fc216a03ec1);
+            
+    
+            var marker_5339fc06605289c81af65468bb486e87 = L.marker(
+                [27.0, 73.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_a490c4a95ece0d1b3ec62fac3ca3ebff = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eRajasthan\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_5339fc06605289c81af65468bb486e87.setIcon(div_icon_a490c4a95ece0d1b3ec62fac3ca3ebff);
+            
+    
+            var marker_04285f8fddd2812166d2483d71a68201 = L.marker(
+                [27.7, 88.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_d6266d35e24db4cf7fba20cef4d35100 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eSikkim\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_04285f8fddd2812166d2483d71a68201.setIcon(div_icon_d6266d35e24db4cf7fba20cef4d35100);
+            
+    
+            var marker_d719ff69f95cad44029f6848e694f71b = L.marker(
+                [11.0, 78.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_8574a3b6d53263c948fa53d6698b0ec2 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eTamil Nadu\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_d719ff69f95cad44029f6848e694f71b.setIcon(div_icon_8574a3b6d53263c948fa53d6698b0ec2);
+            
+    
+            var marker_0e01ee6d66ac9ae71b09de2bbdfcd893 = L.marker(
+                [18.0, 79.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_4b7a3fbfac0aff9e1b5dfe11c0d67070 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eTelangana\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_0e01ee6d66ac9ae71b09de2bbdfcd893.setIcon(div_icon_4b7a3fbfac0aff9e1b5dfe11c0d67070);
+            
+    
+            var marker_f0b6cc6b7e32973e7d21a4691ea03cf7 = L.marker(
+                [23.8, 91.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_635b4d2e3a96687b2ec9fc66adde84a2 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eTripura\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_f0b6cc6b7e32973e7d21a4691ea03cf7.setIcon(div_icon_635b4d2e3a96687b2ec9fc66adde84a2);
+            
+    
+            var marker_c99f3c57869afcec2dc0ddbfc6e6ee3e = L.marker(
+                [27.0, 80.5],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_eb053c093e9ed5a2bf771723c2d4aff9 = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eUttar Pradesh\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_c99f3c57869afcec2dc0ddbfc6e6ee3e.setIcon(div_icon_eb053c093e9ed5a2bf771723c2d4aff9);
+            
+    
+            var marker_936018d82cb0b6b74e3cd59a76ae779a = L.marker(
+                [30.0, 79.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_d6adf57b73a9df05a962a810b3135efc = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eUttarakhand\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_936018d82cb0b6b74e3cd59a76ae779a.setIcon(div_icon_d6adf57b73a9df05a962a810b3135efc);
+            
+    
+            var marker_253f2412b2f8c44dde5df0b66e7de68c = L.marker(
+                [23.0, 88.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_5e8458f65b21ad5e645e83e8c67eb5bf = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eWest Bengal\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_253f2412b2f8c44dde5df0b66e7de68c.setIcon(div_icon_5e8458f65b21ad5e645e83e8c67eb5bf);
+            
+    
+            var marker_9fb780d75edf7c7149751ad53a1ad0c7 = L.marker(
+                [34.5, 76.0],
+                {
+  "interactive": false,
+}
+            ).addTo(feature_group_0686a8f77e65bde2a9752dc2d2f2e325);
+        
+    
+            var div_icon_b81498853ee34767ec9394765c912f3e = L.divIcon({
+  "html": "\u003cspan style=\"font-size:9px;color:#8899aa;font-weight:500;text-shadow:0 0 4px #000;white-space:nowrap\"\u003eJammu \u0026 Kashmir\u003c/span\u003e",
+  "iconSize": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_9fb780d75edf7c7149751ad53a1ad0c7.setIcon(div_icon_b81498853ee34767ec9394765c912f3e);
+            
+    
+            feature_group_0686a8f77e65bde2a9752dc2d2f2e325.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_1ecc5b24a18e2bf606080bcd84a0c672 = L.circleMarker(
+                [28.61, 77.23],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_6228a45efc44acd789b3de030118f97a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f4e405564364a3add5784a9dae8612a = $(`<div id="html_3f4e405564364a3add5784a9dae8612a" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Delhi</h4><div style="font-size:11px;color:#888">Delhi | 28.610N, 77.230E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.349</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>301</td></tr><tr><td style="color:#888">PM2.5</td><td>150</td></tr></table></div></div>`)[0];
+                popup_6228a45efc44acd789b3de030118f97a.setContent(html_3f4e405564364a3add5784a9dae8612a);
+            
+        
+
+        circle_marker_1ecc5b24a18e2bf606080bcd84a0c672.bindPopup(popup_6228a45efc44acd789b3de030118f97a)
+        ;
+
+        
+    
+    
+            circle_marker_1ecc5b24a18e2bf606080bcd84a0c672.bindTooltip(
+                `<div>
+                     Delhi — Moderate (0.35)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a89ae5e6715eea3d046824d9906c4015 = L.circleMarker(
+                [19.08, 72.88],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_9ad614d42207059c54f47950f342685b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_91d17aa393d9e6b9c61a3c9f625159f7 = $(`<div id="html_91d17aa393d9e6b9c61a3c9f625159f7" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Mumbai</h4><div style="font-size:11px;color:#888">Maharashtra | 19.080N, 72.880E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.077</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>176</td></tr><tr><td style="color:#888">PM2.5</td><td>88</td></tr></table></div></div>`)[0];
+                popup_9ad614d42207059c54f47950f342685b.setContent(html_91d17aa393d9e6b9c61a3c9f625159f7);
+            
+        
+
+        circle_marker_a89ae5e6715eea3d046824d9906c4015.bindPopup(popup_9ad614d42207059c54f47950f342685b)
+        ;
+
+        
+    
+    
+            circle_marker_a89ae5e6715eea3d046824d9906c4015.bindTooltip(
+                `<div>
+                     Mumbai — Low (0.08)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3012f78bfda62ff4a7955abeb9388e6f = L.circleMarker(
+                [12.97, 77.59],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_176cd661e53bd7ac5ded79601ebe2d1a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_88ca9b02fda0cc5545a1d208d9855ad3 = $(`<div id="html_88ca9b02fda0cc5545a1d208d9855ad3" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Bengaluru</h4><div style="font-size:11px;color:#888">Karnataka | 12.970N, 77.590E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.179</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>167</td></tr><tr><td style="color:#888">PM2.5</td><td>84</td></tr></table></div></div>`)[0];
+                popup_176cd661e53bd7ac5ded79601ebe2d1a.setContent(html_88ca9b02fda0cc5545a1d208d9855ad3);
+            
+        
+
+        circle_marker_3012f78bfda62ff4a7955abeb9388e6f.bindPopup(popup_176cd661e53bd7ac5ded79601ebe2d1a)
+        ;
+
+        
+    
+    
+            circle_marker_3012f78bfda62ff4a7955abeb9388e6f.bindTooltip(
+                `<div>
+                     Bengaluru — Low (0.18)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96a4ba6ec6d23a78c91f9ef787438683 = L.circleMarker(
+                [17.39, 78.49],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_386ca1c8947f3fda87a4cc978c2aa84f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bfef8bd577e9dd3752d0554357ba1fb7 = $(`<div id="html_bfef8bd577e9dd3752d0554357ba1fb7" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Hyderabad</h4><div style="font-size:11px;color:#888">Telangana | 17.390N, 78.490E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.23</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>218</td></tr><tr><td style="color:#888">PM2.5</td><td>109</td></tr></table></div></div>`)[0];
+                popup_386ca1c8947f3fda87a4cc978c2aa84f.setContent(html_bfef8bd577e9dd3752d0554357ba1fb7);
+            
+        
+
+        circle_marker_96a4ba6ec6d23a78c91f9ef787438683.bindPopup(popup_386ca1c8947f3fda87a4cc978c2aa84f)
+        ;
+
+        
+    
+    
+            circle_marker_96a4ba6ec6d23a78c91f9ef787438683.bindTooltip(
+                `<div>
+                     Hyderabad — Low (0.23)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_01eb0d664aceacd27084df754d50cabb = L.circleMarker(
+                [23.02, 72.57],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_df2f77eaa5d7cfacc08693c5a8d25f13 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d9fcda9283d6ea28d20c755f89fd8559 = $(`<div id="html_d9fcda9283d6ea28d20c755f89fd8559" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Ahmedabad</h4><div style="font-size:11px;color:#888">Gujarat | 23.020N, 72.570E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.096</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>171</td></tr><tr><td style="color:#888">PM2.5</td><td>85</td></tr></table></div></div>`)[0];
+                popup_df2f77eaa5d7cfacc08693c5a8d25f13.setContent(html_d9fcda9283d6ea28d20c755f89fd8559);
+            
+        
+
+        circle_marker_01eb0d664aceacd27084df754d50cabb.bindPopup(popup_df2f77eaa5d7cfacc08693c5a8d25f13)
+        ;
+
+        
+    
+    
+            circle_marker_01eb0d664aceacd27084df754d50cabb.bindTooltip(
+                `<div>
+                     Ahmedabad — Low (0.10)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fad5b5fbd981ae072a6ad9603fb9190a = L.circleMarker(
+                [13.08, 80.27],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_65c3ac35d79bd81c5307f317c774d5d1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4f21c33937b3e4a17615eb451b4f27b4 = $(`<div id="html_4f21c33937b3e4a17615eb451b4f27b4" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Chennai</h4><div style="font-size:11px;color:#888">Tamil Nadu | 13.080N, 80.270E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.082</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>174</td></tr><tr><td style="color:#888">PM2.5</td><td>87</td></tr></table></div></div>`)[0];
+                popup_65c3ac35d79bd81c5307f317c774d5d1.setContent(html_4f21c33937b3e4a17615eb451b4f27b4);
+            
+        
+
+        circle_marker_fad5b5fbd981ae072a6ad9603fb9190a.bindPopup(popup_65c3ac35d79bd81c5307f317c774d5d1)
+        ;
+
+        
+    
+    
+            circle_marker_fad5b5fbd981ae072a6ad9603fb9190a.bindTooltip(
+                `<div>
+                     Chennai — Low (0.08)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_310da22806c6695c8ec3a65d76fb2a4f = L.circleMarker(
+                [22.57, 88.36],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_3353766d4f280fd73388e47851c6670b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_899cd01f0aae54bba649c275aa28fa4f = $(`<div id="html_899cd01f0aae54bba649c275aa28fa4f" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Kolkata</h4><div style="font-size:11px;color:#888">West Bengal | 22.570N, 88.360E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.099</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>144</td></tr><tr><td style="color:#888">PM2.5</td><td>72</td></tr></table></div></div>`)[0];
+                popup_3353766d4f280fd73388e47851c6670b.setContent(html_899cd01f0aae54bba649c275aa28fa4f);
+            
+        
+
+        circle_marker_310da22806c6695c8ec3a65d76fb2a4f.bindPopup(popup_3353766d4f280fd73388e47851c6670b)
+        ;
+
+        
+    
+    
+            circle_marker_310da22806c6695c8ec3a65d76fb2a4f.bindTooltip(
+                `<div>
+                     Kolkata — Low (0.10)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1ddea7fdbdff683738f2e8d010d81a1 = L.circleMarker(
+                [18.52, 73.86],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_dc19e58d94df2ab24331ee0eaa7f6eb0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7f8ea5fd2a07add99007841dfea2b9ad = $(`<div id="html_7f8ea5fd2a07add99007841dfea2b9ad" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Pune</h4><div style="font-size:11px;color:#888">Maharashtra | 18.520N, 73.860E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.126</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>183</td></tr><tr><td style="color:#888">PM2.5</td><td>92</td></tr></table></div></div>`)[0];
+                popup_dc19e58d94df2ab24331ee0eaa7f6eb0.setContent(html_7f8ea5fd2a07add99007841dfea2b9ad);
+            
+        
+
+        circle_marker_e1ddea7fdbdff683738f2e8d010d81a1.bindPopup(popup_dc19e58d94df2ab24331ee0eaa7f6eb0)
+        ;
+
+        
+    
+    
+            circle_marker_e1ddea7fdbdff683738f2e8d010d81a1.bindTooltip(
+                `<div>
+                     Pune — Low (0.13)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5bb8638a9aaf7b03b32350ddf5648ae2 = L.circleMarker(
+                [26.91, 75.79],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_3f30e0105fd0caed35e64ad1b262b595 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6e00a16f63371ff9079f954ccfbd7f8f = $(`<div id="html_6e00a16f63371ff9079f954ccfbd7f8f" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Jaipur</h4><div style="font-size:11px;color:#888">Rajasthan | 26.910N, 75.790E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.305</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>263</td></tr><tr><td style="color:#888">PM2.5</td><td>131</td></tr></table></div></div>`)[0];
+                popup_3f30e0105fd0caed35e64ad1b262b595.setContent(html_6e00a16f63371ff9079f954ccfbd7f8f);
+            
+        
+
+        circle_marker_5bb8638a9aaf7b03b32350ddf5648ae2.bindPopup(popup_3f30e0105fd0caed35e64ad1b262b595)
+        ;
+
+        
+    
+    
+            circle_marker_5bb8638a9aaf7b03b32350ddf5648ae2.bindTooltip(
+                `<div>
+                     Jaipur — Moderate (0.30)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b49dfb54fcfed7e658fb6bdfff8c0328 = L.circleMarker(
+                [26.85, 80.95],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_888d91d580e94009220d12fdc706e8e8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e010c23a111dc7cc37c9f77e16ae8a4f = $(`<div id="html_e010c23a111dc7cc37c9f77e16ae8a4f" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Lucknow</h4><div style="font-size:11px;color:#888">Uttar Pradesh | 26.850N, 80.950E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.236</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>211</td></tr><tr><td style="color:#888">PM2.5</td><td>105</td></tr></table></div></div>`)[0];
+                popup_888d91d580e94009220d12fdc706e8e8.setContent(html_e010c23a111dc7cc37c9f77e16ae8a4f);
+            
+        
+
+        circle_marker_b49dfb54fcfed7e658fb6bdfff8c0328.bindPopup(popup_888d91d580e94009220d12fdc706e8e8)
+        ;
+
+        
+    
+    
+            circle_marker_b49dfb54fcfed7e658fb6bdfff8c0328.bindTooltip(
+                `<div>
+                     Lucknow — Low (0.24)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7238ecbbe33cd652703c4b34045c12fb = L.circleMarker(
+                [26.45, 80.33],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_2ab1750b462d2b553598eadbe6749730 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2b1b78625bcac1b8665048b58edce42c = $(`<div id="html_2b1b78625bcac1b8665048b58edce42c" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Kanpur</h4><div style="font-size:11px;color:#888">Uttar Pradesh | 26.450N, 80.330E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.3</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>283</td></tr><tr><td style="color:#888">PM2.5</td><td>142</td></tr></table></div></div>`)[0];
+                popup_2ab1750b462d2b553598eadbe6749730.setContent(html_2b1b78625bcac1b8665048b58edce42c);
+            
+        
+
+        circle_marker_7238ecbbe33cd652703c4b34045c12fb.bindPopup(popup_2ab1750b462d2b553598eadbe6749730)
+        ;
+
+        
+    
+    
+            circle_marker_7238ecbbe33cd652703c4b34045c12fb.bindTooltip(
+                `<div>
+                     Kanpur — Low (0.30)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5db0a50999889228fac127faaef13cf = L.circleMarker(
+                [21.15, 79.09],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_a7acc3d66d88ef7c87a54289b42f7e77 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfc31cb927525bb8e543c7ddf247e633 = $(`<div id="html_dfc31cb927525bb8e543c7ddf247e633" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Nagpur</h4><div style="font-size:11px;color:#888">Maharashtra | 21.150N, 79.090E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.189</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>196</td></tr><tr><td style="color:#888">PM2.5</td><td>98</td></tr></table></div></div>`)[0];
+                popup_a7acc3d66d88ef7c87a54289b42f7e77.setContent(html_dfc31cb927525bb8e543c7ddf247e633);
+            
+        
+
+        circle_marker_e5db0a50999889228fac127faaef13cf.bindPopup(popup_a7acc3d66d88ef7c87a54289b42f7e77)
+        ;
+
+        
+    
+    
+            circle_marker_e5db0a50999889228fac127faaef13cf.bindTooltip(
+                `<div>
+                     Nagpur — Low (0.19)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_429bcaa305e1b1094e6f81249eebd59d = L.circleMarker(
+                [22.72, 75.86],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_5794a8547108f44da3c2e1417dbd04eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8369f6a38d9727fcb531c22bd0a503fd = $(`<div id="html_8369f6a38d9727fcb531c22bd0a503fd" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Indore</h4><div style="font-size:11px;color:#888">Madhya Pradesh | 22.720N, 75.860E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.249</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>243</td></tr><tr><td style="color:#888">PM2.5</td><td>121</td></tr></table></div></div>`)[0];
+                popup_5794a8547108f44da3c2e1417dbd04eb.setContent(html_8369f6a38d9727fcb531c22bd0a503fd);
+            
+        
+
+        circle_marker_429bcaa305e1b1094e6f81249eebd59d.bindPopup(popup_5794a8547108f44da3c2e1417dbd04eb)
+        ;
+
+        
+    
+    
+            circle_marker_429bcaa305e1b1094e6f81249eebd59d.bindTooltip(
+                `<div>
+                     Indore — Low (0.25)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_621dd55e515512b308815883b68640cc = L.circleMarker(
+                [23.26, 77.41],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_c39c691310443dad4fb08e6001e3441a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2e5cab851b7722f40c29bf6e6c510b1b = $(`<div id="html_2e5cab851b7722f40c29bf6e6c510b1b" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Bhopal</h4><div style="font-size:11px;color:#888">Madhya Pradesh | 23.260N, 77.410E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.266</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>237</td></tr><tr><td style="color:#888">PM2.5</td><td>118</td></tr></table></div></div>`)[0];
+                popup_c39c691310443dad4fb08e6001e3441a.setContent(html_2e5cab851b7722f40c29bf6e6c510b1b);
+            
+        
+
+        circle_marker_621dd55e515512b308815883b68640cc.bindPopup(popup_c39c691310443dad4fb08e6001e3441a)
+        ;
+
+        
+    
+    
+            circle_marker_621dd55e515512b308815883b68640cc.bindTooltip(
+                `<div>
+                     Bhopal — Low (0.27)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_14f90386e65d848f6ebb83f90c251df6 = L.circleMarker(
+                [17.69, 83.22],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_2a64c15c9e8b22567ad91e1b395d5a73 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_578b903cac8789f0146a47ef6468f3ed = $(`<div id="html_578b903cac8789f0146a47ef6468f3ed" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Visakhapatnam</h4><div style="font-size:11px;color:#888">Andhra Pradesh | 17.690N, 83.220E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.1</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>168</td></tr><tr><td style="color:#888">PM2.5</td><td>84</td></tr></table></div></div>`)[0];
+                popup_2a64c15c9e8b22567ad91e1b395d5a73.setContent(html_578b903cac8789f0146a47ef6468f3ed);
+            
+        
+
+        circle_marker_14f90386e65d848f6ebb83f90c251df6.bindPopup(popup_2a64c15c9e8b22567ad91e1b395d5a73)
+        ;
+
+        
+    
+    
+            circle_marker_14f90386e65d848f6ebb83f90c251df6.bindTooltip(
+                `<div>
+                     Visakhapatnam — Low (0.10)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_26a0a601b79f9378f9b8c6f7483488ad = L.circleMarker(
+                [25.59, 85.14],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_1e0d1194749b0657e9d506336845b3ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a0e5bd0f423871bc400d5ed1f6e1f3dc = $(`<div id="html_a0e5bd0f423871bc400d5ed1f6e1f3dc" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Patna</h4><div style="font-size:11px;color:#888">Bihar | 25.590N, 85.140E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.116</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>170</td></tr><tr><td style="color:#888">PM2.5</td><td>85</td></tr></table></div></div>`)[0];
+                popup_1e0d1194749b0657e9d506336845b3ff.setContent(html_a0e5bd0f423871bc400d5ed1f6e1f3dc);
+            
+        
+
+        circle_marker_26a0a601b79f9378f9b8c6f7483488ad.bindPopup(popup_1e0d1194749b0657e9d506336845b3ff)
+        ;
+
+        
+    
+    
+            circle_marker_26a0a601b79f9378f9b8c6f7483488ad.bindTooltip(
+                `<div>
+                     Patna — Low (0.12)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3b1d9c7afecdf72dafbf54df2398df9 = L.circleMarker(
+                [30.9, 75.86],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_e4f1261a7daa56fbf9267065f1aedd77 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9581870bd1e3078085baf30adcea8ca0 = $(`<div id="html_9581870bd1e3078085baf30adcea8ca0" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Ludhiana</h4><div style="font-size:11px;color:#888">Punjab | 30.900N, 75.860E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.396</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>235</td></tr><tr><td style="color:#888">PM2.5</td><td>117</td></tr></table></div></div>`)[0];
+                popup_e4f1261a7daa56fbf9267065f1aedd77.setContent(html_9581870bd1e3078085baf30adcea8ca0);
+            
+        
+
+        circle_marker_d3b1d9c7afecdf72dafbf54df2398df9.bindPopup(popup_e4f1261a7daa56fbf9267065f1aedd77)
+        ;
+
+        
+    
+    
+            circle_marker_d3b1d9c7afecdf72dafbf54df2398df9.bindTooltip(
+                `<div>
+                     Ludhiana — Moderate (0.40)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_729e702607487c5549499d08cf8d658a = L.circleMarker(
+                [31.63, 74.87],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_282ac959e10956c1e8ef0467ab6e0405 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ce4955c9b76c20b7b47c51884473848b = $(`<div id="html_ce4955c9b76c20b7b47c51884473848b" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Amritsar</h4><div style="font-size:11px;color:#888">Punjab | 31.630N, 74.870E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.329</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>217</td></tr><tr><td style="color:#888">PM2.5</td><td>108</td></tr></table></div></div>`)[0];
+                popup_282ac959e10956c1e8ef0467ab6e0405.setContent(html_ce4955c9b76c20b7b47c51884473848b);
+            
+        
+
+        circle_marker_729e702607487c5549499d08cf8d658a.bindPopup(popup_282ac959e10956c1e8ef0467ab6e0405)
+        ;
+
+        
+    
+    
+            circle_marker_729e702607487c5549499d08cf8d658a.bindTooltip(
+                `<div>
+                     Amritsar — Moderate (0.33)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b9ba95deeb2712801159f6df4a299da9 = L.circleMarker(
+                [27.18, 78.02],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_b45a1125052d15fda3e00c1808ef9122 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_531df4c71300fa9b63ceb496c7a88ea1 = $(`<div id="html_531df4c71300fa9b63ceb496c7a88ea1" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Agra</h4><div style="font-size:11px;color:#888">Uttar Pradesh | 27.180N, 78.020E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.37</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>281</td></tr><tr><td style="color:#888">PM2.5</td><td>141</td></tr></table></div></div>`)[0];
+                popup_b45a1125052d15fda3e00c1808ef9122.setContent(html_531df4c71300fa9b63ceb496c7a88ea1);
+            
+        
+
+        circle_marker_b9ba95deeb2712801159f6df4a299da9.bindPopup(popup_b45a1125052d15fda3e00c1808ef9122)
+        ;
+
+        
+    
+    
+            circle_marker_b9ba95deeb2712801159f6df4a299da9.bindTooltip(
+                `<div>
+                     Agra — Moderate (0.37)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6f420a9b8f8cfac6bf6bf2011d9a81a3 = L.circleMarker(
+                [25.32, 82.97],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_e808e8887a00802920cb20186be17c20 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_da94bad3b3c8a643d563a2ef4ae12a8b = $(`<div id="html_da94bad3b3c8a643d563a2ef4ae12a8b" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Varanasi</h4><div style="font-size:11px;color:#888">Uttar Pradesh | 25.320N, 82.970E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.276</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>223</td></tr><tr><td style="color:#888">PM2.5</td><td>112</td></tr></table></div></div>`)[0];
+                popup_e808e8887a00802920cb20186be17c20.setContent(html_da94bad3b3c8a643d563a2ef4ae12a8b);
+            
+        
+
+        circle_marker_6f420a9b8f8cfac6bf6bf2011d9a81a3.bindPopup(popup_e808e8887a00802920cb20186be17c20)
+        ;
+
+        
+    
+    
+            circle_marker_6f420a9b8f8cfac6bf6bf2011d9a81a3.bindTooltip(
+                `<div>
+                     Varanasi — Low (0.28)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f1636042b8b3d50738aa3e01c814d2fe = L.circleMarker(
+                [26.14, 91.74],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_268e9081d1583d407c684a83dca40219 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7d46287cb6ba9584fe6c042a27569fd1 = $(`<div id="html_7d46287cb6ba9584fe6c042a27569fd1" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Guwahati</h4><div style="font-size:11px;color:#888">Assam | 26.140N, 91.740E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.087</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>135</td></tr><tr><td style="color:#888">PM2.5</td><td>67</td></tr></table></div></div>`)[0];
+                popup_268e9081d1583d407c684a83dca40219.setContent(html_7d46287cb6ba9584fe6c042a27569fd1);
+            
+        
+
+        circle_marker_f1636042b8b3d50738aa3e01c814d2fe.bindPopup(popup_268e9081d1583d407c684a83dca40219)
+        ;
+
+        
+    
+    
+            circle_marker_f1636042b8b3d50738aa3e01c814d2fe.bindTooltip(
+                `<div>
+                     Guwahati — Low (0.09)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_33ea8bb5a779340bc59d3ea00db23ce6 = L.circleMarker(
+                [30.73, 76.78],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.299999999999999, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_162dccfcf11eb2f316be1e73ce635a9d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08395fa5bd819284e6aa5b2f6b2b374f = $(`<div id="html_08395fa5bd819284e6aa5b2f6b2b374f" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Chandigarh</h4><div style="font-size:11px;color:#888">Chandigarh | 30.730N, 76.780E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.415</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>314</td></tr><tr><td style="color:#888">PM2.5</td><td>157</td></tr></table></div></div>`)[0];
+                popup_162dccfcf11eb2f316be1e73ce635a9d.setContent(html_08395fa5bd819284e6aa5b2f6b2b374f);
+            
+        
+
+        circle_marker_33ea8bb5a779340bc59d3ea00db23ce6.bindPopup(popup_162dccfcf11eb2f316be1e73ce635a9d)
+        ;
+
+        
+    
+    
+            circle_marker_33ea8bb5a779340bc59d3ea00db23ce6.bindTooltip(
+                `<div>
+                     Chandigarh — Moderate (0.41)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eebc0e8ca27e198d8b86df81244cb56f = L.circleMarker(
+                [30.32, 78.03],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_c9f12303a211edf2832c887b8d43d80d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e3ef226803d82b05eb784f90659cc507 = $(`<div id="html_e3ef226803d82b05eb784f90659cc507" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Dehradun</h4><div style="font-size:11px;color:#888">Uttarakhand | 30.320N, 78.030E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.302</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>270</td></tr><tr><td style="color:#888">PM2.5</td><td>135</td></tr></table></div></div>`)[0];
+                popup_c9f12303a211edf2832c887b8d43d80d.setContent(html_e3ef226803d82b05eb784f90659cc507);
+            
+        
+
+        circle_marker_eebc0e8ca27e198d8b86df81244cb56f.bindPopup(popup_c9f12303a211edf2832c887b8d43d80d)
+        ;
+
+        
+    
+    
+            circle_marker_eebc0e8ca27e198d8b86df81244cb56f.bindTooltip(
+                `<div>
+                     Dehradun — Moderate (0.30)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b0644e48530256116e318cc56a4ff210 = L.circleMarker(
+                [23.34, 85.31],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_6d78cc04ebb652df368d5110a4d968ce = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cf3f341b1b169096ee54d4c31eb6491d = $(`<div id="html_cf3f341b1b169096ee54d4c31eb6491d" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Ranchi</h4><div style="font-size:11px;color:#888">Jharkhand | 23.340N, 85.310E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.15</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>166</td></tr><tr><td style="color:#888">PM2.5</td><td>83</td></tr></table></div></div>`)[0];
+                popup_6d78cc04ebb652df368d5110a4d968ce.setContent(html_cf3f341b1b169096ee54d4c31eb6491d);
+            
+        
+
+        circle_marker_b0644e48530256116e318cc56a4ff210.bindPopup(popup_6d78cc04ebb652df368d5110a4d968ce)
+        ;
+
+        
+    
+    
+            circle_marker_b0644e48530256116e318cc56a4ff210.bindTooltip(
+                `<div>
+                     Ranchi — Low (0.15)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abd420fcb97b496d63c17b3d53858ba6 = L.circleMarker(
+                [21.25, 81.63],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_04107e2df881ef7d0a2dfa0c4050a0e6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_693ea246e70772b26cec8a2cdb57cc5e = $(`<div id="html_693ea246e70772b26cec8a2cdb57cc5e" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Raipur</h4><div style="font-size:11px;color:#888">Chhattisgarh | 21.250N, 81.630E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.177</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>140</td></tr><tr><td style="color:#888">PM2.5</td><td>70</td></tr></table></div></div>`)[0];
+                popup_04107e2df881ef7d0a2dfa0c4050a0e6.setContent(html_693ea246e70772b26cec8a2cdb57cc5e);
+            
+        
+
+        circle_marker_abd420fcb97b496d63c17b3d53858ba6.bindPopup(popup_04107e2df881ef7d0a2dfa0c4050a0e6)
+        ;
+
+        
+    
+    
+            circle_marker_abd420fcb97b496d63c17b3d53858ba6.bindTooltip(
+                `<div>
+                     Raipur — Low (0.18)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_323cd1bb699ae7e1aeaac10f561af55d = L.circleMarker(
+                [20.3, 85.82],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_7b5dc022d7460ca72fecdb240a9187ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_54ef1f3256997401416d82171f406ea1 = $(`<div id="html_54ef1f3256997401416d82171f406ea1" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Bhubaneswar</h4><div style="font-size:11px;color:#888">Odisha | 20.300N, 85.820E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.13</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>192</td></tr><tr><td style="color:#888">PM2.5</td><td>96</td></tr></table></div></div>`)[0];
+                popup_7b5dc022d7460ca72fecdb240a9187ab.setContent(html_54ef1f3256997401416d82171f406ea1);
+            
+        
+
+        circle_marker_323cd1bb699ae7e1aeaac10f561af55d.bindPopup(popup_7b5dc022d7460ca72fecdb240a9187ab)
+        ;
+
+        
+    
+    
+            circle_marker_323cd1bb699ae7e1aeaac10f561af55d.bindTooltip(
+                `<div>
+                     Bhubaneswar — Low (0.13)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8b031d3aed427393d3381b355b7987e3 = L.circleMarker(
+                [8.52, 76.94],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_609f75b374c396a4e6858d560b47e9c0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b9886ccce63bc76aaa5823184a1e8803 = $(`<div id="html_b9886ccce63bc76aaa5823184a1e8803" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Thiruvananthapuram</h4><div style="font-size:11px;color:#888">Kerala | 8.520N, 76.940E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#22c55e;font-weight:bold">Low</td></tr><tr><td style="color:#888">Score</td><td>0.09</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>155</td></tr><tr><td style="color:#888">PM2.5</td><td>77</td></tr></table></div></div>`)[0];
+                popup_609f75b374c396a4e6858d560b47e9c0.setContent(html_b9886ccce63bc76aaa5823184a1e8803);
+            
+        
+
+        circle_marker_8b031d3aed427393d3381b355b7987e3.bindPopup(popup_609f75b374c396a4e6858d560b47e9c0)
+        ;
+
+        
+    
+    
+            circle_marker_8b031d3aed427393d3381b355b7987e3.bindTooltip(
+                `<div>
+                     Thiruvananthapuram — Low (0.09)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_701593b1766d6bcc08c0e931d4c2ebd5 = L.circleMarker(
+                [34.08, 74.8],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd);
+        
+    
+        var popup_29a65ed5338003d5fe9a79be772394ed = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_194605c7abdafef04cf45ee753173a64 = $(`<div id="html_194605c7abdafef04cf45ee753173a64" style="width: 100.0%; height: 100.0%;"><div style="font-family:sans-serif;min-width:220px;background:#111;color:#eee;padding:8px;border-radius:6px"><h4 style="margin:0 0 4px;color:#fff">Srinagar</h4><div style="font-size:11px;color:#888">Jammu & Kashmir | 34.080N, 74.800E</div><hr style="border-color:#333;margin:6px 0"><table style="font-size:11px;width:100%"><tr><td style="color:#888">Severity</td><td style="color:#eab308;font-weight:bold">Moderate</td></tr><tr><td style="color:#888">Score</td><td>0.311</td></tr><tr><td style="color:#888">Dominant</td><td>PM2.5</td></tr><tr><td style="color:#888">AQI</td><td>254</td></tr><tr><td style="color:#888">PM2.5</td><td>127</td></tr></table></div></div>`)[0];
+                popup_29a65ed5338003d5fe9a79be772394ed.setContent(html_194605c7abdafef04cf45ee753173a64);
+            
+        
+
+        circle_marker_701593b1766d6bcc08c0e931d4c2ebd5.bindPopup(popup_29a65ed5338003d5fe9a79be772394ed)
+        ;
+
+        
+    
+    
+            circle_marker_701593b1766d6bcc08c0e931d4c2ebd5.bindTooltip(
+                `<div>
+                     Srinagar — Moderate (0.31)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var heat_map_b11a6d3148723bc173c1076e5fbea2a9 = L.heatLayer(
+                [[28.61, 77.23, 300.7560137698645], [19.08, 72.88, 175.58637868034916], [12.97, 77.59, 167.32757719525276], [17.39, 78.49, 217.74999691886626], [23.02, 72.57, 170.7003362847466], [13.08, 80.27, 174.07525430049992], [22.57, 88.36, 143.83707687546564], [18.52, 73.86, 183.11097577267955], [26.91, 75.79, 262.879345795158], [26.85, 80.95, 210.7125471907414], [26.45, 80.33, 283.15574934154205], [21.15, 79.09, 195.95103769904745], [22.72, 75.86, 242.57685797876655], [23.26, 77.41, 236.57700378754225], [17.69, 83.22, 168.10531559857554], [25.59, 85.14, 170.4166247128643], [30.9, 75.86, 234.68833559594296], [31.63, 74.87, 216.62462806791493], [27.18, 78.02, 281.47963490805574], [25.32, 82.97, 223.27790459699247], [26.14, 91.74, 134.60886673465902], [30.73, 76.78, 314.4280885104612], [30.32, 78.03, 269.77788697512534], [23.34, 85.31, 165.70810741535493], [21.25, 81.63, 139.70073134890134], [20.3, 85.82, 191.65938219171892], [8.52, 76.94, 154.89001775007273], [34.08, 74.8, 254.0505978509973]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 1,
+  "radius": 25,
+  "blur": 15,
+  "gradient": {
+  0.2: "blue",
+  0.4: "green",
+  0.6: "yellow",
+  0.8: "orange",
+  1.0: "red",
+},
+}
+            );
+        
+    
+            heat_map_b11a6d3148723bc173c1076e5fbea2a9.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var feature_group_1e4f104d5accfcf128fa2bb8483ea061 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e13ad46178446ad2a4b3031a93f40d66 = L.circleMarker(
+                [30.5, 76.0],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.809999999999999, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_e13ad46178446ad2a4b3031a93f40d66.bindTooltip(
+                `<div>
+                     FRP: 88MW, Conf: 57%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6742c97feb2bfdc66fe63ea26fae962f = L.circleMarker(
+                [30.8, 75.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.05, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_6742c97feb2bfdc66fe63ea26fae962f.bindTooltip(
+                `<div>
+                     FRP: 90MW, Conf: 65%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46a778b1c99421d9ab0c461abdeef209 = L.circleMarker(
+                [31.0, 75.2],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.62, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_46a778b1c99421d9ab0c461abdeef209.bindTooltip(
+                `<div>
+                     FRP: 56MW, Conf: 60%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b81e513439afe07feecc4abb41cc3145 = L.circleMarker(
+                [29.8, 76.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.68, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_b81e513439afe07feecc4abb41cc3145.bindTooltip(
+                `<div>
+                     FRP: 57MW, Conf: 84%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_171d6ccd9320182b06cd30284b3ee38b = L.circleMarker(
+                [30.2, 75.8],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_171d6ccd9320182b06cd30284b3ee38b.bindTooltip(
+                `<div>
+                     FRP: 24MW, Conf: 82%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81e3b6982125dbb65cdecf06c2b14c81 = L.circleMarker(
+                [29.6, 76.0],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.42, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_81e3b6982125dbb65cdecf06c2b14c81.bindTooltip(
+                `<div>
+                     FRP: 104MW, Conf: 83%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fbe5f7da1f58c41c34ab6c56f159b71a = L.circleMarker(
+                [29.8, 76.3],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.88, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_fbe5f7da1f58c41c34ab6c56f159b71a.bindTooltip(
+                `<div>
+                     FRP: 59MW, Conf: 79%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_108f0f06e3d257a3917c15be7e0501d2 = L.circleMarker(
+                [29.5, 76.8],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.58, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_108f0f06e3d257a3917c15be7e0501d2.bindTooltip(
+                `<div>
+                     FRP: 46MW, Conf: 77%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c009819d5067ca5552bff8770b08e3ac = L.circleMarker(
+                [23.2, 81.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.779999999999999, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_c009819d5067ca5552bff8770b08e3ac.bindTooltip(
+                `<div>
+                     FRP: 48MW, Conf: 65%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_603b183026436d04ee6e70a74ca04fb1 = L.circleMarker(
+                [24.0, 82.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.87, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_603b183026436d04ee6e70a74ca04fb1.bindTooltip(
+                `<div>
+                     FRP: 69MW, Conf: 67%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c366e95d650c20cbccacfdccbde62ee8 = L.circleMarker(
+                [22.8, 81.8],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.83, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_c366e95d650c20cbccacfdccbde62ee8.bindTooltip(
+                `<div>
+                     FRP: 48MW, Conf: 64%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0ca4ad62424bd524cc94f14151dae175 = L.circleMarker(
+                [23.7, 82.2],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_0ca4ad62424bd524cc94f14151dae175.bindTooltip(
+                `<div>
+                     FRP: 26MW, Conf: 69%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_08f67938abde3bb76b1f6c1ff93dc211 = L.circleMarker(
+                [22.3, 82.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.94, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_08f67938abde3bb76b1f6c1ff93dc211.bindTooltip(
+                `<div>
+                     FRP: 79MW, Conf: 47%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f658884be0b4d6394834b6a5638286dd = L.circleMarker(
+                [22.0, 82.0],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.470000000000001, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_f658884be0b4d6394834b6a5638286dd.bindTooltip(
+                `<div>
+                     FRP: 45MW, Conf: 66%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_114b19f1b94dd888e2250cfd78a41744 = L.circleMarker(
+                [22.5, 82.8],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.74, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_114b19f1b94dd888e2250cfd78a41744.bindTooltip(
+                `<div>
+                     FRP: 87MW, Conf: 91%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_471562014339bdc14d106ff56eb0fbe5 = L.circleMarker(
+                [26.0, 93.0],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.290000000000001, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_471562014339bdc14d106ff56eb0fbe5.bindTooltip(
+                `<div>
+                     FRP: 103MW, Conf: 56%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f0215f9e4390d8bb55b7e25084683ea7 = L.circleMarker(
+                [26.5, 92.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_f0215f9e4390d8bb55b7e25084683ea7.bindTooltip(
+                `<div>
+                     FRP: 24MW, Conf: 85%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9f09334d8896086b1716e4ce6cf24c8e = L.circleMarker(
+                [25.8, 93.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.69, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_9f09334d8896086b1716e4ce6cf24c8e.bindTooltip(
+                `<div>
+                     FRP: 67MW, Conf: 53%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4dae6a0940128fc3661b23b149f81a4f = L.circleMarker(
+                [26.5, 72.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.1100000000000003, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_4dae6a0940128fc3661b23b149f81a4f.bindTooltip(
+                `<div>
+                     FRP: 31MW, Conf: 81%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8327e27100605f39607ec10b781706c4 = L.circleMarker(
+                [19.5, 76.0],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.05, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_8327e27100605f39607ec10b781706c4.bindTooltip(
+                `<div>
+                     FRP: 110MW, Conf: 53%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf553719aceef24d35c9c29bf9c89f11 = L.circleMarker(
+                [20.0, 75.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.34, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_bf553719aceef24d35c9c29bf9c89f11.bindTooltip(
+                `<div>
+                     FRP: 103MW, Conf: 61%, MODIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba38b7c96da53b60281b4c7f9da1c152 = L.circleMarker(
+                [19.0, 76.5],
+                {"bubblingMouseEvents": true, "color": "#ff4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff4444", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.68, "stroke": true, "weight": 1}
+            ).addTo(feature_group_1e4f104d5accfcf128fa2bb8483ea061);
+        
+    
+            circle_marker_ba38b7c96da53b60281b4c7f9da1c152.bindTooltip(
+                `<div>
+                     FRP: 57MW, Conf: 82%, VIIRS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_1e4f104d5accfcf128fa2bb8483ea061.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var feature_group_87b0ced3f3b2077e16926ad7c6078e1d = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_a3d89c224a2d102b516c68a4f1ac7ba8 = L.circleMarker(
+                [28.47, 77.28],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_a3d89c224a2d102b516c68a4f1ac7ba8.bindTooltip(
+                `<div>
+                     Badarpur Thermal Power Plant (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_90d1b75818af51adc606b627e3d12981 = L.circleMarker(
+                [28.6, 77.58],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_90d1b75818af51adc606b627e3d12981.bindTooltip(
+                `<div>
+                     NTPC Dadri (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e1de7cd8cb5efc8018410c08759fecc = L.circleMarker(
+                [24.02, 82.7],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_9e1de7cd8cb5efc8018410c08759fecc.bindTooltip(
+                `<div>
+                     Singrauli Power Hub (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_70a51ec878cea28b8ebd4c2d391e460e = L.circleMarker(
+                [22.33, 82.68],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_70a51ec878cea28b8ebd4c2d391e460e.bindTooltip(
+                `<div>
+                     Korba Power Hub (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_08452f282283162a9e9f6ccc9e04a2f3 = L.circleMarker(
+                [20.95, 85.23],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_08452f282283162a9e9f6ccc9e04a2f3.bindTooltip(
+                `<div>
+                     Talcher Power Plant (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_94bff669e7787c10c8da74a669297bc7 = L.circleMarker(
+                [24.1, 82.77],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_94bff669e7787c10c8da74a669297bc7.bindTooltip(
+                `<div>
+                     Vindhyachal TPP (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_28bfab7ef0ae72a2cb2c40ddba46fe52 = L.circleMarker(
+                [22.85, 69.7],
+                {"bubblingMouseEvents": true, "color": "#ef4444", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ef4444", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_28bfab7ef0ae72a2cb2c40ddba46fe52.bindTooltip(
+                `<div>
+                     Mundra TPP (Power Plant)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c187e467c972ee84128c3ab86233e16b = L.circleMarker(
+                [28.55, 77.28],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_c187e467c972ee84128c3ab86233e16b.bindTooltip(
+                `<div>
+                     Okhla Industrial Area (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2bf5a8ccfe36c88b72fea0e828eac555 = L.circleMarker(
+                [28.78, 77.03],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_2bf5a8ccfe36c88b72fea0e828eac555.bindTooltip(
+                `<div>
+                     Bawana Industrial Area (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c6c9cca30ab6b2899dbb90f3a66f7278 = L.circleMarker(
+                [28.67, 77.43],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_c6c9cca30ab6b2899dbb90f3a66f7278.bindTooltip(
+                `<div>
+                     Ghaziabad Industrial (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_68d5226a30569b89884cc9644037be25 = L.circleMarker(
+                [28.41, 77.3],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_68d5226a30569b89884cc9644037be25.bindTooltip(
+                `<div>
+                     Faridabad Industrial (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ddaadc2327a35098c1456ca9bfc988e = L.circleMarker(
+                [30.9, 75.86],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_1ddaadc2327a35098c1456ca9bfc988e.bindTooltip(
+                `<div>
+                     Ludhiana Industrial Belt (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4bd2190e3d07260e6855b1266850dc8d = L.circleMarker(
+                [20.37, 72.92],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_4bd2190e3d07260e6855b1266850dc8d.bindTooltip(
+                `<div>
+                     Vapi Industrial Estate (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2972ce42cf4a6b85aaec88577d16af97 = L.circleMarker(
+                [21.6, 73.0],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_2972ce42cf4a6b85aaec88577d16af97.bindTooltip(
+                `<div>
+                     Ankleshwar Industrial (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b407f297d543cc6e13033c7f3d2120f4 = L.circleMarker(
+                [22.8, 86.2],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_b407f297d543cc6e13033c7f3d2120f4.bindTooltip(
+                `<div>
+                     Jamshedpur Steel (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_54eeca7e709a1de60314a8430a3a8e3b = L.circleMarker(
+                [21.23, 81.38],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_54eeca7e709a1de60314a8430a3a8e3b.bindTooltip(
+                `<div>
+                     Bhilai Steel Plant (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1728752416c0e7cf3837fb5e715435d5 = L.circleMarker(
+                [27.5, 77.68],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_1728752416c0e7cf3837fb5e715435d5.bindTooltip(
+                `<div>
+                     Mathura Refinery (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8ab6c59e1ee90762954c716dd3bb4a9e = L.circleMarker(
+                [29.28, 76.95],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_8ab6c59e1ee90762954c716dd3bb4a9e.bindTooltip(
+                `<div>
+                     Panipat Refinery (Industrial)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5fa59926a84f982b52c67c273ba779d = L.circleMarker(
+                [30.8, 75.5],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_e5fa59926a84f982b52c67c273ba779d.bindTooltip(
+                `<div>
+                     Punjab Crop Burning Region (Crop Burning)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81da506fcd70fad83f81907828d49229 = L.circleMarker(
+                [29.6, 76.5],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_81da506fcd70fad83f81907828d49229.bindTooltip(
+                `<div>
+                     Haryana Crop Burning Region (Crop Burning)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aedda9bd14450dc717d2c4c163fd257f = L.circleMarker(
+                [22.5, 81.5],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_aedda9bd14450dc717d2c4c163fd257f.bindTooltip(
+                `<div>
+                     Central India Forest Belt (Forest Fire)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c1520fbc0bb02476dcf823f9e570d17 = L.circleMarker(
+                [26.0, 93.0],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_2c1520fbc0bb02476dcf823f9e570d17.bindTooltip(
+                `<div>
+                     NE Forest Region (Forest Fire)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_671277305629802f1ff97f3c614f6232 = L.circleMarker(
+                [28.55, 77.15],
+                {"bubblingMouseEvents": true, "color": "#3b82f6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3b82f6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_671277305629802f1ff97f3c614f6232.bindTooltip(
+                `<div>
+                     Delhi-NCR Construction Belt (Construction)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c67a45ba436e8f1286e3804827f052a = L.circleMarker(
+                [28.75, 77.1],
+                {"bubblingMouseEvents": true, "color": "#8b5cf6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_3c67a45ba436e8f1286e3804827f052a.bindTooltip(
+                `<div>
+                     Delhi-NCR Brick Kiln Cluster (Brick Kiln)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fbdbd2ca67c199f0781b337559fed3dc = L.circleMarker(
+                [25.5, 85.5],
+                {"bubblingMouseEvents": true, "color": "#8b5cf6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_fbdbd2ca67c199f0781b337559fed3dc.bindTooltip(
+                `<div>
+                     Bihar Brick Kiln Belt (Brick Kiln)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8c4e1aaa31d702386bf2df33282c5831 = L.circleMarker(
+                [28.61, 77.23],
+                {"bubblingMouseEvents": true, "color": "#ec4899", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_8c4e1aaa31d702386bf2df33282c5831.bindTooltip(
+                `<div>
+                     Delhi Urban Congestion (Urban Congestion)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9710b9daeec603b75232e6e7ef3ccc35 = L.circleMarker(
+                [28.4, 77.0],
+                {"bubblingMouseEvents": true, "color": "#6366f1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_9710b9daeec603b75232e6e7ef3ccc35.bindTooltip(
+                `<div>
+                     NH-48 Freight Corridor (Diesel Traffic)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f00081595b8d7701ac6f9e3e3cce4a0 = L.circleMarker(
+                [27.0, 73.0],
+                {"bubblingMouseEvents": true, "color": "#f59e0b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f59e0b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_3f00081595b8d7701ac6f9e3e3cce4a0.bindTooltip(
+                `<div>
+                     Rajasthan Dust Source (Dust Storm)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e0e4af3c0704aa676fdb8b42534b7167 = L.circleMarker(
+                [15.3, 74.0],
+                {"bubblingMouseEvents": true, "color": "#14b8a6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_e0e4af3c0704aa676fdb8b42534b7167.bindTooltip(
+                `<div>
+                     Goa Mining Belt (Mining)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6c13b1776b216e7cfebc7423f60eca3 = L.circleMarker(
+                [15.15, 76.85],
+                {"bubblingMouseEvents": true, "color": "#14b8a6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(feature_group_87b0ced3f3b2077e16926ad7c6078e1d);
+        
+    
+            circle_marker_a6c13b1776b216e7cfebc7423f60eca3.bindTooltip(
+                `<div>
+                     Bellary Mining Region (Mining)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_87b0ced3f3b2077e16926ad7c6078e1d.addTo(map_497730189a61dd13d1dff60bbb5d071f);
+        
+    
+            var layer_control_89017971713a34ea117e8e554c0ce27f_layers = {
+                base_layers : {
+                    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" : tile_layer_317a46f525c8fe08f921656deaa8516c,
+                },
+                overlays :  {
+                    "State Labels" : feature_group_0686a8f77e65bde2a9752dc2d2f2e325,
+                    "Pollution Hotspots" : marker_cluster_d0b7621c1d880a78795cacf9cff9e3fd,
+                    "AQI Heatmap" : heat_map_b11a6d3148723bc173c1076e5fbea2a9,
+                    "Active Fires" : feature_group_1e4f104d5accfcf128fa2bb8483ea061,
+                    "Emission Sources" : feature_group_87b0ced3f3b2077e16926ad7c6078e1d,
+                },
+            };
+            let layer_control_89017971713a34ea117e8e554c0ce27f = L.control.layers(
+                layer_control_89017971713a34ea117e8e554c0ce27f_layers.base_layers,
+                layer_control_89017971713a34ea117e8e554c0ce27f_layers.overlays,
+                {
+  "position": "bottomleft",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_497730189a61dd13d1dff60bbb5d071f);
+
+        
+</script>
+</html>

@@ -78,7 +78,7 @@ def walk_forward_validation(
         m = model.__class__.__name__
         try:
             model_clone = _clone_model(model, X_train.shape[1])
-            eval_set = [(X_test.values, y_test)]
+            eval_set = [(X_test, y_test)]
             model_clone.fit(X_train, y_train, eval_set=eval_set)
             preds = model_clone.predict(X_test)
         except Exception as e:
@@ -133,7 +133,7 @@ def train_test_evaluate(
     kwargs = {}
     if cat_features and hasattr(model, "_model") and "cat_features" in model._model.__class__.__name__.lower():
         kwargs["cat_features"] = cat_features
-    eval_set = [(X_test.values, y_test)]
+    eval_set = [(X_test, y_test)]
     model.fit(X_train, y_train, eval_set=eval_set, **kwargs)
     train_time = time.time() - t0
 

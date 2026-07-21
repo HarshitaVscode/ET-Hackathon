@@ -92,22 +92,50 @@ try:
 except:
     HAVE_SHAP = False
 
-# Helper: draw India boundary + state boundaries on any matplotlib Axes
-def _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a"):
+# GIS boundary data — pre-loaded once for all maps
+def _find_geojson_dir():
+    _start = Path(os.getcwd()).resolve()
+    for _p in [_start] + list(_start.parents):
+        for _sub in [
+            "backend/src/enforcement_intelligence_agent/artifacts/geojson",
+            "artifacts/geojson",
+        ]:
+            _gd = _p / _sub
+            if _gd.exists():
+                return _gd
+    return None
+
+_GEOJSON_DIR = _find_geojson_dir()
+_INDIA_BOUNDARY = None
+_STATE_BOUNDARIES = None
+_DISTRICT_BOUNDARIES = None
+if _GEOJSON_DIR:
     try:
-        _gd = Path(cfg.artifacts_dir) / "geojson"
-        _ib = json.loads((_gd / "india_boundary.json").read_text()) if (_gd / "india_boundary.json").exists() else None
-        _sb = json.loads((_gd / "india_states.json").read_text()) if (_gd / "india_states.json").exists() else None
-        if _ib:
-            for f in _ib.get("features", []):
-                c = f["geometry"]["coordinates"][0]
-                ax.plot([p[0] for p in c], [p[1] for p in c], color=india_color, linewidth=2.0, alpha=0.9, zorder=10)
-        if _sb:
-            for f in _sb.get("features", []):
-                c = f["geometry"]["coordinates"][0]
-                ax.plot([p[0] for p in c], [p[1] for p in c], color=state_color, linewidth=0.6, alpha=0.5, zorder=9)
-    except Exception:
-        pass
+        _INDIA_BOUNDARY = json.loads((_GEOJSON_DIR / "india_boundary.json").read_text())
+        _STATE_BOUNDARIES = json.loads((_GEOJSON_DIR / "india_states.json").read_text())
+        _dc = _GEOJSON_DIR / "india_districts.json"
+        _DISTRICT_BOUNDARIES = json.loads(_dc.read_text()) if _dc.exists() else None
+    except Exception as _e:
+        print(f"GeoJSON load error: {_e}")
+if _INDIA_BOUNDARY is None:
+    print("WARNING: India boundary GeoJSON not found. Boundaries will not appear on maps.")
+    print("  Searched in all parent directories of:", os.getcwd())
+
+def _plot_geojson_geom(ax, geom, color, lw, alpha):
+    gt = geom["type"]
+    coords = geom["coordinates"]
+    polygons = coords if gt == "MultiPolygon" else [coords]
+    for polygon in polygons:
+        ring = polygon[0]
+        ax.plot([p[0] for p in ring], [p[1] for p in ring], color=color, linewidth=lw, alpha=alpha, zorder=10)
+
+def _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a"):
+    if _INDIA_BOUNDARY:
+        for f in _INDIA_BOUNDARY.get("features", []):
+            _plot_geojson_geom(ax, f["geometry"], india_color, 2.0, 0.9)
+    if _STATE_BOUNDARIES:
+        for f in _STATE_BOUNDARIES.get("features", []):
+            _plot_geojson_geom(ax, f["geometry"], state_color, 0.6, 0.5)
 
 print("Environment ready.")
 print(f"  pandas {pd.__version__}, numpy {np.__version__}")
@@ -998,43 +1026,36 @@ print("  INTERACTIVE INDIA MAP — PROPER GIS BOUNDARIES")
 print("=" * 60)
 
 try:
-    import json
-    from pathlib import Path
-
-    # Load authentic GIS boundary data
-    _geojson_dir = cfg.artifacts_dir / "geojson"
-    _india_boundary = json.loads((_geojson_dir / "india_boundary.json").read_text()) if (_geojson_dir / "india_boundary.json").exists() else None
-    _state_boundaries = json.loads((_geojson_dir / "india_states.json").read_text()) if (_geojson_dir / "india_states.json").exists() else None
-    _district_boundaries = json.loads((_geojson_dir / "india_districts.json").read_text()) if (_geojson_dir / "india_districts.json").exists() else None
+    # Use pre-loaded GeoJSON from imports cell (_INDIA_BOUNDARY, _STATE_BOUNDARIES, _DISTRICT_BOUNDARIES)
 
     india_map = folium.Map(
         location=[22.5, 80.0], zoom_start=5,
         tiles="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
         attr="CartoDB Dark", control_scale=True,
-        prefer_canvas=True, width=950, height=600,
+        prefer_canvas=True, width="100%", height=600,
     )
 
     # Layer 1: India international boundary (always visible)
-    if _india_boundary:
+    if _INDIA_BOUNDARY:
         folium.GeoJson(
-            _india_boundary,
+            _INDIA_BOUNDARY,
             style_function=lambda x: {"color": "#00ccff", "weight": 3.0, "fillOpacity": 0, "opacity": 0.9},
             name="India Boundary"
         ).add_to(india_map)
 
-    # Layer 2: State boundaries with proper polygons
-    if _state_boundaries:
+    # Layer 2: State boundaries
+    if _STATE_BOUNDARIES:
         folium.GeoJson(
-            _state_boundaries,
+            _STATE_BOUNDARIES,
             style_function=lambda x: {"fillColor": "#0a0a1a", "color": "#3388ff", "weight": 0.8, "fillOpacity": 0.2, "opacity": 0.5},
             name="State Boundaries",
             tooltip=folium.GeoJsonTooltip(fields=["name"], aliases=["State:"], sticky=True)
         ).add_to(india_map)
 
     # Layer 3: District boundaries
-    if _district_boundaries:
+    if _DISTRICT_BOUNDARIES:
         folium.GeoJson(
-            _district_boundaries,
+            _DISTRICT_BOUNDARIES,
             style_function=lambda x: {"color": "#666688", "weight": 0.4, "fillOpacity": 0, "opacity": 0.3},
             name="District Boundaries",
             tooltip=folium.GeoJsonTooltip(fields=["name"], aliases=["District:"], sticky=True)
@@ -1138,24 +1159,34 @@ try:
         '<div style="font-size:10px;color:#666">Click markers for details</div></div>')
     india_map.get_root().html.add_child(folium.Element(legend_html))
 
-    # Save as HTML file + embed via iframe (bypasses notebook trust requirement)
-    _map_path = cfg.viz_dir / "india_interactive_map.html"
-    _map_path.parent.mkdir(parents=True, exist_ok=True)
+    # Save standalone HTML beside the notebook
+    _notebook_dir = Path(os.getcwd())
+    _map_path = _notebook_dir / "india_interactive_map.html"
     india_map.save(str(_map_path))
-    _rel_src = str(_map_path)
-    try:
-        _rel_src = os.path.relpath(_map_path, Path.cwd()).replace("\\\\", "/")
-    except Exception:
-        pass
-    display(HTML(
-        f'<iframe src="{_rel_src}" width="100%" height="650px" '
-        f'style="border:none;border-radius:8px;background:#0a0a1a"></iframe>'
-    ))
-    print("\\n✓ Interactive India map loaded — zoom, pan, click hotspots, toggle layers")
 
-    # Static version with proper India boundaries (always visible, no JS needed)
+    # Validate: confirm map is non-empty before claiming success
+    _render_html = india_map._repr_html_()
+    _has_content = len(_render_html) > 500 and "leaflet" in _render_html.lower()
+    print(f"[Validate] Folium map HTML generated: {_has_content} ({len(_render_html)} bytes)")
+
+    # Display inline via display() (works in JupyterLab, trusted notebook)
+    display(india_map)
+
+    # Also embed as IFrame with relative path (works in classic notebook without trust)
+    from IPython.display import IFrame
+    display(IFrame(src="./india_interactive_map.html", width=950, height=600))
+
+    if _has_content and _INDIA_BOUNDARY:
+        print("✓ Interactive India Map — GIS boundaries loaded and displayed inline")
+    elif not _INDIA_BOUNDARY:
+        print("⚠ India boundary data not loaded — map shown without boundaries")
+    else:
+        print("⚠ Map displayed — verify boundaries are visible")
+
+    # Static version with real India boundaries (always visible, no JS needed)
     fig, ax = plt.subplots(figsize=(16, 12))
     _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
+
     for _, row in df_hotspots.iterrows():
         c = SEV_COLORS.get(row["severity_label"], "#666")
         s = max(40, row["severity_score"] * 300)
@@ -1163,7 +1194,7 @@ try:
         ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=8, alpha=0.9, zorder=12,
                      textcoords="offset points", xytext=(5, 5))
     ax.set_xlim(68, 98); ax.set_ylim(6, 37)
-    ax.set_title("Pollution Hotspot Map — India (Static View)", fontsize=14, fontweight="bold", pad=15)
+    ax.set_title("India Pollution Hotspot Map — GIS Boundaries: Cyan=International, Blue=State", fontsize=14, fontweight="bold", pad=15)
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
     ax.set_facecolor("#0a0a1a"); ax.grid(True, alpha=0.1, color="white")
     for sp in ax.spines.values(): sp.set_visible(False)
@@ -1172,41 +1203,27 @@ try:
     plt.tight_layout()
     plt.show()
 
-except Exception as e:
-    print(f"Map rendering note: {e}")
-    print("Fallback: displaying static map instead.")
-    fig, ax = plt.subplots(figsize=(14, 12))
-
-    # Draw India boundaries
-    def _draw_bounds(axes):
-        ib = _india_boundary
-        if ib:
-            for f in ib.get("features", []):
-                coords = f["geometry"]["coordinates"][0]
-                lons = [c[0] for c in coords]
-                lats = [c[1] for c in coords]
-                axes.plot(lons, lats, color="#00ccff", linewidth=2.0, alpha=0.9, zorder=10)
-        sb = _state_boundaries
-        if sb:
-            for f in sb.get("features", []):
-                coords = f["geometry"]["coordinates"][0]
-                lons = [c[0] for c in coords]
-                lats = [c[1] for c in coords]
-                axes.plot(lons, lats, color="#3388ff", linewidth=0.6, alpha=0.5, zorder=9)
-    _draw_bounds(ax)
-
+except Exception as _e:
+    import traceback as _tb
+    _tb.print_exc()
+    print(f"Folium map error: {_e}")
+    print("Static map shown below instead.")
+    fig, ax = plt.subplots(figsize=(16, 12))
+    _draw_india_bounds(ax, india_color="#00ccff", state_color="#3a5a7a")
+    SEV_COLORS = {"Very High": "#ef4444", "High": "#f97316", "Moderate": "#eab308", "Low": "#22c55e"}
     for _, row in df_hotspots.iterrows():
         c = SEV_COLORS.get(row["severity_label"], "#666")
-        s = max(30, row["severity_score"] * 250)
-        ax.scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.6, edgecolors="white", linewidth=0.5, zorder=11)
-        ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=7, alpha=0.8, textcoords="offset points", xytext=(4, 4), zorder=12)
-    ax.set_title("Pollution Hotspot Map — India", fontsize=14, fontweight="bold")
+        s = max(40, row["severity_score"] * 300)
+        ax.scatter(row["lon"], row["lat"], c=c, s=s, alpha=0.7, edgecolors="white", linewidth=0.5, zorder=11)
+        ax.annotate(row["location"], (row["lon"], row["lat"]), fontsize=8, alpha=0.9, zorder=12,
+                     textcoords="offset points", xytext=(5, 5))
+    ax.set_xlim(68, 98); ax.set_ylim(6, 37)
+    ax.set_title("India Pollution Hotspot Map (Fallback) — Boundaries Visible", fontsize=14, fontweight="bold", pad=15)
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
-    ax.set_facecolor("#0a0a1a"); ax.set_xlim(68, 98); ax.set_ylim(6, 37)
-    ax.grid(True, alpha=0.1, color="white")
+    ax.set_facecolor("#0a0a1a"); ax.grid(True, alpha=0.1, color="white")
     for sp in ax.spines.values(): sp.set_visible(False)
     legend_elements = [mpatches.Patch(color=c, label=s) for s, c in SEV_COLORS.items()]
-    ax.legend(handles=legend_elements, title="Severity", loc="lower left", fontsize=8)
+    ax.legend(handles=legend_elements, title="Severity", loc="lower left", fontsize=9)
     plt.tight_layout()
     plt.show()""")
 

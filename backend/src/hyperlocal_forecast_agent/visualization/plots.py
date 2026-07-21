@@ -94,7 +94,7 @@ def plot_timeline(historical: pd.Series, forecast: Optional[pd.Series] = None,
             ax.fill_between(forecast.index, conf_lower, conf_upper, color="#f97316", alpha=0.15, label="Confidence Band")
         ax.plot(forecast.index, forecast.values, color="#ef4444", linewidth=2.5, linestyle="--", label="Predicted AQI")
         if historical is not None:
-            ax.axvline(x=historical.index[-1], color="rgba(255,255,255,0.3)", linewidth=1, linestyle=":")
+            ax.axvline(x=historical.index[-1], color=(1.0, 1.0, 1.0, 0.3), linewidth=1, linestyle=":")
 
     ax.set_xlabel("Time", fontsize=11)
     ax.set_ylabel("AQI", fontsize=11)
@@ -115,13 +115,13 @@ def plot_residuals(y_true: np.ndarray, y_pred: np.ndarray, save_path: Optional[s
 
     residuals = np.array(y_true) - np.array(y_pred)
     axes[0].scatter(y_pred, residuals, alpha=0.5, color="#3b82f6", s=20)
-    axes[0].axhline(y=0, color="rgba(255,255,255,0.3)", linestyle="--", linewidth=1)
+    axes[0].axhline(y=0, color=(1.0, 1.0, 1.0, 0.3), linestyle="--", linewidth=1)
     axes[0].set_xlabel("Predicted AQI", fontsize=11)
     axes[0].set_ylabel("Residual", fontsize=11)
     axes[0].set_title("Residual Plot", fontsize=13, fontweight="bold")
 
     axes[1].hist(residuals, bins=40, color="#6366f1", alpha=0.7, edgecolor="none")
-    axes[1].axvline(x=0, color="rgba(255,255,255,0.3)", linestyle="--", linewidth=1)
+    axes[1].axvline(x=0, color=(1.0, 1.0, 1.0, 0.3), linestyle="--", linewidth=1)
     axes[1].set_xlabel("Residual", fontsize=11)
     axes[1].set_ylabel("Frequency", fontsize=11)
     axes[1].set_title("Error Distribution", fontsize=13, fontweight="bold")
