@@ -136,11 +136,7 @@ Using the project's established ward definitions from the demo seed data. These 
     "W12": {"name": "Ghaziabad", "lat": 28.66, "lon": 77.43, "population": 450000, "avg_income": "medium", "green_cover": 0.09},
 }
 
-ward_df = pd.DataFrame.from_dict(WARDS, orient="index")
-ward_df.index.name = "ward_id"
-ward_df = ward_df.reset_index()
-print(f"Loaded {len(ward_df)} wards")
-display(ward_df)""")
+print(f"Loaded {len(WARDS)} wards: {', '.join(w['name'] for w in WARDS.values())}")""")
 
     md("""### 4.2 AQI Breakpoints (CPCB Standard)
 
@@ -1363,17 +1359,6 @@ def update_dashboard(ward_name: str, horizon: int):
         aqi_cat = get_aqi_category(aqi)
         aqi_c = get_aqi_color(aqi)
 
-        cards_html = "<div class='kpi-grid' style='display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0'>"
-        cards_html += make_stat_card_html("🏙️", "Ward", ward_name, "#3b82f6")
-        cards_html += make_stat_card_html("📊", "AQI", f"{aqi:.0f}", aqi_c)
-        cards_html += make_stat_card_html("⚠️", "Risk Score", f"{risk_score:.3f}", RISK_COLORS_HEX.get(risk_level, "#6b7280"))
-        cards_html += make_stat_card_html("👥", "At Risk", f"{exposed:,}", "#f97316")
-        cards_html += make_stat_card_html("📈", "Exposure", f"{exposure_pct}%", "#a855f7")
-        cards_html += make_stat_card_html("👴", "Vulnerability", f"{vrow['vulnerability_score']:.3f}", "#22c55e")
-        cards_html += make_stat_card_html("🏭", "Source", (prow["primary_source"] if prow is not None else "N/A").replace("_", " ").title(), "#6b7280")
-        cards_html += make_stat_card_html("📉", "Trend", (prow["trend"] if prow is not None else "N/A").title(), "#eab308")
-        cards_html += "</div>"
-
         severity_banner = f'''
         <div class="severity-banner" style="background:linear-gradient(135deg,{RISK_COLORS_HEX.get(risk_level,'#6b7280')}dd,{RISK_COLORS_HEX.get(risk_level,'#6b7280')}88);
                     border-radius:12px;padding:16px 20px;margin:8px 0;display:flex;align-items:center;gap:16px;
@@ -1576,7 +1561,6 @@ def update_dashboard(ward_name: str, horizon: int):
           </div>
           {severity_banner}
           {combined_insight}
-          {cards_html}
           <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin:10px 0">
             {ward_map}
             <div>
