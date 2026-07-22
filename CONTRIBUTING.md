@@ -1,95 +1,117 @@
 # Contributing to Vayu-Drishti
 
-Thank you for your interest in contributing! This guide will help you get started.
+Thank you for your interest in Vayu-Drishti! We welcome contributions of all kinds.
 
 ## Code of Conduct
 
-Be respectful, inclusive, and constructive. Harassment or discriminatory behavior
-will not be tolerated.
+Be respectful, inclusive, and constructive. Do not tolerate harassment or discrimination.
 
 ## How to Contribute
 
-### 1. Reporting Bugs
+### Reporting Bugs
 
-- Check the issue tracker to avoid duplicates
-- Include steps to reproduce, expected vs. actual behavior
-- Mention your OS, Python version, and browser (for frontend issues)
+1. Check the [issue tracker](https://github.com/HarshitaVscode/ET-Hackathon/issues) for existing reports
+2. If not found, open a new issue with:
+   - Clear title and description
+   - Steps to reproduce
+   - Expected vs actual behaviour
+   - Environment details (OS, Python version, browser)
 
-### 2. Suggesting Features
+### Suggesting Features
 
-- Open a GitHub Issue with the `enhancement` label
-- Describe the problem you're solving, not just the feature you want
-- Include mockups or examples if applicable
+Open a GitHub Issue with the `enhancement` label describing the feature, its use case, and how it aligns with the project.
 
-### 3. Submitting Code
+### Submitting Code
 
-1. **Fork** the repository
-2. **Create a feature branch** from `main`:
-   ```bash
-   git checkout -b feat/your-feature-name
-   ```
-3. **Make your changes** following the project conventions
-4. **Run the tests**:
-   ```bash
-   make test
-   ```
-5. **Lint your code**:
-   ```bash
-   # Python
-   ruff check .
-   # TypeScript
-   cd frontend && npm run lint
-   ```
-6. **Commit** using conventional commits:
+1. Fork the repository
+2. Create a branch from `main`:
+   - `feat/` for new features
+   - `fix/` for bug fixes
+   - `refactor/` for code improvements
+   - `docs/` for documentation changes
+3. Make your changes
+4. Run tests: `make test`
+5. Run linters: `make lint`
+6. Commit using [Conventional Commits](https://www.conventionalcommits.org/):
+
    ```
    feat: add AQI threshold alerting
    fix: correct CPCB API pagination offset
    refactor: extract event bus into shared module
+   docs: update API endpoint documentation
    ```
-7. **Push** and open a Pull Request against `main`
 
-### 4. Pull Request Guidelines
+7. Push to your fork and open a pull request
 
-- Keep PRs focused — one feature/fix per PR
-- Write a clear title and description
+### Pull Request Guidelines
+
+- One feature or fix per PR
+- Clear title and description
 - Reference related issues
-- Ensure all CI checks pass
-- Request review from at least one maintainer
-
-## Development Setup
-
-See [README.md](README.md) for installation and running instructions.
+- Include tests for new functionality
+- Update documentation if needed
 
 ## Project Structure
 
 ```
-agents/             AI agent microservices (13 agents)
-api-gateway/        API gateway (REST, GraphQL, WebSocket)
-backend/            Unified FastAPI backend
-data/               Runtime data (gitignored)
-decision-engine/    RL-based decision engine
-deploy/             Deployment scripts
-docs/               Documentation
-evaluation/         Evaluation results
-feature-store/      Feature store
-frontend/           Next.js + TypeScript frontend
-infra/              Monitoring (Prometheus, Grafana)
-ingestion/          Data ingestion pipeline
-knowledge-graph/    Neo4j knowledge graph builder
-llm-service/        LLM inference service
-mobile/             React Native mobile app (scaffold)
-models/             ML model notebooks
-scripts/            Utility scripts
-stream-processing/  Apache Flink / Kafka Streams (Java)
-tests/              Integration tests
+vayu-drishti/
+├── backend/              # Unified Python backend (FastAPI)
+│   ├── src/
+│   │   ├── api/          # REST, GraphQL, WebSocket endpoints
+│   │   ├── agents/       # Integrated agent implementations
+│   │   ├── ml/           # ML training, inference, notebooks
+│   │   ├── ingestion/    # Data ingestion connectors
+│   │   ├── forecasting/  # Forecasting service
+│   │   ├── knowledge_graph/
+│   │   ├── decision_engine/
+│   │   ├── llm_service/
+│   │   └── infrastructure/
+│   ├── enforcement_intelligence_agent/
+│   │   └── notebooks/
+│   ├── health_risk_advisory/
+│   │   └── notebooks/
+│   └── hyperlocal_forecast_agent/
+│       └── notebooks/
+├── agents/               # Standalone AI agent microservices
+├── frontend/             # Next.js dashboard
+├── api-gateway/
+├── data/
+├── decision-engine/
+├── feature-store/
+├── ingestion/
+├── knowledge-graph/
+├── llm-service/
+├── stream-processing/
+├── mobile/
+├── evaluation/
+└── infra/
 ```
 
 ## Coding Conventions
 
-- **Python**: Follow PEP 8. Use type hints everywhere. Prefer Pydantic for
-  validation. Use `structlog` for structured logging.
-- **TypeScript**: Use strict mode. Prefer functional components with hooks.
-- **Imports**: Group standard library, third-party, then local. Sort alphabetically.
-- **Testing**: Write tests for all new features. Use `pytest` for Python and
-  `jest` (via Next) for frontend.
-- **Documentation**: Keep README up to date. Document public APIs with docstrings.
+### Python
+
+- [PEP 8](https://peps.python.org/pep-0008/) style
+- Type hints for all function signatures
+- Pydantic models for data validation
+- `structlog` for structured logging
+
+### TypeScript / JavaScript
+
+- Strict TypeScript mode
+- Functional components with hooks
+- Tailwind CSS for styling
+
+### Testing
+
+- Python: `pytest` with verbose output
+- Frontend: `jest` + React Testing Library
+
+### Linting
+
+- Python: `ruff` (`make lint`)
+- Frontend: `next lint` (`cd frontend && npm run lint`)
+
+## Questions?
+
+Open a [GitHub Discussion](https://github.com/HarshitaVscode/ET-Hackathon/discussions) for questions, ideas, or general discussion.
