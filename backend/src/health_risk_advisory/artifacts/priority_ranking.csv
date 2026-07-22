@@ -1,0 +1,13 @@
+ward_id,ward_name,max_risk,avg_risk,total_exposed,avg_aqi,vulnerability,primary_source,trend,priority_score
+W10,East Delhi,0.887,0.826,990908,284.1,0.698,construction,stable,0.788
+W09,Shahdara,0.765,0.724,608400,224.7,0.744,crop_burning,stable,0.681
+W12,Ghaziabad,0.811,0.787,1063221,285.1,0.518,traffic,improving,0.679
+W02,Karol Bagh,0.615,0.595,446087,185.9,0.578,waste_burning,deteriorating,0.65
+W06,Rohini,0.643,0.63,661892,196.4,0.545,traffic,stable,0.587
+W07,Najafgarh,0.638,0.628,376913,181.5,0.692,crop_burning,improving,0.524
+W08,Moti Nagar,0.533,0.512,337944,151.7,0.499,construction,stable,0.459
+W04,Vasant Kunj,0.493,0.453,162969,145.1,0.287,mixed,deteriorating,0.429
+W05,Dwarka,0.53,0.479,431242,144.0,0.44,industrial,improving,0.417
+W03,New Delhi,0.559,0.518,217398,163.7,0.331,construction,stable,0.398
+W11,South Delhi,0.515,0.486,247644,159.5,0.344,industrial,improving,0.355
+W01,Civil Lines,0.501,0.451,243288,140.2,0.323,traffic,improving,0.316
