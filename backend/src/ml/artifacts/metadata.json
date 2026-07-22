@@ -44,7 +44,7 @@
     "MAPE": 0.52
   },
   "category_accuracy": 99.07,
-  "training_time_seconds": 56.94269275665283,
+  "training_time_seconds": 130.9427547454834,
   "aqi_breakpoints": [
     [
       0,
